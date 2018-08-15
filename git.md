@@ -99,3 +99,5 @@ Bash的简单命令
            - git log
            - git log --oneline  
            显示当前分支的历史版本
+           - git show [hash of file]  
+           查看一个文件
