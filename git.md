@@ -108,7 +108,7 @@ Bash的简单命令
            将本地的提交推送到远程仓库
            - git pull [remote] [branch]  
            将远程仓库的提交拉下到本地
-           - git remove -v  
+           - git remote -v  
            查看是否和其他仓库建立连接
            - git clone [url]  
            克隆远程仓库里的东西到本地
