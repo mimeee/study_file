@@ -101,3 +101,14 @@ Bash的简单命令
            显示当前分支的历史版本
            - git show [hash of file]  
            查看一个文件
+        - 同步远程仓库
+           - git remote add [shortname] [url]  
+           增加远程仓库，并命名
+           - git push [remote] [branch]  
+           将本地的提交推送到远程仓库
+           - git pull [remote] [branch]  
+           将远程仓库的提交拉下到本地
+           - git remove -v  
+           查看是否和其他仓库建立连接
+           - git clone [url]  
+           克隆远程仓库里的东西到本地
