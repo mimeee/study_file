@@ -112,3 +112,7 @@ Bash的简单命令
            查看是否和其他仓库建立连接
            - git clone [url]  
            克隆远程仓库里的东西到本地
+     - #### git练习地址
+        - https://try.github.io
+        - 使用nodeJS安装Git-it  
+        命令： npm install git-it -g;
