@@ -124,3 +124,7 @@ Bash的简单命令
       awesome是各种技术资源的平台，可以访问  
       https://github.com/sindresorhus/awesome  
       来查看。
+   - #### free-programming  
+      免费的计算方面的书
+      https://github.com/vhf/free-programming-book
+      在里面找到-zh就是翻译成中文的资料
