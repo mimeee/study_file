@@ -6,3 +6,40 @@
      - 父组件给子组件传递一个回调函数
      - 子组件emit以个自定义事件(父组件在监听这个自定义事件时，只能绑定在子组件的html标签中)
      - 通过一个公共的Vue，也可称为服务--eventbus;
+  - 在data中存储props的值，data属性不具备随着props中的值改变而变化值的功能，所以如果在data中存储值，只会接受第一次的值(应该是组件被创建之初的值很可能是“”，如果不通过methods赋值，直接在data中赋值)，如果后面随着事件props的值变换，data也不会变换。此时应该使用computed属性来保存或者返回该值。但是，如果props传递过来是一个对象，改变computed里的值也会影响原始值。  
+  ```
+  <template>
+    <div>
+      这个可改的,不会影响原来的元素,detail是以字符串传过来的：{{ detail === "" ? "wait" : detail }}
+      <input type="text" v-model="detail">
+
+      这个不可改的,会影响原来的元素：{{ detailObj.status }}
+      <input type="text" v-model="detailObj.status">
+
+      存在computed里的obj：{{ status.status }}
+      <input type="text" v-model="status.status">
+
+      <button @click="look">btn</button>
+    </div>
+  </template>
+  <script>
+  export default {
+    props:['detail','detailObj'],
+    data(){
+      return {
+        statuss:this.detailObj
+      }
+    },
+    computed:{
+      status(){
+        return this.detailObj;
+      }
+    },
+    methods:{
+      look(){
+        console.log(this.status);
+      }
+    }
+  }
+  </script>
+```
