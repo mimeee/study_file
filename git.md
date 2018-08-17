@@ -128,3 +128,6 @@ Bash的简单命令
       免费的计算方面的书  
       https://github.com/EbookFoundation/free-programming-books
       在里面找到-zh就是翻译成中文的资料
+   - #### HEAD
+      在HTML中head标签可能出现的情况  
+      https://github.com/joshbuchea/HEAD  
