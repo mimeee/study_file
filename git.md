@@ -116,5 +116,11 @@ Bash的简单命令
         - https://try.github.io
         - 使用nodeJS安装Git-it  
         命令： npm install git-it -g;
-        
+
+---
 ## 第二章 Markdown
+
+   - #### awesome  
+      awesome是各种技术资源的平台，可以访问  
+      https://github.com/sindresorhus/awesome  
+      来查看。
