@@ -45,7 +45,7 @@
                 [README](README.md)
               * 链接本文档的其他部分
                 \[链接的内容\]\(路径：相对或者绝对#标题\)  
-                [Markdown](Markdown.md#Markdown)(如果标题中有空格用-代替)
+                [Markdown](Markdown.md#markdown)(如果标题中有空格用-代替)
       - 引用式链接  
           与内嵌式链接的种类一样，只是将链接内容与链接url分离，
           方便多次使用。  
