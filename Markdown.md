@@ -92,7 +92,18 @@
         Markdown支持所有HTML语法
 
     - GFM语法
-        
+       github flovered markdown, github 实现的具有自身特色的markdown  
+       - task list
+          - [ ] one
+          - [ ] two 
+          - [x] three
+       - emoji 表情符号
+         ：emoji code:  
+         :pray:
+
+
+
+
 
  - 应用
     - 复杂场景的问题
