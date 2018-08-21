@@ -69,9 +69,19 @@
 
     - 表格
        使用竖线与横线 " | "  " - "  
+<<<<<<< HEAD
        | HAHA | HEHE |
        |----- |------ |
        | GULu | gululu |
+=======
+       
+       | Tables | Are | Cool |  
+       | ------------- |:-------------:| -----:|  
+       | col 3 is | right-aligned | $1600 |  
+       | col 2 is | centered | $12 |  
+       | zebra stripes | are neat | $1 |  
+       
+>>>>>>> df532a4ee9e9a638f925fee3e56ffd9e6ccf26d5
 
     - 水平分割线
         - \-\-\- 三个横杠
