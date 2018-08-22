@@ -118,6 +118,6 @@ Bash的简单命令
         命令： npm install git-it -g;
 
 ---
-## 第二章 Markdown
+## 第二章 Git进阶
 
       
