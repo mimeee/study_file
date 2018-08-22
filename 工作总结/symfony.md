@@ -17,7 +17,21 @@
      - `$_FILE['type_name']['type']`  
         上传文件的类型
      - `$_FILE['type_name']['error']`  
-        上传文件时的错误类型，如果等于0则上传成功
+        上传文件时的错误类型:
+          - 0  
+          `UPLOAD_ERR_OK`: 没有错误，上传成功
+          - 1  
+          `UPLOAD_ERR_INI_SIZE`: 上传的文件超过了 php.ini 中`upload_max_filesize`选项的限制
+          - 2  
+          `UPLOAD_ERR_FORM_SIZE`: 上传文件的大小超过了HTML表单中 `MAX_FILE_SIZE` 选项指定的值
+          - 3  
+          `UPLOAD_ERR_PARTIAL`: 文件只有部分上传
+          - 4  
+          `UPLOAD_ERR_NO_FILE`: 没有文件被上传
+          - 6  
+          `UPLOAD_ERR_NO_TMP_DIR`: 找不到临时文件夹
+          - 7  
+          `UPLOAD_ERR_CANT_WRITE`: 文件写入失败
      - `$_FILE['type_name']['tmp_name']`  
         上传文件的临时文件名
      - `$_FILE['type_name']['size']`  
@@ -34,7 +48,7 @@
     ![](image/symfony_upload_file.png);
 
     UploadedFile类提供了方法来获取上传文件的基本信息：
-      - `getExtension()` 
+      - `getExtension()`   
         获取源文件扩展名
       - `getClientSize()`  
         获取源文件大小
@@ -47,5 +61,4 @@
 
     在symfony中可以创建一个uploadFile类来集中控制文件上传的过程，在通过在服务中注册，便可直接在controller中获取该类并且使用该类。
 
-    也可以选择在直接创建一个监听器，但与文件上传的字段被持久化后，自动触发该服务便可省去在controller中使用该服务的过程。详情可查看：  
-    [uploadFile](http://www.symfonychina.com/doc/current/controller/upload_file.html)
+    也可以选择在直接创建一个监听器，但与文件上传的字段被持久化后，自动触发该服务便可省去在controller中使用该服务的过程。详情可查看：[uploadFile](http://www.symfonychina.com/doc/current/controller/upload_file.html) [API](http://api.symfony.com/3.1/Symfony/Component/HttpFoundation/File/UploadedFile.html)
