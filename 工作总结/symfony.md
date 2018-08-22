@@ -31,7 +31,7 @@
         在symfony框架中，使用UploadedFile类来管理文件上传。通过访问 `$request->files` 来查看上传文件的基本信息。
         下图是打印的相关信息：
 
-        ![](./image/symfony_upload_file.png);
+        ![](image/symfony_upload_file.png);
 
         UploadedFile类提供了方法来获取上传文件的基本信息：
           - `getExtension()` 
