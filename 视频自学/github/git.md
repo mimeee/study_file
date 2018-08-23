@@ -122,64 +122,57 @@ Bash的简单命令
 
 ## 第二章 Git进阶
 
-#### git的四个区，5个状态
-
-##### 四个区
-  + 工作区 working area
-  + 暂存区 stage
-  + 本地仓库 local Repository
-  + 远程仓库 remote repository
+  #### git的四个区，5个状态
+    
+  - 四个区
+   - 工作区 working area
+   - 暂存区 stage
+   - 本地仓库 local Repository
+   - 远程仓库 remote repository
+      
+  - 五个状态
+   - 未修改 origin
+   - 已修改 modified & 未追踪 untracked
+   - 已暂存 staged
+   - 已提交 committed
+   - 已推送 Pushed
   
-##### 五个状态
-  + 未修改 origin
-  + 已修改 modified & 未追踪 untracked
-  + 已暂存 staged
-  + 已提交 committed
-  + 已推送 Pushed
-  
-可参考 [一张图看明白Git的四个区五种状态](https://geektutu.com/post/git-four-areas-five-states.html)
+  可参考 [一张图看明白Git的四个区五种状态](https://geektutu.com/post/git-four-areas-five-states.html)
 
-  #### git 图形界面工具 -- GIT GUI
+  #### git 图形界面工具
 
-   - GUI工具
-      - GIT GUI
-        启动方式：
-          - 点击 Git GUI 图标
-          - 在 Git Bash 中输入 `gitk`
+   - GIT GUI
+     启动方式：
+      * 点击 Git GUI 图标
+      * 在 Git Bash 中输入 `gitk`
 
-        打开界面，选择一个仓库进入，得到下图 
+     打开界面，选择一个仓库进入，得到下图 
 
-        ![GIT GUI](image/gitgui.png)
+     ![GIT GUI](image/gitgui.png)
 
-        图中操作按钮含义如下：
-          - Rescan 重新扫描，即刷新
-          - Stage Changed 将工作区的文件提交到暂存区，即git add
-          - Sign Off 提交到仓库时所带的备注
-          - Commit 将暂存区的文件提交到仓库
-          - Push 提交到远程仓库
+    图中操作按钮含义如下：
+    - Rescan 重新扫描，即刷新
+    - Stage Changed 将工作区的文件提交到暂存区，即git add
+    - Sign Off 提交到仓库时所带的备注
+    - Commit 将暂存区的文件提交到仓库
+    - Push 提交到远程仓库
 
-      - SOURCE TREE
+   - SOURCE TREE  
+     这是一个开源的，轻量的，免费的GUI工具。 [sourcetree](https://www.sourcetreeapp.com/)。    
+     点击文件状态就可以查看工作区和暂存区，以及相关操作。点击日志/历史可是查看git log。
 
-        这是一个开源的，轻量的，免费的GUI工具。 [sourcetree](https://www.sourcetreeapp.com/)。  
-
-        点击文件状态就可以查看工作区和暂存区，以及相关操作。点击日志/历史可是查看git log。
-
-      - EGit
-
-        EGit 是 HBuilder 或者 IDE Eclisp 的一个插件。
+   - EGit  
+     EGit 是 HBuilder 或者 IDE Eclisp 的一个插件。
 
   #### Git配置
 
-    - gitignore
-        
-        格式：纯文本  
-        
-        在git仓库里放一个`.gitignore`文件，告诉git每次在git staged的时候，把.gitignore下的所包含的文件忽略。
-      
-
-    - 换行
-    - 别名
-    - 凭证
+   - gitignore       
+     格式：纯文本  
+     在git仓库里放一个`.gitignore`文件，告诉git每次在git staged的时候，把.gitignore下的所包含的文件忽略。
+    
+   - 换行
+   - 别名
+   - 凭证
 
 
 
