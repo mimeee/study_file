@@ -119,31 +119,37 @@ Bash的简单命令
 
 ---
 
+
 ## 第二章 Git进阶
 
   #### git 图形界面工具 -- GIT GUI
 
-     - GUI工具
-        - GIT GUI
-          启动方式：
-            - 点击 Git GUI 图标
-            - 在 Git Bash 中输入 `gitk`
+   - GUI工具
+      - GIT GUI
+        启动方式：
+          - 点击 Git GUI 图标
+          - 在 Git Bash 中输入 `gitk`
 
-          打开界面，选择一个仓库进入，得到下图 
+        打开界面，选择一个仓库进入，得到下图 
 
-          ![GIT GUI](image/gitgui.png)
+        ![GIT GUI](image/gitgui.png)
 
-          图中操作按钮含义如下：
-            - Rescan 重新扫描，即刷新
-            - Stage Changed 将工作区的文件提交到暂存区，即git add
-            - Sign Off 提交到仓库时所带的备注
-            - Commit 将暂存区的文件提交到仓库
-            - Push 提交到远程仓库
+        图中操作按钮含义如下：
+          - Rescan 重新扫描，即刷新
+          - Stage Changed 将工作区的文件提交到暂存区，即git add
+          - Sign Off 提交到仓库时所带的备注
+          - Commit 将暂存区的文件提交到仓库
+          - Push 提交到远程仓库
 
-        - SOURCE TREE
+      - SOURCE TREE
 
-          这是一个开源的，轻量的，免费的GUI工具。[sourcetree](https://www.sourcetreeapp.com/)。
-        - EGit
+        这是一个开源的，轻量的，免费的GUI工具。 [sourcetree](https://www.sourcetreeapp.com/)。  
+
+        点击文件状态就可以查看工作区和暂存区，以及相关操作。点击日志/历史可是查看git log。
+
+      - EGit
+
+        EGit 是 HBuilder 或者 IDE Eclisp 的一个插件。
 
 
       
