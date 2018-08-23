@@ -122,6 +122,23 @@ Bash的简单命令
 
 ## 第二章 Git进阶
 
+#### git的四个区，5个状态
+
+##### 四个区
+  + 工作区 working area
+  + 暂存区 stage
+  + 本地仓库 local Repository
+  + 远程仓库 remote repository
+  
+##### 五个状态
+  + 未修改 origin
+  + 已修改 modified & 未追踪 untracked
+  + 已暂存 staged
+  + 已提交 committed
+  + 已推送 Pushed
+  
+可参考 [一张图看明白Git的四个区五种状态](https://geektutu.com/post/git-four-areas-five-states.html)
+
   #### git 图形界面工具 -- GIT GUI
 
    - GUI工具
@@ -150,6 +167,20 @@ Bash的简单命令
       - EGit
 
         EGit 是 HBuilder 或者 IDE Eclisp 的一个插件。
+
+  #### Git配置
+
+    - gitignore
+        
+        格式：纯文本  
+        
+        在git仓库里放一个`.gitignore`文件，告诉git每次在git staged的时候，把.gitignore下的所包含的文件忽略。
+      
+
+    - 换行
+    - 别名
+    - 凭证
+
 
 
       
