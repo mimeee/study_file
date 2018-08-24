@@ -26,22 +26,22 @@
            默认：9号    --》 14号
 
       - ### Bash的简单命令
-         - #change directory --》 cd
-         - #make directory --》mkdir
-         - #print working directory --》 pwd
-         - #move --》 mv
-         - #copy --》 cp
-         - #remove --》 rm
-         - #scan file --》 cat filename
-         - #print --》 echo
+         - #change directory --》 `cd`
+         - #make directory --》 `mkdir`
+         - #print working directory --》 `pwd`
+         - #move --》 `mv`
+         - #copy --》 `cp`
+         - #remove --》 `rm`
+         - #scan file --》 `cat filename`
+         - #print --》 `echo`
 
       - ### 设置Git参数
-         - 显示当前的 Git 配置  
-            git config --list
-         - 设置提交仓库时的用户名信息  
-            git config --global user.name "NAME"
-         - 设置提交仓库时的邮箱信息  
-            git config --global user.email "EMAIL"
+         - `git config --list`  
+            显示当前的 Git 配置
+         - `git config --global user.name "NAME"`  
+            设置提交仓库时的用户名信息
+         - `git config --global user.email "EMAIL"`  
+            设置提交仓库时的邮箱信息
 
       配置好的信息是在一个文件夹中存储着的，在主目录中，使用 cd ~ 命令回到主目录；ls -a 查看文件夹中的所有文件（-a代表包括隐藏文件）；配置信息存储       在.gitconfig文件中。输入 vim .gitconfig 可以编辑此文件。
 
@@ -49,9 +49,9 @@
       - ### 命令行换行  
          - \ 反斜杠是换行符（将命令视为一行）  
       - ### 命令行终结  
-         - Ctrl + C 强制退出  
+         - `Ctrl + C` 强制退出  
       - ### 显示了一些信息  
-         - git log
+         - `git log`
       - ### 命令行翻页和退出  
          - g --》 向下走一行  
          - k --》 向上走一行  
@@ -73,46 +73,48 @@
          当文件提交至仓库区，文件当前的版本即被存档，于是，多次的提交就会产生历史提交记录。根据历史提交记录，文件可以回退到任意一个历史记录的版本。  
       - ### git bash 命令分类（本地）
          - #### 新建代码仓库
-            - git init  
+            - `git init`  
                在当前目录新建一个Git代码库
-            - git clone [url]  
+            - `git clone [url]`  
                下载一个项目和它的整个代码历史
          - #### 添加删除文件
-            - git add [file1] [file2]  
+            - `git add [file1] [file2]`  
                添加指定文件到<font color=#00ffff>暂存区</font>
-            - git rm [file1] [file2]  
+            - `git rm [file1] [file2]`  
                删除<font color=#00ffff>工作区</font>文件，并且将这次删除放入暂存区
-            - git mv [file-origin] [file-renamed]  
+            - `git mv [file-origin] [file-renamed]`  
                改名文件，并且将这个改名放入<font color=#00ffff>暂存区</font>
          - #### 代码提交
-            - git commit -m [message]  
+            - `git commit -m [message`]  
                提交暂存区到仓库
-            - git commit -a -m [message]  
-               直接从工作区提交到仓库  
-               前提该文件已经有仓库中的历史版本
+            - `git commit -a -m [message]`  
+               直接从工作区提交到仓库，前提该文件已经有仓库中的历史版本
          - #### 查看信息类
-            - git status  
+            - `git status`  
                显示变更信息
-            - git log
-            - git log --oneline  
+            - `git log` / `git log --oneline ` 
                显示当前分支的历史版本
-            - git show [hash of file]  
+            - `git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short`  
+               以 哈希值 时间 | 备注 \[提交人\] 的方式显示历史记录
+            - `git show [hash of file] ` 
                查看一个文件
-            - 同步远程仓库
-            - git remote add [shortname] [url]  
+            - `git config --list`   
+               查看配置信息
+         - #### 同步远程仓库
+            - `git remote add [shortname] [url]`  
                增加远程仓库，并命名
-            - git push [remote] [branch]  
+            - `git push [remote] [branch]`  
                将本地的提交推送到远程仓库
-            - git pull [remote] [branch]  
+            - `git pull [remote] [branch]` 
                将远程仓库的提交拉下到本地
-            - git remote -v  
+            - `git remote -v`  
                查看是否和其他仓库建立连接
-            - git clone [url]  
+            - `git clone [url]`  
                克隆远程仓库里的东西到本地
          - #### git练习地址
             - https://try.github.io
             - 使用nodeJS安装Git-it  
-               命令： npm install git-it -g;
+               命令： `npm install git-it -g`;
 
 ---
 
@@ -157,13 +159,47 @@
 
    - ## Git配置
       - ### gitignore       
-         格式：纯文本  
-         在git仓库里放一个`.gitignore`文件，告诉git每次在git staged的时候，把.gitignore下的所包含的文件忽略。
+         - 格式：纯文本    
+           在git仓库里放一个`.gitignore`文件，告诉git每次在git staged的时候，把.gitignore下的所包含的文件忽略。  
+         - 使用场合
+            + 忽略操作系统自动生成的文件，比如：缩略图等；
+            + 忽略编译生成的中间问价、可执行文件等，比如：c语言编译产生的 .obj 文件和 .exe 文件。
+            + 忽略带有敏感信息的配置文件，比如：存放口令的配置文件
+            + tmp/ 临时目录。
+            + log/ 日志目录。
+         - 书写格式  
+            每一个文件(如1.html)或者每一类文件(如 *.obj )以行隔开；   
+            添加的注释以 # 开头；  
+            [官方模板地址](https://github.com/github/gitignore)；
+         - 查看 gitignore 具体内容命令
+            `git check-ignore -v [filename]`
 
       - ### 换行
-      - ### 别名
-      - ### 凭证
+         + CR  
+            carriage return 回车，光标到首行， '\r' = return
+         + LF
+            line feed 换行，光标下移一行，'\n' = newline
+            - \n   --> linux  换行
+            - \r\n --> window 换行
+            - \r   --> MAX OS 换行
+         + 配置
+            * `git config --global core.autocrlf true`  
+               提交时转换为LF，检出时转换为CRLF，默认设置不用修改，Git是Linux配置
+            * `git config --global core.safecrlf false`  
+               允许提交包含混合换行符的文件
 
+      - ### 别名
+         + `git config --global alias.别名 要代替的命令`  
+            设置别名，`git config --global alias.ci commit`；
+         + 别名的设置同样存储在.gitconfig文件中，可以通过上面的命令行添加别名，也可以通过直接修改 .gitconfig 来添加修改别名；  
+            ！[别名存gitconfig的截图](image/git_alias.png);
+            
+      - ### 凭证  
+         关于每次push都要输入凭证的解决办法  
+         + `git config --global credential.helper wincred`  
+            存储凭证；如果是使用http协议来操作远程仓库的话，可以让wincred这个小的工具来帮助管理credential，wincred会把第一次push的用户名和密码存起来，当我们下一次再push，便不会再提示输入密码了。
+         + 使用ssh协议，不使用http协议。
+         
 
 
 
