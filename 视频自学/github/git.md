@@ -53,19 +53,19 @@
       - ### 显示了一些信息  
          - `git log`
       - ### 命令行翻页和退出  
-         - g --》 向下走一行  
-         - k --》 向上走一行  
-         - gg --》 最顶端  
-         - G --》 最底端  
-         - /搜索内容 --》 查找搜索内容  
-         - n --》 查看下一个匹配的   
-         - u --》 查看上一个匹配的   
-         - q --》 退出   
+         - g        --> 向下走一行  
+         - k        --> 向上走一行  
+         - gg       --> 最顶端  
+         - G        --> 最底端  
+         - /搜索内容 --> 查找搜索内容  
+         - n        --> 查看下一个匹配的   
+         - u        --> 查看上一个匹配的   
+         - q        --> 退出   
       - ### vim的模式操作 
-        - i --》 编辑模式  
-        - ESC --》普通模式  
-        - : --》 命令模式  
-        - Linux Bash 快捷键  
+        - i   --> 编辑模式  
+        - ESC --> 普通模式  
+        - :   --> 命令模式  
+ 
 
    - ## Git操作
       - ### git的工作流程  
@@ -92,11 +92,11 @@
          - #### 查看信息类
             - `git status`  
                显示变更信息
-            - `git log` / `git log --oneline ` 
+            - `git log` / `git log --oneline`   
                显示当前分支的历史版本
             - `git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short`  
                以 哈希值 时间 | 备注 \[提交人\] 的方式显示历史记录
-            - `git show [hash of file] ` 
+            - `git show [hash of file]`  
                查看一个文件
             - `git config --list`   
                查看配置信息
@@ -105,7 +105,7 @@
                增加远程仓库，并命名
             - `git push [remote] [branch]`  
                将本地的提交推送到远程仓库
-            - `git pull [remote] [branch]` 
+            - `git pull [remote] [branch]`  
                将远程仓库的提交拉下到本地
             - `git remote -v`  
                查看是否和其他仓库建立连接
@@ -171,8 +171,8 @@
             每一个文件(如1.html)或者每一类文件(如 *.obj )以行隔开；   
             添加的注释以 # 开头；  
             [官方模板地址](https://github.com/github/gitignore)；
-         - 查看 gitignore 具体内容命令
-            `git check-ignore -v [filename]`
+         - `git check-ignore -v [filename]`  
+            查看 gitignore 具体内容命令
 
       - ### 换行
          + CR  
@@ -192,7 +192,7 @@
          + `git config --global alias.别名 要代替的命令`  
             设置别名，`git config --global alias.ci commit`；
          + 别名的设置同样存储在.gitconfig文件中，可以通过上面的命令行添加别名，也可以通过直接修改 .gitconfig 来添加修改别名；  
-            ！[别名存gitconfig的截图](image/git_alias.png);
+            ![别名存gitconfig的截图](image/git_alias.png);
             
       - ### 凭证  
          关于每次push都要输入凭证的解决办法  
