@@ -199,7 +199,42 @@
          + `git config --global credential.helper wincred`  
             存储凭证；如果是使用http协议来操作远程仓库的话，可以让wincred这个小的工具来帮助管理credential，wincred会把第一次push的用户名和密码存起来，当我们下一次再push，便不会再提示输入密码了。
          + 使用ssh协议，不使用http协议。
-         
+
+# Git协议
+
+   - ## 本地协议
+      +  `git clone 本地url(如/c/wd/test.git)`  
+         克隆本地仓库
+      +  `git clone file:///c/wd/test.git`  
+         克隆本地仓库，不建议使用 file:// 协议，因为使用file协议，每次push或者merge或者clone等等的操作都要经过file协议栈来做文件的传输，显然没有直接文件系统操作的效率高。
+      +  `git remote add origin /c/wd/test.git`  
+         添加远程仓库的链接
+         -  `git remote -v`
+            查看远程仓库链接
+   - ## Git协议  
+      Git协议没有授权，也就是说，使用git协议，要不就是完全可以访问，要不就是完全访问不了。  同时要求防火墙开9418端口，9418端口并不是一个标准的端口(如80端口)。
+      + `git clone git://server_ip/test.git`  
+         克隆远程仓库
+      + `git remote add origin git://server_ip/test.git`  
+         添加远程仓库的链接
+   - ## HTTP协议  
+      http协议运行的端口号一般是80端口，而https一般运行的端口号是443。可以利用第三方工具来存储用户密码。
+      + `git clone https://github.com/wangding/test.git`  
+         克隆远程仓库
+      + `git clone https://github.com/wangding/test.git`  
+         添加远程仓库的链接
+   - ## SSH协议(Secure Shell)  
+      ssh协议是一个授权的网络协议，它需要一对密钥对(公钥和私钥)。ssh协议对传输文件的压缩是最大的在四个协议中。使用ssh协议的流程：
+      1. `ssh-Keygen -t rsa -C "your email"`  
+         生成RSA密钥对，RSA是密钥的形式(密钥的算法)；
+      2. 在Github网站添加公钥  
+         在登录状态下,单击头像的下拉菜单，点击 settting；选择 SSH and GPG keys；添加新的 SSH，将上一步的公钥输入进去。
+      3. 使用SSH协议，克隆仓库或者添加远程连接
+         * `git clone ssh://git@github.com/wangding/test.git` / `git clone git@github.com:wangding/test.git`  
+            克隆远程仓库，一般写成简短的命令
+         * `git remote add origin git@github.com:wangding/test.git`  
+            添加远程仓库的链接
+
 
 
 
