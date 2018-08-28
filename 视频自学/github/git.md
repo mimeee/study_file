@@ -200,40 +200,125 @@
             存储凭证；如果是使用http协议来操作远程仓库的话，可以让wincred这个小的工具来帮助管理credential，wincred会把第一次push的用户名和密码存起来，当我们下一次再push，便不会再提示输入密码了。
          + 使用ssh协议，不使用http协议。
 
-# Git协议
-
-   - ## 本地协议
-      +  `git clone 本地url(如/c/wd/test.git)`  
-         克隆本地仓库
-      +  `git clone file:///c/wd/test.git`  
-         克隆本地仓库，不建议使用 file:// 协议，因为使用file协议，每次push或者merge或者clone等等的操作都要经过file协议栈来做文件的传输，显然没有直接文件系统操作的效率高。
-      +  `git remote add origin /c/wd/test.git`  
-         添加远程仓库的链接
-         -  `git remote -v`
-            查看远程仓库链接
-   - ## Git协议  
-      Git协议没有授权，也就是说，使用git协议，要不就是完全可以访问，要不就是完全访问不了。  同时要求防火墙开9418端口，9418端口并不是一个标准的端口(如80端口)。
-      + `git clone git://server_ip/test.git`  
-         克隆远程仓库
-      + `git remote add origin git://server_ip/test.git`  
-         添加远程仓库的链接
-   - ## HTTP协议  
-      http协议运行的端口号一般是80端口，而https一般运行的端口号是443。可以利用第三方工具来存储用户密码。
-      + `git clone https://github.com/wangding/test.git`  
-         克隆远程仓库
-      + `git clone https://github.com/wangding/test.git`  
-         添加远程仓库的链接
-   - ## SSH协议(Secure Shell)  
-      ssh协议是一个授权的网络协议，它需要一对密钥对(公钥和私钥)。ssh协议对传输文件的压缩是最大的在四个协议中。使用ssh协议的流程：
-      1. `ssh-Keygen -t rsa -C "your email"`  
-         生成RSA密钥对，RSA是密钥的形式(密钥的算法)；
-      2. 在Github网站添加公钥  
-         在登录状态下,单击头像的下拉菜单，点击 settting；选择 SSH and GPG keys；添加新的 SSH，将上一步的公钥输入进去。
-      3. 使用SSH协议，克隆仓库或者添加远程连接
-         * `git clone ssh://git@github.com/wangding/test.git` / `git clone git@github.com:wangding/test.git`  
-            克隆远程仓库，一般写成简短的命令
-         * `git remote add origin git@github.com:wangding/test.git`  
+   - ## Git协议
+      + ### 本地协议
+         *  `git clone 本地url(如/c/wd/test.git)`  
+            克隆本地仓库
+         *  `git clone file:///c/wd/test.git`  
+            克隆本地仓库，不建议使用 file:// 协议，因为使用file协议，每次push或者merge或者clone等等的操作都要经过file协议栈来做文件的传输，显然没有直接文件系统操作的效率高。
+         *  `git remote add origin /c/wd/test.git`  
             添加远程仓库的链接
+            +  `git remote -v`
+               查看远程仓库链接
+      + ### Git协议  
+         Git协议没有授权，也就是说，使用git协议，要不就是完全可以访问，要不就是完全访问不了。  同时要求防火墙开9418端口，9418端口并不是一个标准的端口(如80端口)。
+         * `git clone git://server_ip/test.git`  
+            克隆远程仓库
+         * `git remote add origin git://server_ip/test.git`  
+            添加远程仓库的链接
+      + ### HTTP协议  
+         http协议运行的端口号一般是80端口，而https一般运行的端口号是443。可以利用第三方工具来存储用户密码。
+         * `git clone https://github.com/wangding/test.git`  
+            克隆远程仓库
+         * `git clone https://github.com/wangding/test.git`  
+            添加远程仓库的链接
+      + ### SSH协议(Secure Shell)  
+         ssh协议是一个授权的网络协议，它需要一对密钥对(公钥和私钥)。ssh协议对传输文件的压缩是最大的在四个协议中。使用ssh协议的流程：
+         1. `ssh-Keygen -t rsa -C "your email"`  
+            生成RSA密钥对，RSA是密钥的形式(密钥的算法)；
+         2. 在Github网站添加公钥  
+            在登录状态下,单击头像的下拉菜单，点击 settting；选择 SSH and GPG keys；添加新的 SSH，将上一步的公钥输入进去。
+         3. 使用SSH协议，克隆仓库或者添加远程连接
+            - `git clone ssh://git@github.com/wangding/test.git` / `git clone git@github.com:wangding/test.git`  
+               克隆远程仓库，一般写成简短的命令
+            - `git remote add origin git@github.com:wangding/test.git`  
+               添加远程仓库的链接
+
+   - ## Git基本操作
+
+      + 几个Git新命令
+         *  `git`  
+            git命令信息
+         *  `git help -a`  
+            查看全部git子命令
+         *  `git blame <file name>`  
+            逐行查看文件的修改历史
+         *  `git blame -L 100,10 <file name>`  
+            从第100行开始，到110行。逐行查看文件的修改历史。
+         * `git clean -n`  
+            列出打算清除的档案
+         * `git clean -f`  
+            真正的删除
+         * `git clean -x`  
+            连.gitignore中忽略的档案也删除
+         * `git status -sb`  
+            简短的显示工作区状态，s->short b->bratch
+      + git add 深入讲解  
+         
+         注意查看git status状态时，显示的颜色。红色代表在工作区，绿色代表在暂存区。
+
+         * `touch <filename>`  
+            添加新文件
+         * `git rm <filename>` / `rm <filename>`(bash 命令)  
+            删除文件
+         * `vim <filename>` / `echo >>> <content>`    
+            编辑文件(增加内容、删除内容、修改内容)
+         * `git mv <original filename(url)> <new filename(url)>`  
+            文件改名
+         * `git mv <original filename(url)> <new filename(url)>`    
+            文件移动
+         * `mkdir <filename>`    
+            文件夹的操作(添加，删除，改名，移动)
+         * `git add -p <filename>`    
+            一个文件多次提交，即将一个文件的多处修改分次提交，会弹出提示
+            `Stage this hunk[y,n,q,a,d,/,s,e,?]?`,其中
+            - y --> yes 整块暂存
+            - n --> no  不暂存
+            - q --> q   退出
+            - a -->
+            - d -->
+            - / -->
+            - s --> split 分割
+            - e --> edit 手工编辑块
+         * `git diff [<filename>]`      
+            查看工作区和暂存区的Diffrent
+         * `git diff [<filename>] --cached`  
+            查看暂存区与commit的版本的差异
+      + git commit 深入讲解  
+         - 每个提交要保证适当的颗粒的、相关性和独立性。
+            1. 以一个小功能，小改进或一个 bug fix 为单位
+            2. 对应的 unit test 程序在同一个commit
+            3. 无相关的修改不在同一个commit
+            4. 语法错误的半成品程序不能commit
+
+         - commit Message 书写规范  
+            下面是Angular Commit 书写规范  
+
+            ```html
+            <type>( <scope> ): <subject>
+            <!-- type 修改的类型 -->
+            <!-- scope 影响的范围 -->
+            <!-- subject 提交的目的 -->
+            <!-- 空一行 -->
+            <body>
+            <!-- 空一行 -->
+            <footer>
+            <!-- footer 里可以写 close #num 来关闭 issues中的bug号 -->
+            ```
+            
+         - type的常见类型
+         [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+            1. feat  新功能( feature )
+            2. fix   修补bug
+            3. docs  文档( documentation)
+            4. style 格式( 不影响代码运行的变动 )
+            5. refactor 重构( 即不是新增功能，也不是修改bug的代码变动 )
+            6. test 增加测试
+            7. chore 构建过程或辅助工具的变动
+
+      + 查看信息深入讲解
+      + 回撤操作深入讲解
+
 
 
 

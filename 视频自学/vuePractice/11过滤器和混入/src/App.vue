@@ -6,16 +6,27 @@
   		{{ vocabulary | reserve }}
   		<hr>
   		{{ vocabulary | calc }}
+  		<hr>
+  		{{ reserveC }}
+  		<hr>
+  		{{ calcC }}
+  		<hr>
+  		{{ calcMix }}
+  		<hr>
+  		{{ reverseMix }}
 	</div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
+import {mixed} from './mixed.js';
+
 Vue.filter('calc',function(value) {
 	return value + "(" + value.length + ")";
 })
 export default {
+	mixins:[mixed],
 	filters:{
 		reserve(value){
 			
@@ -25,6 +36,14 @@ export default {
 	data(){
 		return {
 			vocabulary:'vocabulary'
+		}
+	},
+	computed:{
+		reserveC(){
+			return this.vocabulary.split("").reverse().join("");
+		},
+		calcC(){
+			return this.vocabulary + "(" + this.vocabulary.length + ")";
 		}
 	}
 }
