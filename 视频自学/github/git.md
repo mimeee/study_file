@@ -236,7 +236,7 @@
 
    - ## Git基本操作
 
-      + 几个Git新命令
+      + ### 几个Git新命令
          *  `git`  
             git命令信息
          *  `git help -a`  
@@ -253,7 +253,8 @@
             连.gitignore中忽略的档案也删除
          * `git status -sb`  
             简短的显示工作区状态，s->short b->bratch
-      + git add 深入讲解  
+
+      + ### git add 深入讲解  
          
          注意查看git status状态时，显示的颜色。红色代表在工作区，绿色代表在暂存区。
 
@@ -284,7 +285,7 @@
             查看工作区和暂存区的Diffrent
          * `git diff [<filename>] --cached`  
             查看暂存区与commit的版本的差异
-      + git commit 深入讲解  
+      + ### git commit 深入讲解  
          - 每个提交要保证适当的颗粒的、相关性和独立性。
             1. 以一个小功能，小改进或一个 bug fix 为单位
             2. 对应的 unit test 程序在同一个commit
@@ -316,8 +317,8 @@
             6. test 增加测试
             7. chore 构建过程或辅助工具的变动
 
-      + 查看信息深入讲解
-      + 回撤操作深入讲解
+      + ### 查看信息深入讲解
+      + ### 回撤操作深入讲解
 
 
 
