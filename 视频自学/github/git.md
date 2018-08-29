@@ -318,8 +318,40 @@
             7. chore 构建过程或辅助工具的变动
 
       + ### 查看信息深入讲解
-      + ### 回撤操作深入讲解
+         * `git shatus -sb`  
+            查看简短的信息
+         * `git show <hash>` / `git show HEAD`  
+            查看某个提交信息,在 HEAD 后加上 ` ~number `代表寻找HEAD钱number个记录
+         * `git log <filename>` / `git log --grep <msg>` / `git log -n`   
+            查看提交历史, `--grep` 代表过滤操作, `<msg>` 表示要选择的内容。
+         * `git diff`  
+            ![diff命令](image/git_diff.png) 
+         * `git tag nickname <提交版本>`  
+            比如 `git tag abc HEAD~4` , 讲一个名为abc的指针指向HEAD前4的位置 
 
+            
+      + ### 回撤操作深入讲解
+         * `git reset HEAD`  
+            回撤暂存区内容到工作目录(保留工作区的内容)
+         * `git checkout -- files`  
+            回撤暂存区内容到工作目录(不保留工作区的内容)
+         * `git reset HEAD --soft`  
+            回撤提交到暂存区
+         * `git reset HEAD -hard`  
+            回撤提交，放弃变更
+         * `git push -f`  
+            回撤远程仓库, -f 即 --force  
+
+      ![reset命令](image/git_reset.png) 
+
+         * `git commit --amend -m <msg>`  
+            回撤上一次提交
+         * `git rebase -i HEAD~3`  
+            变基操作，改写历史提交，比如合并历史，更改历史提交的message，拆分历史(提交了3个版本拆分成5个版本)
+
+      ![reset命令](image/git_reset2.png) 
+
+   - ## 标签操作
 
 
 
