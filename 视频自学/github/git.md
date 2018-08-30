@@ -352,6 +352,61 @@
       ![reset命令](image/git_reset2.png) 
 
    - ## 标签操作
+      + `git tag foo`  
+         在当前提交上，打标签foo
+      + `git tag foo -m "message"`    
+         在当前提交上，打标签foo，并给message信息注释
+      + `git tag foo HEAD~4`    
+         在当前提交之前的第四个版本上，打标签foo
+      + `git tag`  
+         列出所有标签
+      + `git tag -d <tagName>`  
+         删除标签
+      + `git push origin --tags` / `git push origin v0.1`  
+         把标签推到远程仓库
+      + `git pull --tags`  
+         把服务器端的标签pull过来
+      + `git pull origin :refs/tags/v0.1`  
+         删除远程服务器的v0.1标签
+
+   - ## Git分支操作
+      + ### 分支简介
+         
+         git的存储方式与其他版本管理工具不同，他不是存储版本与版本之间的差异；而是版本之间如果有文件改动，之间存储文件的快照。这就使得git的分支操作开销十分的低。同时git的分支操作可以使得开发并行进行。所以git的分支是一定要使用的。  
+         ![git并行操作](image/git_branchparaller_dev.png)  
+         ![大型git工作流](image/git_work_flow.png)  
+
+         + 分支的分类
+            * 长期分支: master、develop  
+               至始至终，始终存在的分支。
+            * 临时分支: feature branches、release branches、hotfixes
+
+      + ### 实例演示分支操作
+         * init   
+         初始状态：只有一个master分支，在master分支上有三个提交。   
+         ![示意图](image/git_branch_1.png)   
+         * `git branch iss53`   
+         第一步：创建一个iss53分支   
+         ![示意图](image/git_branch_2.png)  
+         * `git commit iss53` , `git commit -am 'C3'`   
+         第二步：切换分支到iss53，并且提交一个版本C3   
+         ![示意图](image/git_branch_3.png)  
+         * `git commit master`,`git branch hotfix`,`git commit hotfix`,`git commit -am 'C4'`    
+         第三步：切换分支到master(C2位置),再开一个hotfix分支,转换分支到hotfix，
+         提交C4版本到hotfix   
+         ![示意图](image/git_branch_4.png)   
+         * `git commit master`,`git merge hotfix`  
+         第四步：把hotfix分支合并到master分支上(把分支A合并到分支B，操作要在分支B上进行)。  
+         ![示意图](image/git_branch_5.png)  
+         * `git branch -d hotfix`,`git commit iss53`,`git commit -am 'c5'`  
+         第五步：删除hotfix分支,在iss53分支上提交一个版本C5。  
+         ![示意图](image/git_branch_6.png)  
+         * `git commit master`,`git merge iss53`  
+         第六步：合并iss53分支到master分支上  
+         ![示意图](image/git_branch_7.png) 
+      + ### 冲突解决
+      + ### 分支命令
+
 
 
 
