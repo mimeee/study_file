@@ -1,4 +1,4 @@
-# 第一章 git入门
+﻿# 第一章 git入门
 
    - ## Git工具分类
       - ### 命令行  
@@ -283,7 +283,7 @@
             - e --> edit 手工编辑块
          * `git diff [<filename>]`      
             查看工作区和暂存区的Diffrent
-         * `git diff [<filename>] --cached`  
+         * `git diff --cached [<filename>]`  
             查看暂存区与commit的版本的差异
       + ### git commit 深入讲解  
          - 每个提交要保证适当的颗粒的、相关性和独立性。
