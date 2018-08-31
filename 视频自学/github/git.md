@@ -428,7 +428,7 @@
             删除分支
          * `git branch -r`  
             列出远程分支
-         * `git branch --merged`
+         * `git branch --merged`  
             查看已合并的分支 
          * `git branch --no-merged`  
             查看没有合并的分支 
