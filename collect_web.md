@@ -62,7 +62,8 @@
         * [JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/)
         * [Learning JavaScript: Essentials And Guidelines](https://www.smashingmagazine.com/learning-javascript-essentials-guidelines-tutorials/)
         * [Vue2.1.7源码学习](http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/)
-
+    + ### jquery plugin
+        * [bootstrapValidator表单验证使用方法](https://blog.csdn.net/jewely/article/details/77810472)
     + ### NodeJS
         *  [Node.js 包教不包会](https://github.com/alsotang/node-lessons)
         *  [【nodeJS爬虫】前端爬虫系列 -- 小爬「博客园」](https://www.cnblogs.com/coco1s/p/4954063.html)
