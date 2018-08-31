@@ -388,24 +388,82 @@
          * `git branch iss53`   
          第一步：创建一个iss53分支   
          ![示意图](image/git_branch_2.png)  
-         * `git commit iss53` , `git commit -am 'C3'`   
+         * `git checkout iss53` , `git commit -am 'C3'`   
          第二步：切换分支到iss53，并且提交一个版本C3   
          ![示意图](image/git_branch_3.png)  
-         * `git commit master`,`git branch hotfix`,`git commit hotfix`,`git commit -am 'C4'`    
+         * `git checkout master`,`git branch hotfix`,`git checkout hotfix`,`git commit -am 'C4'`    
          第三步：切换分支到master(C2位置),再开一个hotfix分支,转换分支到hotfix，
          提交C4版本到hotfix   
          ![示意图](image/git_branch_4.png)   
-         * `git commit master`,`git merge hotfix`  
+         * `git checkout master`,`git merge hotfix`  
          第四步：把hotfix分支合并到master分支上(把分支A合并到分支B，操作要在分支B上进行)。  
          ![示意图](image/git_branch_5.png)  
          * `git branch -d hotfix`,`git commit iss53`,`git commit -am 'c5'`  
          第五步：删除hotfix分支,在iss53分支上提交一个版本C5。  
          ![示意图](image/git_branch_6.png)  
-         * `git commit master`,`git merge iss53`  
+         * `git checkout master`,`git merge iss53`  
          第六步：合并iss53分支到master分支上  
          ![示意图](image/git_branch_7.png) 
       + ### 冲突解决
+         * 冲突要点
+            - 在不同分支上，修改同一个文件
+            - 不同的人，修改了同一个文件
+            - 不同的仓库，修改了同一个文件
+            - 冲突只在合并分支的时候才会发生
+            - 发生冲突并不可怕，冲突的代码不会丢失
+            - 解决冲突，重新提交，commit时不要给message
+            - 冲突信息格式
+         * 冲突的标识  
+            当merge发生冲突时，会导致merge失败。此时，编辑产生的冲突的文件，会发生在产生冲突的地方有冲突明显的标识(上边界 >>>>>> branchName、分割 =====、下边界 >>>>>>> branchName)；此时修改该部分，留下想要留下的内容，重新提交。但是不要提交message了。
       + ### 分支命令
+         * `git branch <branch name>`  
+            创建分支
+         * `git checkout <branch name>`  
+            切换分支
+         * `git checkout -b <branch name>`  
+            创建分支并切换到branch中
+         * `git branch -m old_name new_name`    
+            修改分支名字
+         * `git branch -d <branch name>`  
+            删除分支
+         * `git branch -r`  
+            列出远程分支
+         * `git branch --merged`
+            查看已合并的分支 
+         * `git branch --no-merged`  
+            查看没有合并的分支 
+         * `git checkout -t origin/<branch name>`   
+            取出远程分支
+         * `git push origin <space>:<remote branch>` \ `git fetch -p`  
+            删除远程分支
+         * `git merge <branch name>`  
+            合并分支
+         * `git merge --no-ff`  
+            合并分支，拒绝fast forward，产生合并commit
+         * `git stash`  
+            保存进度,当不想提交工作区的内容,邮箱切换分支时，可以使用该命令将工作区的内容暂时保存起来，从而可以切换分支。 
+         * `git stash pop`  
+            弹出进度
+         * `git stash list`  
+            查看stash列表
+         * `git stash clear`  
+            删除stash列表
+
+# 第三章 Git团队协作
+
+   - ## 概述
+      + [git工作流指南](https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md)
+   - ## 集中式工作流
+      + 
+   - ## 功能分支工作流
+      + 
+   - ## Gitflow 工作流
+      + 
+   - ## Forking工作流
+      + 
+   - ## Pull Request 总结
+      + 
+          
 
 
 
