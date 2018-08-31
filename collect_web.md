@@ -135,14 +135,14 @@
     
     <hr>
 
-    + ## 一些小练习
+    + ### 一些小练习
        + #### [git 在线练习](https://try.github.io/)
        
        + #### [MarkDown 在线练习](https://www.markdowntutorial.com/lesson/1/)
     
     <hr>       
 
-    + ## 一些项目或者网站
+    + ### 一些项目或者网站
        + #### [awesome](https://github.com/sindresorhus/awesome)  
           awesome是各种技术资源的平台 
           
