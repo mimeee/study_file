@@ -56,7 +56,7 @@
   - 在vue中使用vue-resource请求不同源的php
     
     1.采取本地
-    如果直接再目录中建立一个data.php文件用于返回请求，php得不到执行，会直接把php文件的所有内容返回。目录如下： 
+    如果直接再目录中建立一个data.php文件用于返回请求，php得不到执行，会直接把php文件的所有内容返回。目录如下:  
     ![文件路径](image/vue-resource.png)  
     
     ```html
@@ -77,10 +77,8 @@
     ?>
     ```
     打印的结果：  
-    ![](image/vue-resource-require-result.png)
-
-
-
+    ![](image/vue-resource-require-result.png)  
+    从打印的结果看，访问php文件就好像是直接返回了文本，并没只有执行php代码。所以，我想是不是因为这么访问PHP文件，该文件没有经过php编译器进行编译。也可能是vue起的这个服务器没有php运行环境，是不是搭一个php环境就可以了？
     
     2.采取不同源
     ```html
