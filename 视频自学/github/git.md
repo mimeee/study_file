@@ -473,15 +473,14 @@
                + 开发者 A 向 中央仓库 push 一个版本；  
                      比如创建一个 a 文件，在其中输入 *aaaa*。
                + 开发者 B 向 中央仓库 push 一个版本；
-                     比如创建一个 b 文件，在其中输入 *bbbb*。
-
+                     比如创建一个 b 文件，在其中输入 *bbbb*。  
                      此时会发生冲突，中央仓库会拒绝提交改提交。其原因如下示意图：  
                      ![冲突下的版本差异](image/git_center_flow3.png)  
                      其解决方法有两种：
-                     1. `git pull`  
+                  1. `git pull`  
                         先把中央仓库的版本拽下来合并( 此时应该产生一个三方合并--merge ，此时的历史记录上会有一个第三方节点 )再push( `git push ` )。  
-                        ![三方合并](image/git_center_flow4.png);
-                     2. `git pull --rebase`  
+                        ![三方合并](image/git_center_flow4.png)
+                  2. `git pull --rebase`  
                         参数 `rebase` 是一个参数，不是命令；它可以避免产生三方合并,同时也更改了原本历史的hash值。合并后的的历史不会有三方节点，而是一个完整的线性，如下:  
                         ![rebase合并](image/git_center_flow5.png)
             2. 不同开发者(并行)修改了同一个文件(都是pull下了中央版本，在本地修改)
