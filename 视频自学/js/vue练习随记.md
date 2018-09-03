@@ -83,6 +83,7 @@
     2.采取不同源
     ```html
     <script>
+      //vue
         this.$http.get("http://localhost:8080/Testtt/vue/server.php",this.username)
         .then(response=>{
           console.log(response);
@@ -93,6 +94,7 @@
     ```
 
     ```php
+      //php
       //指定可以访问的不同源的URL，使用“ * ”的话即随意什么URL都可访问。
       header("Access-Control-Allow-Origin: http://localhost:8082");
       echo 123;
