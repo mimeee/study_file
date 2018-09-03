@@ -65,6 +65,27 @@
                         g.sr_owner = sr_owner.id
                     ) g {$condition['where']} {$condition['whereCustom']} {$condition['orderby']} {$condition['limit']}
         ```
+
+        + 根据一个字段的值去查询另一个表中包含该字段的值有多少条记录，主要也是使用了 `group by` 与 ` COUNT() ` 结合。
+        
+        ``` sql
+        SELECT
+             *
+        FROM 
+            operation_group o
+        Left Join
+            (
+            select 
+                COUNT(id) as number,
+                group_id 
+            from 
+                good 
+            group by 
+                good.group_id            
+            )g
+        ON
+           g.group_id = o.id
+        ```
 - ### 函数
     + `SELECT TIMESTAMPDIFF(DAY, '2018-01-01 00:00:00', '2018-03-01 00:00:00') diff`  
         显示的是两个时间的差异，差异的单位以第一个参数为准。 两个日期相隔59天
