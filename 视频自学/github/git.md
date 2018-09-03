@@ -342,7 +342,7 @@
          * `git push -f`  
             回撤远程仓库, -f 即 --force  
 
-      ![reset命令](image/git_reset.png) 
+         ![reset命令](image/git_reset.png) 
 
          * `git commit --amend -m <msg>`  
             回撤上一次提交
