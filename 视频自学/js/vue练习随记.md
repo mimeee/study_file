@@ -52,5 +52,52 @@
       直接在该element上添加样式,由于初始状态改变了element的样式，所以通过过度时间就可以实现动画。
     + 过度时间  
       在 *-enter-active 上设置。
+
+  - 在vue中使用vue-resource请求不同源的php
+    
+    1.采取本地
+    如果直接再目录中建立一个data.php文件用于返回请求，php得不到执行，会直接把php文件的所有内容返回。目录如下： 
+    ![文件路径](image/vue-resource.png)  
+    
+    ```html
+    <script>
+    //vue中的代码
+      this.$http.get("data.php",this.username)
+        .then(response=>{
+          console.log(response);
+        },error=>{
+          this.result = error
+        })
+    </script>
+    ```
+    ```php
+    // data.php
+    <?php 
+      echo 123;
+    ?>
+    ```
+    打印的结果：  
+    ![](image/vue-resource-require-result.png)
+
+
+
+    
+    2.采取不同源
+    ```html
+    <script>
+        this.$http.get("http://localhost:8080/Testtt/vue/server.php",this.username)
+        .then(response=>{
+          console.log(response);
+        },error=>{
+          this.result = error
+        })
+    </script>
+    ```
+
+    ```php
+      //指定可以访问的不同源的URL，使用“ * ”的话即随意什么URL都可访问。
+      header("Access-Control-Allow-Origin: http://localhost:8082");
+      echo 123;
+    ```
     
   
