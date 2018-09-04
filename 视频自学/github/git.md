@@ -495,7 +495,7 @@
 
       + pull request  
          pull request 工作流能为每个分支发起一个讨论，在分支何如正式项目之前，给其他开发者表示赞同的机会。
-         而有了pull request，协同开发时，一旦某个开发者完成一个功能，不是立即合并到 `master` 分支，而是 `push` 到中央仓库的功能分支上并发起一个 pull request 请求——将修改合并到 master 上。在修改成为主干代码之前，其他开发者有机会去 Review 变更。(pull request文档)[https://confluence.atlassian.com/bitbucketserver/using-pull-requests-in-bitbucket-server-776639997.html]
+         而有了pull request，协同开发时，一旦某个开发者完成一个功能，不是立即合并到 `master` 分支，而是 `push` 到中央仓库的功能分支上并发起一个 pull request 请求——将修改合并到 master 上。在修改成为主干代码之前，其他开发者有机会去 Review 变更。[pull request文档](https://confluence.atlassian.com/bitbucketserver/using-pull-requests-in-bitbucket-server-776639997.html)
       + 示例 ———— 前提环境和集中式一样，多个开发者，邀请开发者，clone仓库到本地 
          * 新开一个功能分支 ———— `git checkout -b feat-dialog`(直接切换到 feat-dialog分支上)  
          * 新建一个文件并做变更 ———— `touch c` , `echo ccc >> c`
