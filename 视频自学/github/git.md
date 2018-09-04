@@ -489,8 +489,29 @@
                + 开发者 A push 了修改的版本，并且成功。
                + 开发者 B push 了修改的版本，并且被拒绝，然后使用上述方法 `git pull --rebase`，来合并版本。此时 rebase 会出错。
                + 开发者 B 手动修复冲突， `vim a`，修改， `git add .`, `git rebase -- continue`;
-   - ## 功能分支工作流
-      + 
+   - ## 功能分支工作流  
+      功能分支工作流以集中式工作流为基础，不同的是为各个新公共能分配一个专门的分支来开发。这样可以把新功能集成到正式项目前，用 `pull request` 的方式讨论变更。  
+      ![功能分支工作模式](image/git_feature_flow.png)  
+
+      + pull request  
+         pull request 工作流能为每个分支发起一个讨论，在分支何如正式项目之前，给其他开发者表示赞同的机会。
+         而有了pull request，协同开发时，一旦某个开发者完成一个功能，不是立即合并到 `master` 分支，而是 `push` 到中央仓库的功能分支上并发起一个 pull request 请求——将修改合并到 master 上。在修改成为主干代码之前，其他开发者有机会去 Review 变更。(pull request文档)[https://confluence.atlassian.com/bitbucketserver/using-pull-requests-in-bitbucket-server-776639997.html]
+      + 示例 ———— 前提环境和集中式一样，多个开发者，邀请开发者，clone仓库到本地 
+         * 新开一个功能分支 ———— `git checkout -b feat-dialog`(直接切换到 feat-dialog分支上)  
+         * 新建一个文件并做变更 ———— `touch c` , `echo ccc >> c`
+         * 提交变更 ———— `git add .` , `git commit -am 'message'`
+         * 继续变更提交；此时 `feat-dialog` 上有两个历史记录是 `master` 上没有的。
+         * 将修改推到远程仓库上 ———— `git push origin feat-dialog`
+         * 继续变更提交；
+         * 再推到远程仓库上；修改推送的默认仓库使用
+         `git push -u origin feat-dialog` 即 
+         `git push --set-upstream origin feat-dialog`
+         * 创建 pull request，在github仓库页面就可以按照提示创建。
+         * 其他协作者就登录其自己的github页面就可以通过 pull request(简称 *PR*)导航来查看详情；点击进去，可以在 conversation 中交流；在 commits 查看提交记录；在 Files changed 查看提交详情并且做code review。    
+         ![](image/git_feature_flow1.png)  
+         * 交流结束后修改代码，继续提交。
+         * 再所有人同意后，可以再github中的PR里的conversation中来merge合并。  
+         ![](image/git_feature_flow2.png)
    - ## Gitflow 工作流
       + 
    - ## Forking工作流
