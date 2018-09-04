@@ -66,7 +66,7 @@
                     ) g {$condition['where']} {$condition['whereCustom']} {$condition['orderby']} {$condition['limit']}
         ```
 
-        + 根据一个字段的值去查询另一个表中包含该字段的值有多少条记录，主要也是使用了 `group by` 与 ` COUNT() ` 结合。
+    + 根据一个字段的值去查询另一个表中包含该字段的值有多少条记录，主要也是使用了 `group by` 与 ` COUNT() ` 结合。
         
         ``` sql
         SELECT
@@ -85,6 +85,24 @@
             )g
         ON
            g.group_id = o.id
+        ```
+
+    + clone一条数据
+        变量 $feild 是除了自增变量(id)以外，good表所有的字段
+        ```sql
+            INSERT INTO 
+                good
+            (
+                $feild
+            ) 
+            (
+                SELECT 
+                    $feild
+                FROM 
+                    good
+                WHERE 
+                    id IN ($id)
+            )
         ```
 - ### 函数
     + `SELECT TIMESTAMPDIFF(DAY, '2018-01-01 00:00:00', '2018-03-01 00:00:00') diff`  
