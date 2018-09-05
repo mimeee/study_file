@@ -113,10 +113,12 @@
     ![](image/CROS.png)
     
     <hr>
+    
     + [跨域资源共享 CORS 详解 —— 阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)
     + [HTTP访问控制（CORS）—— MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
     
     <hr>
+    
     + [cors跨域之简单请求与预检请求](https://segmentfault.com/a/1190000009971254)
     + [四种常见的 POST 提交数据方式 ](http://zccst.iteye.com/blog/2180127)
     + [CORS 跨域 access-control-allow-headers 的问题](https://blog.csdn.net/badboyer/article/details/51261083)
