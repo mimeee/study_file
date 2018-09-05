@@ -541,7 +541,7 @@
          * 等待是否被接受合并  
       
       ![](image/git_fork_flow.png)  
-      ![](image/git_fork_flow1.png)
+      ![](image/git_fork_flow1.png)  
       在这个过程中，存在一个问题，就是当将官方仓库fork至自己的仓库然后clone至本地时，如何保持与官方仓库的版本一致。这需要与官方仓库建立一个远程连接，使用命令 `git remote add <name> <url>`，然后在 `push` 之前先 `git pull <name> <branch name>` 官方仓库，以保证与官方仓库的同步。
       + 
    - ## Pull Request 总结
