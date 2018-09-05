@@ -511,10 +511,38 @@
          ![](image/git_feature_flow1.png)  
          * 交流结束后修改代码，继续提交。
          * 再所有人同意后，可以再github中的PR里的conversation中来merge合并。  
-         ![](image/git_feature_flow2.png)
-   - ## Gitflow 工作流
-      + 
+         ![](image/git_feature_flow2.png)  
+
+   - ## Gitflow 工作流  
+      Gitflow工作流与功能分支工作流几乎一样，只是Gitflow工作流比功能分支工作流多开了一些持久的分支，比如开发分支、发布分支、hotfix分支等等。工作示意图如下  
+      ![](image/git_git_flow.png)  
+         上图中
+      + 紫色的为 **开发分支(Develop)**，是长期分支。一上来的开发都在该分支上。
+      + 绿色的分支为 **功能分支(Feature)**，在需要做某些功能的时候开出，,完成后并入 **开发分支**。
+      + 白色的是 **维护分支(hotfix)** 分支，用于bug修复，是从 **master分支**开出的，完成之后会并入 **master分支**和 **开发分支**
+      + 青绿色的是 **发布分支(Release)**，用于发布。完成后也会并入 **master分支**和 **开发分支**
+      + **master分支**上只放固定的版本如 1.0 , 2.0 等等。  
+      
+      从什么地方开出分支，就是在该地方下输入命名 `git branch branch_name`。
+
+   - ## 集中式工作流、功能分支工作流、Gitflow工作流总结  
+      
+      这三个工作流都是基于集中式工作流，都是有一个中央仓库。不同的是他们分支逐渐增多，工作流也逐渐复杂。
+
    - ## Forking工作流
+      + 简介  
+      Forking工作流是有一个官方仓库，同时通过官方仓库可以fork出多个官方仓库的副本。
+      这些官方仓库的副本存储在想要参与协同开发的开发者的仓库中。开发者就可以clone自己仓库的官方副本至本地，并进行修改。然后将修改本地仓库并push到自己远程仓库中，最后向官方仓库的开发者发送一个 `pull request` 请求，请求合并代码。官方仓库的开发者通过 `review code`可以查看修改并决定是否接受合并。其过程为：
+         * `fork` 官方仓库
+         * `clone` 自己仓库中的官方仓库副本至本地
+         * 修改仓库中的代码
+         * `push` 至自己的仓库中
+         * 向官方仓库的开发者 `pull request`
+         * 等待是否被接受合并  
+      
+      ![](image/git_fork_flow.png)  
+      ![](image/git_fork_flow1.png)
+      在这个过程中，存在一个问题，就是当将官方仓库fork至自己的仓库然后clone至本地时，如何保持与官方仓库的版本一致。这需要与官方仓库建立一个远程连接，使用命令 `git remote add <name> <url>`，然后在 `push` 之前先 `git pull <name> <branch name>` 官方仓库，以保证与官方仓库的同步。
       + 
    - ## Pull Request 总结
       + 

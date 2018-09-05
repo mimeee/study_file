@@ -107,24 +107,22 @@
          沙盒技术提供对资源的严格控制，沙盒通过限制对内存、系统文件和设置的访问，可以让企业可通过执行潜在的而已代码而发现其活动和意图。
 
     CORS(Cross-Origin Resource Sharing) 是一份浏览器技术的规范，提供了 Web 服务从不同网域传来 *沙盒脚本* 的方法，以避免浏览器的同源策略，是JSONP模式的现代版。  
-    CORS的修改只关乎 **后端** 和 **浏览器** ，**不会影响前端**。
+    
 
     CORS请求流程：  
     ![](image/CROS.png)
     
-
+    <hr>
+    + [跨域资源共享 CORS 详解 —— 阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+    + [HTTP访问控制（CORS）—— MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+    
+    <hr>
     + [cors跨域之简单请求与预检请求](https://segmentfault.com/a/1190000009971254)
     + [四种常见的 POST 提交数据方式 ](http://zccst.iteye.com/blog/2180127)
     + [CORS 跨域 access-control-allow-headers 的问题](https://blog.csdn.net/badboyer/article/details/51261083)
     + [CORS简介](https://www.cnblogs.com/loveis715/p/4592246.html)
     + [CORS（跨域）请求总结和测试](http://www.php.cn/js-tutorial-370087.html)  
     
-    整理：
-      * 请求分类 --> 简单请求和非简单请求
-        - 简单请求
-          
-        - 非简单请求 
-
 
   - [vue-resource示例](https://www.cnblogs.com/chenhuichao/p/8308993.html)   
   
