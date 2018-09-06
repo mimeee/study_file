@@ -115,8 +115,8 @@
 
     <hr>
 
-  + 示例
-    * 使用get方法  
+  - 示例
+
       
     ```html
     <template>
@@ -166,21 +166,117 @@
     ![](image/vue-resource-get-2.png)  
     ![](image/vue-resource-get-3.png)   
 
-    可以看出这是一个简单请求。
+    可以看出这是一个简单请求。浏览器会在头信息之中，增加一个Origin字段，该字段表示该请求来自于哪个源(协议 + 域名 + 端口)，服务器通过校验这个值来决定这个源的请求是否合法。
+
+    在服务器端可以设置一下三个字段
+      * `Access-Control-Allow-Origin`(必须)   
+        表示可以接受的域名；
+      * `Access-Control-Allow-Credentials`  
+        是一各布尔值，表示是否允许发送Cookies;
+      * `Access-Control-Expose-Headers`  
+        CORS 请求时， `XMLHttpRequest` 对象的 `getResponseHeader()` 方法只能拿到六个基本字段：
+          1. `Cache-Control`
+          2. `Content-Language`
+          3. `Content-Type`
+          4. `Expires`
+          5. `Last-Modified`
+          6. `Pragma`
+        
+        如果想拿到其他字段，就必须在 `Access-Control-Expose-Headers` 里面指定。
+
+    + 使用不简单请求的post方法  
+      
+      ```html
+      <template>
+        <div id="app">
+        <div class="container">
+          <div class="row">
+          username:<input type="text" v-model="username" class="form-control">
+            email:<input type="text" v-model="email" class="form-control">
+          </div>
+          <button class="btn btn-primary w-100" type="button" @click="sub">btn</button>
+          <div>{{ result.body }}</div>
+        </div>
+        </div>
+      </template>
+
+      <script>
+
+      export default {
+        data(){
+          return {
+            username:"",
+            email:"",
+            result:{}
+          }
+        },
+        methods:{
+          sub(){
+            this.$http.post("http://localhost:8080/Testtt/vue/server.php" ,{'aa':this.username})
+              .then(response=>{
+                console.log(response.body);
+              },error=>{
+                this.result = error
+              })
+          }
+        }
+      }
+      </script>
+      ```
+      ```php
+        //php
+        //指定可以访问的不同源的URL，使用“ * ”的话即随意什么URL都可访问。这个设置只支持get方法。
+        header("Access-Control-Allow-Origin:http://localhost:8082");
+        print_r(json_encode(array('aa'=>'33')));
+      ```
+      结果:  
+      ![](image/vue-resource-post-1.png)  
+      ![](image/vue-resource-post-2.png)  
+      ![](image/vue-resource-post-3.png)  
+      
+      由此，可以看出这是一个非简单请求。而浏览器拦截了其请求。通过修改后台php文件,增加两个头信息，从而成功请求到信息。
+
+      ```php
+        header("Access-Control-Allow-Origin:http://localhost:8082");
+        header("Access-Control-Allow-Headers:content-type");
+        header("Access-Control-Allow-Methods:GET, POST, PUT");
+        print_r(json_encode(array('aa'=>'33')));        
+      ```
+      打印图:
+      ![](image/vue-resource-post-11.png)  
+      ![](image/vue-resource-post-22.png)  
+      ![](image/vue-resource-post-33.png)  
+      ![](image/vue-resource-post-44.png)  
+      ![](image/vue-resource-post-55.png)  
+
+      可以看到，在 `OPTION` 预检的时候，浏览器自动追加了两个头信息:
+        * `Access-Control-Request-Headers:content-type`
+        * `Access-Control-Request-Methods:POST`  
+      同时还有
+        * `Origin`  
+       
+      服务器会检查发送的这三个请求头与自身的响应头
+        * `Access-Control-Allow-Origin` (必须)  
+          表示允许源；
+        * `Access-Control-Allow-Headers`  
+          如果浏览请发送过来的请求头中，包含 `Access-Control-Request-Headers` ，则该字段 **必须**。他的内容是以 逗号分隔 的字符串，表明服务器支持的所有头信息字段。
+        * `Access-Control-Allow-Methods`(必须)   
+          它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。
+      的内容是由否一样，如果一样，预检通过，发送post请求，来传输数据，否者报错。
 
     <hr>
-    
-    + [跨域资源共享 CORS 详解 —— 阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)
-    + [HTTP访问控制（CORS）—— MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
-    
-    <hr>
-    
-    + [cors跨域之简单请求与预检请求](https://segmentfault.com/a/1190000009971254)
-    + [四种常见的 POST 提交数据方式 ](http://zccst.iteye.com/blog/2180127)
-    + [CORS 跨域 access-control-allow-headers 的问题](https://blog.csdn.net/badboyer/article/details/51261083)
-    + [CORS简介](https://www.cnblogs.com/loveis715/p/4592246.html)
-    + [CORS（跨域）请求总结和测试](http://www.php.cn/js-tutorial-370087.html)  
-    
+  
+  - [跨域资源共享 CORS 详解 —— 阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+  - [HTTP访问控制（CORS）—— MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+  
+  <hr>
+  
+  - [cors跨域之简单请求与预检请求](https://segmentfault.com/a/1190000009971254)
+  - [四种常见的 POST 提交数据方式 ](http://zccst.iteye.com/blog/2180127)
+  - [CORS 跨域 access-control-allow-headers 的问题](https://blog.csdn.net/badboyer/article/details/51261083)
+  - [CORS简介](https://www.cnblogs.com/loveis715/p/4592246.html)
+  - [CORS（跨域）请求总结和测试](http://www.php.cn/js-tutorial-370087.html)  
+  
 
-  - [vue-resource示例](https://www.cnblogs.com/chenhuichao/p/8308993.html)   
+* [vue-resource示例](https://www.cnblogs.com/chenhuichao/p/8308993.html)   
   
