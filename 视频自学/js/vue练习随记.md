@@ -162,9 +162,9 @@
       print_r(json_encode((object)$_GET));
     ```
     结果  
-    ![](vue-resource-get-1.png) 
-    ![](vue-resource-get-2.png)  
-    ![](vue-resource-get-3.png)   
+    ![](image/vue-resource-get-1.png) 
+    ![](image/vue-resource-get-2.png)  
+    ![](image/vue-resource-get-3.png)   
 
     可以看出这是一个简单请求。
 
