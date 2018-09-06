@@ -557,8 +557,6 @@
       + 发生 pull request 的条件 
          上述中，*要素1*与 *要素3*，*要素2* 与 *要素4* 至少有一个不同
       + 最佳实践: [Git 使用规范流程](http://www.ruanyifeng.com/blog/2015/08/git-use-process.html?bsh_bid=701658724)
-
-
           
 # 第四章 未完待续...
 
