@@ -80,25 +80,8 @@
     ![](image/vue-resource-require-result.png)  
     从打印的结果看，访问php文件就好像是直接返回了文本，并没只有执行php代码。所以，我想是不是因为这么访问PHP文件，该文件没有经过php编译器进行编译。也可能是vue起的这个服务器没有php运行环境，是不是搭一个php环境就可以了？
     
-    2.采取不同源
-    ```html
-    <script>
-      //vue
-        this.$http.get("http://localhost:8080/Testtt/vue/server.php？name=" + this.username)
-        .then(response=>{
-          console.log(response);
-        },error=>{
-          this.result = error
-        })
-    </script>
-    ```
+    2.采取不同源 —— 涉及cors跨域请求
 
-    ```php
-      //php
-      //指定可以访问的不同源的URL，使用“ * ”的话即随意什么URL都可访问。这个设置只支持get方法。
-      header("Access-Control-Allow-Origin: http://localhost:8082");
-      echo 123;
-    ```
   - 关于cors跨域请求
     + 名词解释
       * 沙盒
@@ -107,11 +90,84 @@
          沙盒技术提供对资源的严格控制，沙盒通过限制对内存、系统文件和设置的访问，可以让企业可通过执行潜在的而已代码而发现其活动和意图。
 
     CORS(Cross-Origin Resource Sharing) 是一份浏览器技术的规范，提供了 Web 服务从不同网域传来 *沙盒脚本* 的方法，以避免浏览器的同源策略，是JSONP模式的现代版。  
+      * CORS 请求分类 —— 简单请求、非简单请求
+        简单请求满足以下条件：
+          1. 请求方法是一下三种方法之一：
+            - HEAD
+            - GET
+            - POST  
+          2. HTTP 的头信息不超出一下几种字段：
+            - Accept
+            - Accept-Language
+            - Content-Language
+            - Last-Event-ID
+            - Content-Type:只限于三个值 
+              + application/x-www-form-urlencoded
+              + multipart/form-data
+              + text/plain 
+        
+        除了简单请求就是非简单请求了。
+          
     
 
     CORS请求流程：  
     ![](image/CROS.png)
-    
+
+    <hr>
+
+  + 示例
+    * 使用get方法  
+      
+    ```html
+    <template>
+      <div id="app">
+      <div class="container">
+        <div class="row">
+        username:<input type="text" v-model="username" class="form-control">
+          email:<input type="text" v-model="email" class="form-control">
+        </div>
+        <button class="btn btn-primary w-100" type="button" @click="sub">btn</button>
+        <div>{{ result.body }}</div>
+      </div>
+      </div>
+    </template>
+    <script>
+      //vue
+      export default {
+        data(){
+          return {
+            username:"",
+            email:"",
+            result:{}
+          }
+        },
+        methods:{
+          sub(){
+            this.$http.get("http://localhost:8080/Testtt/vue/server.php?username=" + this.username)
+              .then(response=>{
+                console.log(response.body);
+              },error=>{
+                this.result = error
+              })
+          }
+        }
+      }
+    </script>
+    ```
+
+    ```php
+      //php
+      //指定可以访问的不同源的URL，使用“ * ”的话即随意什么URL都可访问。这个设置只支持get方法。
+      header("Access-Control-Allow-Origin:http://localhost:8082");
+      print_r(json_encode((object)$_GET));
+    ```
+    结果  
+    ![](vue-resource-get-1.png) 
+    ![](vue-resource-get-2.png)  
+    ![](vue-resource-get-3.png)   
+
+    可以看出这是一个简单请求。
+
     <hr>
     
     + [跨域资源共享 CORS 详解 —— 阮一峰](http://www.ruanyifeng.com/blog/2016/04/cors.html)

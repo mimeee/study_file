@@ -543,11 +543,24 @@
       ![](image/git_fork_flow.png)  
       ![](image/git_fork_flow1.png)  
       在这个过程中，存在一个问题，就是当将官方仓库fork至自己的仓库然后clone至本地时，如何保持与官方仓库的版本一致。这需要与官方仓库建立一个远程连接，使用命令 `git remote add <name> <url>`，然后在 `push` 之前先 `git pull <name> <branch name>` 官方仓库，以保证与官方仓库的同步。
-      + 
+      
    - ## Pull Request 总结
-      + 
-          
+      + pull request 三大功能
+         * 当一项项目被 watch 后，只要有人对该项目 pull request， watch 该项目的人就会收到通知。
+         * pull request 提供会话的功能，和code review。
+         * 可以 mergin 提交的代码
+      + pull request 发生的四大要素
+         1. 有发起方 —— source repository
+         2. 发起方需创建功能分支 —— feature-source Branch
+         3. 有接收方 —— destination repository
+         4. 接收方的哪个分支接受该功能分支 —— Master-Destination Branch
+      + 发生 pull request 的条件 
+         上述中，*要素1*与 *要素3*，*要素2* 与 *要素4* 至少有一个不同
+      + 最佳实践: [Git 使用规范流程](http://www.ruanyifeng.com/blog/2015/08/git-use-process.html?bsh_bid=701658724)
 
+
+          
+# 第四章 未完待续...
 
 
 
