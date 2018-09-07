@@ -212,7 +212,9 @@
         },
         methods:{
           sub(){
-            this.$http.post("http://localhost:8080/Testtt/vue/server.php" ,{'aa':this.username})
+            this.$http.post("http://localhost:8080/Testtt/vue/server.php" ,
+              {'user':this.username}, {emulateJSON: true})
+            //这里必须设置 {emulateJSON: true} ，否者就算没有被拒绝请求，服务器也接受不到数据。这个是设置表示：请求会以 application/x-www-form-urlencoded 作为MIME type，就像普通的表单一样。
               .then(response=>{
                 console.log(response.body);
               },error=>{
