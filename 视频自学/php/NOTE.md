@@ -113,7 +113,7 @@
 
             $str = <<< HEHEDA
                 <span>tired</span>
-HEHEDA;//解释，一定要顶格写。并且后面不能接任何内容，包括空格和tag键。
+        HEHEDA;//解释，一定要顶格写。并且后面不能接任何内容，包括空格和tag键。
             echo $str;            
         ```
     - 布尔型
