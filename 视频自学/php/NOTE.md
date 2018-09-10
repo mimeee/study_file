@@ -81,8 +81,9 @@
             </html>
             ```
 3. ### 整数 & 字符串类型  
-    `var_dump($var)` 可以查看变量类型。  
-    `unset($var)` 删除 `$var`
+    `var_dump($var)` 打印变量同时可以查看变量类型。  
+    `print_r($var)` 打印变量，但没有变量类型。
+    `unset($var)` 删除 `$var`。
     - #### 整数  
         声明一个整形 : `$a = 10`。可以直接输入其他进制如  
 
@@ -208,4 +209,102 @@
     - 比较操作符(>, >=, <, <=, ==, ===, !=, !==)
     - 逻辑操作符(&&, ||, !)
     - 位操作符(|, &)(@, ?(3元操作符))
-6. ###
+    
+6. ### 流程控制
+    - #### 分支语句
+
+        ```php
+            if($condition){
+                //todo ...
+            }else if($condition){
+                //todo ...
+            }else{
+                //todo ...
+            }
+
+            switch($var){
+                case 'a':
+                //todo ...
+                break;
+                case 'b':
+                //todo ...
+                break;
+            }
+        ```
+    - #### 循环语句
+
+        ```php
+            //-for------------------
+            $sum = 0;
+            for($i = 1;$i <= 100; $i++ ){
+                $sum += $i;
+            }
+            //-do-while-------------------
+            $a = 0;
+            $ind = 1;
+            do{
+                $a += $ind;
+                $ind ++;
+            }while($ind <= 100)
+
+            //-while--------------------
+            while($ind <= 100){
+                $a += $ind;
+                $ind ++;             
+            }
+        ```
+    - `break`和`continue`
+
+7. ### 类型测试函数
+    - 检测是否整型  
+        `is_int()`, `is_long()`, 'is_integer()'
+    - 检测是否浮点数  
+        `is_float()`(单精度的浮点数), `is_real()`(is_float的别名), `is_double()`(双精度的浮点数)
+    - 检测是否字符串  
+        `is_string()`
+    - 检测是否数组  
+        `is_array()`
+    - 检测是否对象  
+        `is_object()`
+    - 检测是否资源  
+        `is_resource()`
+    - 检测是否布尔型  
+        `is_bool()`  
+    - 检测是否 `null`  
+        `is_null()`   
+    - 检测是否是数值(比如 10, "10")  
+        `is_numeric()`  
+
+8. ### 表单提交  
+    `header(Location:success.php)` 跳转到 success.php 页面
+    - php 如何收集表单所提交的数据？  
+        使用超级全局变量, `$_GET`,`$_POST`; `$_REQUEST` 可以同时接受 `$_GET` 和 `$_POST` 所接受到的变量。  
+        + `get`方法 `$_GET`
+
+            ```html
+                <form action="" method="get">
+                    <input type="text" name="user">
+                    <input type="submit" value="submit">
+                </form>
+                <?php
+                    echo $_GET['user'];
+                ?>
+            ```
+        + `post`方法 `$_POST`
+
+            ```html
+                <form action="" method="post">
+                    <input type="text" name="user">
+                    <input type="submit" value="submit">
+                </form>
+                <?php
+                    echo $_POST['user'];
+                ?>
+            ```
+        + `post`与`get`的区别
+            * post 提交比 get 更加安全，因为 get 提交会在地址栏显示提交内容。
+            * post 提交比 get 所能提交的数据更大，在 php.ini 中可以通过 `post_max_size` 可以设置。  
+                ![](image/POST_size.png)
+            * post 提交会刷新页面。      
+            
+9. ###
