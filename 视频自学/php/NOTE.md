@@ -307,4 +307,93 @@
                 ![](image/POST_size.png)
             * post 提交会刷新页面。      
             
-9. ###
+9. ### 函数定义 & 执行流程
+    - 函数的定义
+        + 语法
+            
+            ```php
+                function fun_name([arg1,arg2...]){
+                    //todo...
+                }
+            ```
+        + 例：输入 n 行 n 列表格
+            
+            ```php
+                function outTable($row,$column){
+                    echo "<table>";
+                    for($i = 0;$i < $row; $i++){
+                        echo "<tr>";
+                        for($j = 0;$j < $column; $j++){
+                            echo "<td> $i - $j </td>";
+                        }  
+                        echo "</tr>";                  
+                    }
+                    echo "</table>";
+                }
+                outTable(3,3);
+            ```
+
+        + 特性  
+            * 函数中 `return` 后面的语句不会执行
+            * 函数被调用完后会返回调用函数的地方
+    - 函数执行流程   
+        ![](image/function_run_flow.png)   
+        上图中的 4 个函数 `fn1`, `fn2`, `fn3`, `fn4`   都会被执行到，而且会执行完毕后会返回上一个函数的作用域中。
+        
+10. ### 变量作用域
+    - 局部变量作用域  
+        - 函数中定义的变量叫局部变量，局部变量，外部是不可以范围的。
+        - 局部变量在函数调用完毕后会被释放。
+        - 函数外定义的变量，函数是不可以访问的
+            
+            ```php
+                $sum = 0;
+                function add($num){
+                    $sum += $num;
+                    return $sum;
+                }
+                echo add(5);//报错,Notice: Undefined variable: sum in D:\XAMPP\htdocs\Testtt\New folder\function.php
+            ```
+
+    - `global` 关键字  
+        使用 `global` 关键字来声明变量，可以使得变量称为全局变量。全部变量只有在 **程序运行结束才会被销毁**。
+
+        ```php
+            function add($num){
+                global $sum;
+                $sum += $num;
+                return $sum;
+            }
+            add(5); //5
+            add(5); //10
+            add(5); //15
+        ```
+
+        就算使用 `global` 关键字把一个变量变为全局变量，下一次再另一个函数中使用的时候，还是要使用 `global` 函数进行声明。  
+
+        ```php
+            function add($num){
+                global $sum;
+                $sum += $num;
+                return $sum;
+            }
+            add(5);
+            add(5);
+            function show(){
+                //echo $sum; 
+                //错误, Undefined variable: sum in D:\XAMPP\htdocs\Testtt\New folder\function.php
+                //使用如下
+                global $sum;
+                echo $sum;
+            }
+            show();
+        ```
+    - 静态 ( `static` ) 变量  
+        使用 `static` 关键字把变量变成静态变量。其特点
+        + 一次初始化( 赋值 )
+        + 数据会被共享
+        + 变量在函数调用完毕后不会被释放
+
+        
+
+11. ###
