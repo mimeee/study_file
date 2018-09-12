@@ -308,7 +308,7 @@
             * post 提交会刷新页面。      
             
 9. ### 函数定义 & 执行流程
-    - 函数的定义
+    - #### 函数的定义
         + 语法
             
             ```php
@@ -336,12 +336,12 @@
         + 特性  
             * 函数中 `return` 后面的语句不会执行
             * 函数被调用完后会返回调用函数的地方
-    - 函数执行流程   
+    - #### 函数执行流程   
         ![](image/function_run_flow.png)   
         上图中的 4 个函数 `fn1`, `fn2`, `fn3`, `fn4`   都会被执行到，而且会执行完毕后会返回上一个函数的作用域中。
         
 10. ### 变量作用域
-    - 局部变量作用域  
+    - #### 局部变量作用域  
         - 函数中定义的变量叫局部变量，局部变量，外部是不可以范围的。
         - 局部变量在函数调用完毕后会被释放。
         - 函数外定义的变量，函数是不可以访问的
@@ -355,7 +355,7 @@
                 echo add(5);//报错,Notice: Undefined variable: sum in D:\XAMPP\htdocs\Testtt\New folder\function.php
             ```
 
-    - `global` 关键字  
+    - #### `global` 关键字  
         使用 `global` 关键字来声明变量，可以使得变量称为全局变量。全部变量只有在 **程序运行结束才会被销毁**。
 
         ```php
@@ -388,12 +388,150 @@
             }
             show();
         ```
-    - 静态 ( `static` ) 变量  
+    - #### 静态 ( `static` ) 变量  
         使用 `static` 关键字把变量变成静态变量。其特点
         + 一次初始化( 赋值 )
         + 数据会被共享
         + 变量在函数调用完毕后不会被释放
-
         
+        ```php
+            function add($num){
+                static $sum;
+                $sum += $num;
+                return $sum;
+            }
+            echo add(5);
+            echo add(5);
+        ```
 
-11. ###
+11. ### 引用传参, 默认参数, 可变参数
+    - 变量引用传参
+        引用传参传递的是指针，可以改变指针所指向内存里的东西。而值传递传递的是值，会在函数内开辟另外一个内容空间去存储值；之后值得改变就与所传递的变量无关。
+
+        ```php
+            $a = 10;
+            $b = 11;
+            //值传递
+            function deliveryValue($n1,$n2){
+                $temp = $n1;
+                $n1 = $n2;
+                $n2 = $temp;
+            }
+            deliveryValue($a,$b);
+            echo $a; //10
+            echo $b; //11
+            //引用传递
+            function deliveryAdress(&$n1,&$n2){
+                $temp = $n1;
+                $n1 = $n2;
+                $n2 = $temp;
+            }
+            deliveryAdress($a,$b);
+            echo $a; //11
+            echo $b; //10
+
+        ```
+    - 函数参数默认值
+        给函数设定默认值,凡是没有默认值得函数必须传参。且传参的顺序与设定的形参的顺序一致；所以默认参数都放后面。
+
+        ```php
+            function aa($a, $b, $c= "30", $d=1){
+                echo $c;
+            }
+            aa(2,6,7);
+            aa(1,5,3);
+        ```
+    - 可变参数( 参数求和 )  
+        `count()` 该函数是计算数组的长度的。  
+        在 `javascript` 中有 `arguments` 这个参数表示函数所接受到的参数，是一个数组( `array` )。  
+        而 `php` 中也有一个函数起到 `arguments` 的功能: `func_get_args()`;  
+        只取一个传入的参数，给该函数传入一个下标: `func_get_arg($position)`;  
+        获取到传递给函数参数的个数: `func_num_args()`;  
+
+        ```php
+            function add(){
+                $args = func_get_args();
+                print_r($args);
+
+                $sum = 0;
+                $sum1 = 0;
+                for( $i = 0; $i < count( $args ); $i++){
+                    $sum += $args[$i];
+                    $sum1 += func_get_arg($i);
+                }
+                echo $sum;
+                echo $sum1;
+            }
+            add(10,20,50,30);//array:10,20,50,30
+
+
+        ```
+
+    - 回调函数
+        回调函数就是把函数当做参数传递给另一个函数。
+
+        ```php
+            function aa(fn){
+                if(fn()){
+                    echo 1;
+                }else if(fn()){
+                    echo 2;
+                }
+            }
+
+            function isEvent(){
+                return floor(random()*100) % 2 === 0;
+            }
+
+            $fn = 'isEvent';
+            aa($fn);
+        ```
+
+    - 递归  
+        自己调用自己的函数叫做递归。
+        
+        ```php
+            function showNum( $n ){
+                echo $n . "\t";
+                if($n > 0){
+                    showNum($n - 1);
+                }else{
+                    echo "<------->";
+                }
+                echo $n . "t";
+            }
+
+            showNum(3) // 3 2 1 0 <-------> 0 1 2 3 
+        ```
+        
+        斐波拉切数列: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 ...
+
+        ```php
+            function showFei( $n ){
+                if( $n < 2 ){
+                    return 1;
+                }else{
+                    return showFei( $n - 1 ) + showFei( $n - 2 );
+                }
+            }
+            showFei( 1 );
+            showFei( 3 );
+        ```
+
+        阶乘: n!;  3! = 3 * 2 * 1;
+        ```php
+            function mul( $n ){
+                if( $n == 1){
+                    return 1;
+                }else{
+                    return $n * mul( $n -1 );
+                }
+            }
+            echo mul(3);
+        ```
+
+    - `require` 和 `include`
+    - 可替换的流程控制结构
+
+
+12. ### 
