@@ -33,6 +33,7 @@
     +  [Windows下Git多账号配置，同一电脑多个ssh-key的管理](https://www.cnblogs.com/popfisher/p/5731232.html)
 
 - ## php
+    + [php手册](php.net)
     + [symfony 插件 Doctrine api](https://www.doctrine-project.org/api/dbal/2.7/Doctrine/DBAL/Driver/Connection.html#method_lastInsertId)
 
 - ## 前端

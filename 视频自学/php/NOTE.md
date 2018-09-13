@@ -530,8 +530,135 @@
             echo mul(3);
         ```
 
-    - `require` 和 `include`  
-    - 可替换的流程控制结构  
+    - #### `require` 和 `include` 和 `require_one` 和 `include_one`   
+        `require` 和 `include` 都是引用文件。他们的 **区别**是：当所包含的文件找不到时， `require` 所报的错误是致命错误，同时终止文件执行。 `include` 是报警告，后面代码仍可以执行。  
+        **相同点** : 重复包含都会报致命错误。可考虑使用 `require_once`, `include_once`。
+
+    - #### 可替换的流程控制结构  
+        ```php
+            if($a > 30){
+                echo "大于30";
+            }else if( $a > 20 ){}
+                echo "大于20";
+            }else{
+                echo "不大于";
+            }
+
+            //可替换的流程控制结构
+            //if
+            if( $a > 30 ):
+                echo "大于30";
+            elseif( $a > 20):
+                echo "大于20";
+            else:
+                echo "不大于";
+            endif;
+            //for
+            for( $i = 0; $i < 100; $i++):
+                echo $i;
+            endfor;
+            //while
+            while( $i < 100):
+                echo $i;
+                $i++;
+            endwhile;
+            //switch
+            switch (variable) 
+                case '20':
+                    echo "20";
+                    break;               
+                default:
+                    echo "default";
+                    break;
+            endswitch;
+        ```
 
 
-12. ### 
+12. ### 数组的定义
+    - #### 什么是数组   
+        数组是内容中一块用来存储数据的连续区域。分为：数组索引、 关联索引。 数组的索引是惟一的。
+        + 数组索引
+            
+            ```php
+                //1 
+                $arr = array(10,20,30);
+                print_r($arr); //Array ( [0] => 10 [1] => 20 [2] => 30 )
+
+                //2
+                $arr = array(0 => 10, 1 => 20, 2 => 30);
+                print_r($arr); //Array ( [0] => 10 [1] => 20 [2] => 30 )
+
+                //3
+                $arr = array(3 => 10, 1 => 20, 2 => 30);
+                print_r($arr); //Array ( [3] => 10 [1] => 20 [2] => 30 )
+
+                //4,空索引一定是数组索引，而且判断其索引要看前面最大索引然后再加 1。
+                $arr[] = 10;
+                $arr[] = 20;
+                $arr[] = 30;
+                print_r($arr); //Array ( [0] => 10 [1] => 20 [2] => 30 ) 
+
+                //5
+                $arr[10] = 10;
+                $arr[6] = 20;
+                $arr[] = 30;
+                print_r($arr); //Array ( [10] => 10 [6] => 20 [11] => 30 ) 
+
+                //读取 与 修改
+                $arr = array(10,20,30);
+                echo $arr[1]; //20
+                $arr[1] = 50;
+                echo $arr[1]; //50
+            ```
+
+        + 关联索引
+
+            ```php
+                //1
+                $userInfo = array(
+                    "father" => "hehe",
+                    "son" => "heihei",
+                    "grandFather" => "haha",
+                    "grandSon" => "gege",
+                );
+
+                //2
+                $arr['father'] = 'hehe';
+                $arr['son'] = 'heihei';
+                $arr['grandFather'] = 'haha';
+                $arr['grandSon'] = 'gege';
+
+                //3,关联数组和索引数组可以混写
+                $userInfo = array(
+                    "hehe",
+                    "heihei",
+                    "grandFather" => "haha",
+                    "grandSon" => "gege",
+                );
+            ```
+    - #### 二维数组
+        
+        ```php
+            //1
+            $userInfo = array(
+                0 => array(10,20,30),
+                1 => array(40,50,60),
+                2 => array(70,80,90)
+            )
+
+            //读取
+            echo $user[0][0]; //10
+
+            //修改
+            echo $user[0][0] = 100; //100
+
+            //删除
+            unset($userInfo[0][0]);
+        ```
+
+13. ### 数组遍历
+    
+
+
+
+14. ### 
