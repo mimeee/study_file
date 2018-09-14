@@ -62,3 +62,33 @@
     在symfony中可以创建一个uploadFile类来集中控制文件上传的过程，在通过在服务中注册，便可直接在controller中获取该类并且使用该类。
 
     也可以选择在直接创建一个监听器，但与文件上传的字段被持久化后，自动触发该服务便可省去在controller中使用该服务的过程。详情可查看：[uploadFile](http://www.symfonychina.com/doc/current/controller/upload_file.html) [API](http://api.symfony.com/3.1/Symfony/Component/HttpFoundation/File/UploadedFile.html)
+
+
+  - ### 发送邮件
+    首先要在使用的邮件中打开权限。本例子使用 163 邮箱，打开权限的操作参考一下链接。
+    ![163邮箱如何开启POP3/SMTP/IMAP服务？](http://help.163.com/10/0312/13/61J0LI3200752CLQ.html)
+    先在 `config.yaml` 设置邮箱信息。
+
+    ```yaml
+      # parameter.yaml
+      mailer_host: smtp.163.com
+      mailer_transport: smtp
+      mailer_user: xxxxxxx@163.com
+      mailer_password: xxxxx # 设置的授权码
+      secret: xxxxxxxxxxxxxxxxxxxxxx # 本来就有的
+    ```
+
+    ```
+      $message = (new \Swift_Message('Hello Email'))
+              ->setFrom('z317628936@163.com')
+              ->setTo('317628936@qq.com')
+              ->setBody(
+                  $this->renderView(
+                      // app/Resources/views/Emails/registration.html.twig
+                      'default/index.html.twig',
+                      array('name' => 'aa')
+                  ),
+                  'text/html'
+              );
+      $this->get('mailer')->send($message);
+    ```
