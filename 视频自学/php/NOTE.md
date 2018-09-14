@@ -657,8 +657,257 @@
         ```
 
 13. ### 数组遍历
-    
+    - `for` 循环
+    - `foreach` 循环( 类似于 `javascript` 的 `for..in..`)  
+        `foreach($arr as $key => $value){}` 其中这个 `as` 表示把指针指向 `$arr` 的最开始。
+    - `each()` 函数
+        `each()` 循环会将该数组按数值索引和关联索引分为 `key` 和 `value` 返回；同时指针下移。当遍历完后，如果不用 `reset` 重置数组指针，则返回 `fasle`。
+
+        ```php
+            $arr = array(
+                'morning' => '早上',
+                'afternoon' => '下午',
+                'night' => '晚上'
+            );
+            $temp = each($arr);
+            print_r($temp);//Array ( [1] => 早上 [value] => 早上 [0] => morning [key] => morning ) 
+
+            $temp = each($arr);
+            print_r($temp); //Array ( [1] => 下午 [value] => 下午 [0] => afternoon [key] => afternoon ) 
+        ```
+
+    - `reset($arr)`
+        重置 `$arr` 数组内部的指针的位置。
+
+    ```php
+            $arr = array(
+                'morning' => '早上',
+                'afternoon' => '下午',
+                'night' => '晚上'
+            );
+            $temp = each($arr);
+            print_r($temp);//Array ( [1] => 早上 [value] => 早上 [0] => morning [key] => morning ) 
+            reset($arr);
+            $temp = each($arr);
+            print_r($temp); //Array ( [1] => 早上 [value] => 早上 [0] => morning [key] => morning )
+    ```
+
+    - `list()`
+        接受 `key` 和 `value` 的值，可使用该函数把他们重新拼凑成关联数组
+
+        ```php
+            $arr = array(
+                'morning' => '早上',
+                'afternoon' => '下午',
+                'night' => '晚上'
+            );
+            $temp = each($arr);
+            print_r($temp);//Array ( [1] => 早上 [value] => 早上 [0] => morning [key] => morning ) 
+            
+            unset($temp['key']);//这里是为了说明 list 接收的是 索引为 0 和 1 的值；
+            
+            list($k , $v) = $temp;
+            print_r($k); //morning
+            print_r($v); //早上
+
+
+            //遍历数据
+            reset($arr);
+            $temp = each($arr);
+            list($k , $v) = $temp;
+            echo $k . '--->' . $v; //morning--->早上
+            $temp = each($arr);
+            list($k , $v) = $temp;
+            echo $k . '--->' . $v; //afternoon--->下午
+            $temp = each($arr);
+            list($k , $v) = $temp;
+            echo $k . '--->' . $v; //night--->晚上
+
+            //遍历数据
+            while(list($k , $v) = each($arr)){
+                echo $k . '--->' . $v;
+            }
+        ```
+
+
+14. ### 数组常用函数
+    - `array_values($arr)`  
+        返回数组中所有的值，并且给其重建数字索引( 从 0 开始 )
+
+        ```php
+            $arr = array(
+                'morning' => '早上',
+                'afternoon' => '下午',
+                'night' => '晚上'
+            );
+            print_r($arr); //Array ( [morning] => 早上 [afternoon] => 下午 [night] => 晚上 )
+            print_r(array_values($arr)); //Array ( [0] => 早上 [1] => 下午 [2] => 晚上 ) 
+        ```
+
+    - `array_keys($arr,[$value,[search_pattern]])`   
+        返回数组中所有或者部分的键，并且给其重建数字索引( 从 0 开始 ); 如果传入第二参数 `$value` 只返回 `value = $value` 的键
+
+        ```php
+            $arr = array(
+                'morning' => '早上',
+                'afternoon' => '下午',
+                'night' => '晚上'
+            );
+            print_r($arr); //Array ( [morning] => 早上 [afternoon] => 下午 [night] => 晚上 )
+            print_r(array_keys($arr)); //Array ( [0] => morning [1] => afternoon [2] => night ) 
+            print_r(array_keys( $arr, '晚上' )); //Array ( [0] => night )
+        ```
+
+    - `sort()` , `rsort()`   
+        `sort()` 从小到大  
+        `sort()` 从大到小
+
+        ```php
+            $arr = array(10,5,0,9,33,5,4,0,55);
+            sort($arr);
+            print_r($arr);//Array ( [0] => 0 [1] => 0 [2] => 4 [3] => 5 [4] => 5 [5] => 9 [6] => 10 [7] => 33 [8] => 55 ) 
+            rsort($arr);
+            print_r($arr);//Array ( [0] => 55 [1] => 33 [2] => 10 [3] => 9 [4] => 5 [5] => 5 [6] => 4 [7] => 0 [8] => 0 ) 
+        ```
+
+    - `in_array()`  
+        查看某个值是否在数组中,区分大小写，可使用函数 `strtolower()` 转换成小写； 或者 `strtoupper()` 转换成大写。   
+
+        ```php
+            $arr = array('jpg', 'png', 'jpeg', 'gif');
+            $fileName = 'test.jpg';
+            list($name, $ext) = explode('.', $fileName);// $name = test, $ext = jpg
+            if(in_array($ext, $fileName)){
+                echo 'ok';
+            }
+        ```
+
+    - `array_reverse()`  
+        将数组反转  
+
+        ```php
+            $arr = array(10,50,30);
+            print_r(array_reverse( $arr ));//Array ( [0] => 30 [1] => 50 [2] => 10 ) 
+        ```
+        
+    - `count($arr,[$all_lenght])`  
+        返回数组长度
+
+        ```php
+            $arr = array(
+                10 => array( 2,5,8 ),
+                20 => array( 2,5,8 ),
+                30 => array( 2,5,8 )
+            );
+            print_r(count( $arr )); //3
+            print_r(count( $arr, true )); //12,包括了一位数组的项数和一维数组里的数组的项数。
+        ```
+        
+    - `array_count_values()`  
+        统计值重复出现的次数
+        
+        ```php
+            $arr = array(10,20,10,10,30,30,50,10,90);
+            print_r(array_count_values($arr));//Array ( [10] => 4 [20] => 1 [30] => 2 [50] => 1 [90] => 1 )  10出现4次，20出现1次....
+
+
+            //一个与之功能一样的自己写的函数
+            $newArr = array();
+            foreach( $arr as $k => $v){
+                if(!isset( $newArr[$v] )){
+                    $newArr[$v] = 1;
+                }else{
+                    $newArr[$v]++ ;
+                }
+            }
+        ```
+    - `range($start, $end,[number $step = 1 ])`  
+    生成一段范围的数值,类似于 `for` 循环  
+        
+        ```php
+            print_r(range(1,20));//Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 4 [4] => 5 [5] => 6 [6] => 7 [7] => 8 [8] => 9 [9] => 10 [10] => 11 [11] => 12 [12] => 13 [13] => 14 [14] => 15 [15] => 16 [16] => 17 [17] => 18 [18] => 19 [19] => 20 ) 
+        ```
+
+    - `array_unique()`  
+        数组去重复  
+
+        ```php
+            $arr = array(10,20,10,10,30,30,50,10,90);
+            print_r(array_unique($arr)); //Array ( [0] => 10 [1] => 20 [4] => 30 [6] => 50 [8] => 90 ) 
+        ```
+        
+    - `array_filter( array $array [, callable $callback [, int $flag = 0 ]])`
+        数组过滤  
+        ```php
+        $entry = array(
+             0 => 'foo',
+             1 => false,
+             2 => -1,
+             3 => null,
+             4 => ''
+          );
+
+        print_r(array_filter($entry));//Array ( [0] => foo [2] => -1 ) 
+
+
+        // 传入function
+        function odd($var){
+            // returns whether the input integer is odd
+            return($var & 1);
+        }
+        function even($var){
+            // returns whether the input integer is even
+            return(!($var & 1));
+        }
+        $array1 = array("a"=>1, "b"=>2, "c"=>3, "d"=>4, "e"=>5);
+        $array2 = array(6, 7, 8, 9, 10, 11, 12);
+
+        echo "Odd :\n";
+        print_r(array_filter($array1, "odd"));// Array ( [a] => 1 [c] => 3 [e] => 5 ) 
+        echo "Even:\n";
+        print_r(array_filter($array2, "even"));//Array ( [0] => 6 [2] => 8 [4] => 10 [6] => 12 ) 
+
+
+        ```
+        
+    - `array_walk()`
+        
+        ```php
+        ```
+        
+    - `array_slice()`
+        
+        ```php
+        ```
+        
+    - `array_merge()`
+        
+        ```php
+        ```
+        
+    - `array_push()`
+        
+        ```php
+        ```
+        
+    - `array_pop()`
+        
+        ```php
+        ```
+        
+    - `array_shift()`
+        
+        ```php
+        ```
+        
+    - `array_unshift()`
+        
+        ```php
+        ```
+        
 
 
 
-14. ### 
+
+
+15. ###
