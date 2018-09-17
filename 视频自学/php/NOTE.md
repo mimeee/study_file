@@ -870,9 +870,15 @@
 
         ```
         
-    - `array_walk()`
-        
+    - `array_walk()`  
+        使用用户自定义函数对数组中的每个元素做回调处理，返回 `bool`
+
         ```php
+            $arr =array("hehe"=>"xiao","wawa"=>"ku");
+            function show($v, $k){
+                echo $v . "---->" . $k;
+            }            
+            array_walk($arr,"show");//xiao---->heheku---->wawa
         ```
         
     - `array_slice()`
@@ -881,33 +887,51 @@
         ```
         
     - `array_merge()`
-        
+        合并两个数组
+
         ```php
+            $arr1 = array( 10,20,30 );
+            $arr2 = array( 30,50,60 );
+            //重复的值不会产生覆盖
+            $arr3 = array_merge($arr1, $arr2);
+            print_r( $arr1 ); //Array ( [0] => 10 [1] => 20 [2] => 30 )
+            print_r( $arr2 ); //Array ( [0] => 40 [1] => 50 [2] => 60 ) 
+            print_r( $arr3 ); //Array ( [0] => 10 [1] => 20 [2] => 30 [3] => 30 [4] => 50 [5] => 60 ) 
         ```
         
     - `array_push()`
-        
-        ```php
-        ```
+        压栈( 最后一项 )
         
     - `array_pop()`
-        
-        ```php
-        ```
+        出栈( 最后一项 )
         
     - `array_shift()`
-        
-        ```php
-        ```
+        出栈( 最前一项 )
         
     - `array_unshift()`
-        
+        压栈( 最前一项 )
+
+    - `array_rand($arr , $n)`
+        从一个数组中随机 n 数出来。
+
         ```php
+            $array = array(10,2,030,5855,9,63,25,45,2);
+            $newArr = array_rand($array , 3); //Array ( [0] => 2 [1] => 3 [2] => 7 ) ,Array ( [0] => 1 [1] => 5 [2] => 6 ) ,....
         ```
-        
 
+    - `shuffle()`
+    - 
+        打乱一个数组
 
+        ```php
+           $arr = array( 10,20,30 );
+           print_r($arr); //Array ( [0] => 10 [1] => 20 [2] => 30 )
+           shuffle($arr); 
+           print_r($arr); //Array ( [0] => 10 [1] => 30 [2] => 20 ) 
+        ```
 
+    - `array_sum()`
+        数组求和       
 
-
-15. ###
+15. ### 表单输出素数
+16. ### 
