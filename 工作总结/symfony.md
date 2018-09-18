@@ -64,7 +64,15 @@
     也可以选择在直接创建一个监听器，但与文件上传的字段被持久化后，自动触发该服务便可省去在controller中使用该服务的过程。详情可查看：[uploadFile](http://www.symfonychina.com/doc/current/controller/upload_file.html) [API](http://api.symfony.com/3.1/Symfony/Component/HttpFoundation/File/UploadedFile.html)
 
 
-  - ### 发送邮件
+  - ### 发送邮件  
+    在symfony中发送文件使用的是插件 `swiftMailer`;  
+    [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf);  
+    在 `html` 模板中，有几点需要注意：
+      + css 的样式选择不可以使用 css 中的高级选择器
+      + html 的 `<mate>` 标签 必须是 `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />` , 只写 `<meta charset='utf-8'>` 不生效;
+      + 其他详细可以参考 [SwiftMailer的使用以及邮件模板中css和html设计的一些问题](http://blog.sina.com.cn/s/blog_4ac023810101hve8.html)
+    
+
     首先要在使用的邮件中打开权限。本例子使用 163 邮箱，打开权限的操作参考一下链接。
     ![163邮箱如何开启POP3/SMTP/IMAP服务？](http://help.163.com/10/0312/13/61J0LI3200752CLQ.html)
     先在 `config.yaml` 设置邮箱信息。
@@ -78,17 +86,76 @@
       secret: xxxxxxxxxxxxxxxxxxxxxx # 本来就有的
     ```
 
+    ```php
+        //php
+        //声明一个 message 的实例
+        $message = (new \Swift_Message('Hello Email'));
+        //如果要发送图片，则需要使用 embed 处理，其返回一串 'cid:....' 以这个作为 <img/> 的 src 地址；
+        $cid = $message->embed(\Swift_Image::fromPath('http://pic63.nipic.com/file/20150330/8993928_082652755616_2.jpg'));
+        //如果要发送附件 使用 $message->attach(\Swift_Attachment::fromPath('my-document.pdf'));
+        //使用模板去渲染
+        $datas =  $this->renderView(
+            'default/email.html.twig',
+                array('cid' => $cid)
+            );
+        
+        $message->setFrom('z317628936@163.com')
+        ->setTo('317628936@qq.com');
+        $message->setBody($datas,'text/html');
+        
+    
+        // 发送，得到结果
+        $sendNum = $this->get('mailer')->send($message);
+        return new Response(array("num"=>$sendNum));
     ```
-      $message = (new \Swift_Message('Hello Email'))
-              ->setFrom('z317628936@163.com')
-              ->setTo('317628936@qq.com')
-              ->setBody(
-                  $this->renderView(
-                      // app/Resources/views/Emails/registration.html.twig
-                      'default/index.html.twig',
-                      array('name' => 'aa')
-                  ),
-                  'text/html'
-              );
-      $this->get('mailer')->send($message);
+
+    ```html
+      <!-- default/email.html.twig -->
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Document</title>
+        <style>
+          table{
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1rem;
+            border-collapse: collapse;
+            color: #fff;
+            background-color: #212529;
+          }
+          td{
+            border-color: #32383e;
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            padding: .75rem;
+            border-top: 1px solid #dee2e6;
+          }
+          th{
+            padding: .75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+            border-color: #32383e;
+            text-align:left;
+          }
+        </style>
+      </head>
+      <body>
+          <table>
+          <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+          </tr>
+        </table>
+      <img src="{{ cid }}" alt="">
+      </body>
+      </html>
     ```
+

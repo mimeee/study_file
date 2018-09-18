@@ -34,6 +34,8 @@
 
 - ## php
     + [php手册](php.net)
+    + [插件名称](https://baijiahao.baidu.com/s?id=1611474630560986406&wfr=spider&for=pc)
+    + [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf)
     + [symfony 插件 Doctrine api](https://www.doctrine-project.org/api/dbal/2.7/Doctrine/DBAL/Driver/Connection.html#method_lastInsertId)
 
 - ## 前端
