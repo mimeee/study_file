@@ -782,7 +782,7 @@
             }
         ```
 
-    - `array_reverse()`  
+    - `array_reverse()`   
         将数组反转  
 
         ```php
@@ -790,7 +790,7 @@
             print_r(array_reverse( $arr ));//Array ( [0] => 30 [1] => 50 [2] => 10 ) 
         ```
         
-    - `count($arr,[$all_lenght])`  
+    - `count($arr,[$all_lenght])`   
         返回数组长度
 
         ```php
@@ -803,7 +803,7 @@
             print_r(count( $arr, true )); //12,包括了一位数组的项数和一维数组里的数组的项数。
         ```
         
-    - `array_count_values()`  
+    - `array_count_values()`   
         统计值重复出现的次数
         
         ```php
@@ -821,14 +821,14 @@
                 }
             }
         ```
-    - `range($start, $end,[number $step = 1 ])`  
+    - `range($start, $end,[number $step = 1 ])`   
     生成一段范围的数值,类似于 `for` 循环  
         
         ```php
             print_r(range(1,20));//Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 4 [4] => 5 [5] => 6 [6] => 7 [7] => 8 [8] => 9 [9] => 10 [10] => 11 [11] => 12 [12] => 13 [13] => 14 [14] => 15 [15] => 16 [16] => 17 [17] => 18 [18] => 19 [19] => 20 ) 
         ```
 
-    - `array_unique()`  
+    - `array_unique()`   
         数组去重复  
 
         ```php
@@ -836,7 +836,7 @@
             print_r(array_unique($arr)); //Array ( [0] => 10 [1] => 20 [4] => 30 [6] => 50 [8] => 90 ) 
         ```
         
-    - `array_filter( array $array [, callable $callback [, int $flag = 0 ]])`
+    - `array_filter( array $array [, callable $callback [, int $flag = 0 ]])`  
         数组过滤  
         ```php
         $entry = array(
@@ -870,7 +870,7 @@
 
         ```
         
-    - `array_walk()`  
+    - `array_walk()`   
         使用用户自定义函数对数组中的每个元素做回调处理，返回 `bool`
 
         ```php
@@ -881,12 +881,12 @@
             array_walk($arr,"show");//xiao---->heheku---->wawa
         ```
         
-    - `array_slice()`
+    - `array_slice()`  
         
         ```php
         ```
         
-    - `array_merge()`
+    - `array_merge()`  
         合并两个数组
 
         ```php
@@ -899,19 +899,19 @@
             print_r( $arr3 ); //Array ( [0] => 10 [1] => 20 [2] => 30 [3] => 30 [4] => 50 [5] => 60 ) 
         ```
         
-    - `array_push()`
+    - `array_push()`  
         压栈( 最后一项 )
         
-    - `array_pop()`
+    - `array_pop()`  
         出栈( 最后一项 )
         
-    - `array_shift()`
+    - `array_shift()`  
         出栈( 最前一项 )
         
-    - `array_unshift()`
+    - `array_unshift()`  
         压栈( 最前一项 )
 
-    - `array_rand($arr , $n)`
+    - `array_rand($arr , $n)`  
         从一个数组中随机 n 数出来。
 
         ```php
@@ -919,8 +919,7 @@
             $newArr = array_rand($array , 3); //Array ( [0] => 2 [1] => 3 [2] => 7 ) ,Array ( [0] => 1 [1] => 5 [2] => 6 ) ,....
         ```
 
-    - `shuffle()`
-    - 
+    - `shuffle()`  
         打乱一个数组
 
         ```php
@@ -930,8 +929,10 @@
            print_r($arr); //Array ( [0] => 10 [1] => 30 [2] => 20 ) 
         ```
 
-    - `array_sum()`
+    - `array_sum()`  
         数组求和       
 
-15. ### 表单输出素数
+15. ### 练习
+    - [表单输出素数](practice/表单输出素数.php)
+    
 16. ### 
