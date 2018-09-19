@@ -65,16 +65,19 @@
 
 
   - ### 发送邮件  
-    在symfony中发送文件使用的是插件 `swiftMailer`;  
-    [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf);  
-    在 `html` 模板中，有几点需要注意：
+    在symfony中发送邮件使用的是插件 `swiftMailer` [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf)
+    
+    - 如果在发送的类型中选择使用 `html` 模板，有几点需要注意：
       + css 的样式选择不可以使用 css 中的高级选择器
+      + 不可以使用 `<link>` 标签来引入外联样式
       + html 的 `<mate>` 标签 必须是 `<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />` , 只写 `<meta charset='utf-8'>` 不生效;
       + 其他详细可以参考 [SwiftMailer的使用以及邮件模板中css和html设计的一些问题](http://blog.sina.com.cn/s/blog_4ac023810101hve8.html)
     
 
     首先要在使用的邮件中打开权限。本例子使用 163 邮箱，打开权限的操作参考一下链接。
-    ![163邮箱如何开启POP3/SMTP/IMAP服务？](http://help.163.com/10/0312/13/61J0LI3200752CLQ.html)
+    [163邮箱如何开启POP3/SMTP/IMAP服务？](http://help.163.com/10/0312/13/61J0LI3200752CLQ.html)
+
+  - 简单示例
     先在 `config.yaml` 设置邮箱信息。
 
     ```yaml
@@ -90,8 +93,10 @@
         //php
         //声明一个 message 的实例
         $message = (new \Swift_Message('Hello Email'));
+
         //如果要发送图片，则需要使用 embed 处理，其返回一串 'cid:....' 以这个作为 <img/> 的 src 地址；
         $cid = $message->embed(\Swift_Image::fromPath('http://pic63.nipic.com/file/20150330/8993928_082652755616_2.jpg'));
+        
         //如果要发送附件 使用 $message->attach(\Swift_Attachment::fromPath('my-document.pdf'));
         //使用模板去渲染
         $datas =  $this->renderView(

@@ -18,7 +18,7 @@
 							<label for="min" class="col-form-label"> 最小值 </label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" name="min" id="min" class="form-control">
+							<input type="text" name="min" id="min" class="form-control" value="<?php if(isset($_POST['min'])) echo $_POST['min']?>">
 						</div>
 					</div>
 
@@ -27,7 +27,7 @@
 							<label for="max" class="col-form-label"> 最大值 </label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" name="max" id="max" class="form-control">
+							<input type="text" name="max" id="max" class="form-control" value="<?php if(isset($_POST['min']))  echo $_POST['max']?>">
 						</div>
 					</div>
 
@@ -37,19 +37,31 @@
 						</div>
 						<div class="col-md-8">
 							<div class="form-check form-check-inline">
-								<input type="radio" name="style" id="one" checked value="one" class="form-check-input">
+								<input type="radio" name="style" id="one" 
+								<?php 
+								if( isset($_POST['style'])){
+									if($_POST['style'] == 'one') echo "checked"; 
+								}else{
+									echo "checked";
+								}
+								?>
+								
+								value="one" class="form-check-input">
 								<label for="one" class="form-check-label" >默认</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" name="style" id="two" value="two" class="form-check-input">
+								<input type="radio" name="style" id="two" value="two" class="form-check-input" 
+								<?php 
+								if(isset($_POST['style']) && $_POST['style'] === 'two') echo "checked"; ?>
+								>
 								<label for="two" class="form-check-label">条纹</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" name="style" id="three" value="three" class="form-check-input">
+								<input type="radio" name="style" id="three" value="three" class="form-check-input" <?php if(isset($_POST['style']) && $_POST['style'] === 'three') echo "checked"; ?>>
 								<label for="three" class="form-check-label">hover</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" name="style" id="four" value="four" class="form-check-input">
+								<input type="radio" name="style" id="four" value="four" class="form-check-input" <?php if(isset($_POST['style']) && $_POST['style'] === 'four') echo "checked"; ?>>
 								<label for="four" class="form-check-label">乘法表</label>
 							</div>
 						</div>
@@ -61,11 +73,11 @@
 						</div>
 						<div class="col-md-8">
 							<div class="form-check form-check-inline">
-								<input type="radio" name="sort" id="minToMax" checked value="1" class="form-check-input">
+								<input type="radio" name="sort" id="minToMax" checked value="1" class="form-check-input" <?php if(isset($_POST['sort']) && $_POST['sort'] === '1') echo "checked"; ?>">
 								<label for="minToMax" class="form-check-label" >从小到大</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" name="sort" id="maxToMin" value="2" class="form-check-input">
+								<input type="radio" name="sort" id="maxToMin" value="2" class="form-check-input" <?php if(isset($_POST['sort']) && $_POST['sort'] === '2') echo "checked"; ?>">
 								<label for="maxToMin" class="form-check-label">从大到小</label>
 							</div>
 						</div>
@@ -83,6 +95,8 @@
 </html>
 <?php
 	
+	require('formOutPutPrimeFunction.php');
+	
 	if(isset($_POST['min']) && isset($_POST['max'])){
 		$prime = printPrime($_POST['min'], $_POST['max']);
 
@@ -98,81 +112,10 @@
 
 
 		//循环打印出prime
-		echo "<table class='$className'>";
-		$index = 0;
-		$flag = 0;		
-		foreach ($prime as $key => $value) {
-			
-			if($key % 5 === 0){
-				$flag = 1;
-				$index = 0;
-				echo "<tr>";
-			}
-			if($flag){
-				$index ++;
-			}
-			echo "<td>$value</td>";
-			if($key  % 5 === 0 && $index === 4){				
-				echo "</tr>";
-				$flag = 0;
-			}	
-			
-		}
-		if($index < 5){
-
-			for($i = $index;$i < 5;$i++){
-				echo "<td></td>";
-			}
-			echo "</tr>";
-		};
-		
-		echo "</table>";
-
+		echoTable($prime,$_POST['style'],$className,5);
 
 	}
 
 
 
-
-
-
-
-	function getClassName($classname){
-			switch ($_POST['style']) {
-				case 'one':
-					$className = "table";
-					break;
-				case 'two':
-					$className = "table table-bordered";
-					break;
-				case 'three':
-					$className = "table table-bordered table-hover";
-					break;
-				case 'four':
-					$className = "table table-bordered";
-					break;		
-			}			
-			return $className;
-	}
-
-
-
-
-	//找出一定范围内的素数
-	function printPrime($start, $end){
-		$arr = array();
-		for($i = $start; $i < $end; $i++){
-			$flag = true;
-			for( $j = 2; $j < $i; $j++){
-				if($i % $j === 0 && $j !== $i){
-					$flag = false;
-					break;
-				}
-			}
-			if($flag){
-				$arr[] = $i;
-			}
-		}
-		return $arr;
-	}
 ?>
