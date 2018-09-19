@@ -12,10 +12,22 @@ export const store = new VueX.Store(
 			haha(){
 				alert(counter);
 			},
-			doubleCounter(state, getters){
-				console.log(getters);
+			doubleCounter:(state, getters)=>(id)=>{
+				console.log(id);
 				return state.counter * 2
 			}  
+		},
+		mutations:{
+			changeCounter(state,obj){
+				state.counter = obj;
+			}
+		},
+		actions:{
+			changeCounter:(context,n)=>{
+				
+					context.commit("changeCounter",n)
+				
+			}
 		}
 	}
 )
