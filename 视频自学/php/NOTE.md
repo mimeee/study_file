@@ -933,6 +933,22 @@
         数组求和       
 
 15. ### 练习
-    - [表单输出素数](practice/表单输出素数.php)
-    
+    - [表单输出素数](practice/FormOutPutPrime.php)
+    - [冒泡算法](practice/BubbleAlgorithm.php)
+        + 原理  
+        ![冒泡算法](image/BubbleAlgo1.png)  
+        ![冒泡算法](image/BubbleAlgo2.png)  
+        ![冒泡算法](image/BubbleAlgo3.png)  
+        + 特点  
+            每一次比较都会调换数组里的值。
+    - [选择算法](practice/SelectionAlgorithm.php)
+        + 原理  
+        ![选择算法](image/SelectionAlgo.png)  
+        + 特点   
+           确定为最小(大)值才调换数组里的值。
+        + 与冒泡算法比较  
+            由于不是每次比较都交换数组里面的值，其性能会比冒泡算法好。但是开辟了另外一块内存来存储变量。所以内存的暂用会比冒泡算法多。
+    - [分页原理](practice/Pagination.php)  
+         从 url 中显示的 页码page, 选取从 page 后的 n(pagesize)条数据。  
+         ![](image/Pagination.png)
 16. ### 
