@@ -951,4 +951,67 @@
     - [分页原理](practice/Pagination.php)  
          从 url 中显示的 页码page, 选取从 page 后的 n(pagesize)条数据。  
          ![](image/Pagination.png)
-16. ### 
+
+16. ### [三维数组的遍历](practice/traverseThreeDimenArr.php)
+    
+17. ### [列表查看方式](practice/Pagination.php)
+
+18. ### 字符串函数
+    - `print`
+        打印字符串
+    - `echo`
+        打印字符串
+    - `die`
+        终止运行
+    - `exit`
+        终止运行
+    - `trim`
+        删除两端的空格 
+    - `rtrim`,`ltrim`
+        删除左边或者右边的空格
+    - `str_pad`
+        + 使用另一个字符串填充字符串为指定长度
+        + 语法 `string str_pad(string $input,int $pad_length[,string $pad_string = "" [,int $pad_type = STR_PAD_RIGHT]])`
+        + 示例
+            ```php
+                $string = 11111;
+                echo str_pad($string, 7, "a"); //11111aa
+                echo str_pad($string, 7, "a", STR_PAD_LEFT); //aa11111
+            ```
+
+    - `strtolower`
+        转化成小写
+    - `strtoupper`
+        转化成大写
+    - `ucfirst`
+        首字母大写
+    - `ucwords`
+        每个单词首字母大写
+    - `htmlspecialchars`
+        不解释 html 标签(实体)，并且在页面中显示该标签 
+    - `strip_tags`
+        不解释 html 标签(实体)，并且不在页面中显示该标签 
+    - `strrev`
+        反转字符串
+    - `md5`
+        加密方法, 加密的字符串是唯一的，且不可逆。
+    - `explode`
+        切割字符串
+    - `implode`
+        合并数组
+    - `strstr`
+        查找字符串的首次出现，返回该字符串以后的所有字符串，查到即停止。
+    - `strpos`
+        查找字符串的首次出现，返回索引，查到即停止,从前往后找。
+    -`strrpos`
+        查找字符串的首次出现，返回索引，查到即停止,从后往前找。
+    - `substr`
+        截取字符串
+    - `str_replace`
+        替换字符串
+    - `chr`
+        Acsii 码转字符
+    - `ord`
+        字符转 Acsii 码
+
+19. ###
