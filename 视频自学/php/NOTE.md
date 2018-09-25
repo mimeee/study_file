@@ -758,7 +758,11 @@
             print_r(array_keys( $arr, '晚上' )); //Array ( [0] => night )
         ```
 
-    - `sort()` , `rsort()`   
+    - `sort()` , `rsort()` 改变索引   
+        `sort()` 从小到大  
+        `sort()` 从大到小
+
+    - `asort()` , `arsort()` 保留索引   
         `sort()` 从小到大  
         `sort()` 从大到小
 
@@ -1003,7 +1007,7 @@
         查找字符串的首次出现，返回该字符串以后的所有字符串，查到即停止。
     - `strpos`
         查找字符串的首次出现，返回索引，查到即停止,从前往后找。
-    -`strrpos`
+    - `strrpos`
         查找字符串的首次出现，返回索引，查到即停止,从后往前找。
     - `substr`
         截取字符串
@@ -1014,4 +1018,145 @@
     - `ord`
         字符转 Acsii 码
 
-19. ###
+19. ### 正则表达式
+    -  `preg_match`     
+        + 执行一个正则表达式匹配,搜索 `subject` 与 `pattern` 给定的正则表达式的一个匹配。匹配到即返回。    
+        + 参数: `string $pattern,string $subject [, array &$array [, int $flags = 0 [, int $offset = 0]]]`
+
+    - `preg_match_all`  
+        与上面的 `preg_match` 一样，但是是全局匹配。
+
+    - `preg_replace`  
+        + 执行一个正则表达式的搜索和替换  
+        + 参数: `mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &$count ]]`   
+        + 例子:   
+        ```php
+            $string = 'April 15, 2018';
+            $pattern = "(\w+) (\d+), (\d+)/i";
+            $replace = "${1}1,$3";
+            echo preg_replace($pattern,$replace,$string); //April1,2018
+
+
+            $date = "Jan 1 2015";
+            $pattern2 = '(\w+) (\d+) (\d+)';
+            echo preg_replace($pattern,'\\1 \2 2016',$date); // Jan 1 2016
+        ```
+
+    - `preg_replace_callback`
+        + 执行一个正则表达式，并且使用一个回调进行替换
+        + 参数: ` mixed $pattern , callable $callback , mixed $subject [, int $limit = -1 [, int &$count ]]`
+        + 练习: 
+            * 敏感词过滤 ( `/^[\x{4e00}-\x{9fa5}]+$/u` )
+                - 上述 `pattern` 中， `\x` 代表 十六进制， `u` 表示模式字符串被认为是 `utf-8` 编码的。
+                
+                ```php
+                    $string = "hehehnimadeddd,a nimade,haha hahahahha,nimade";
+
+                    $pattern = "/nimade/";
+                    $line = preg_replace_callback(
+                        $pattern,
+                        function( $one ){
+                            $str = "";
+                            for($i = 0;$i < strlen($one[0]); $i++){             
+                                $str .= "*";
+                            }
+                            return $str;
+                        },
+                        $string
+                    );
+                    echo $line; //heheh******ddd,a ******,haha hahahahha,******
+
+
+                    $string = "你好";
+                    var_dump(preg_match("/[\x{4e00}-\x{9fa5}]/u",$string,$match));
+                    print_r($match); //Array ( [0] => 你 ) 
+                ```
+
+            * 标签过滤
+                - 关键在于遏制贪婪,遏制贪婪可以使用修正符 `U`,或者在遏制的地方加上 `?`
+                ```php
+                    $string = "<b>ha\<hha</b><b>hehehe</b>";
+                    $pattern = "/<[^>]+>(.+?)<\/[^>]+>/";
+                    //或者$pattern = "/<[^>]+>(.+)<\/[^>]+>/U";
+                    preg_match($pattern,$string,$match);
+                    print_r($match[1]);//ha\<hha
+                ```
+    - 预搜索:预搜索是一个非获取匹配，不进行存储供以后使用。
+        + 正向:   
+          `(?=xxxxx)`:所在缝隙的右侧，必须能够匹配上 `xxxxx` 这部分的表达式;  
+          `(?!xxxxx)`:所在缝隙的右侧，必须不能匹配 `xxxxx` 这部分表达式  
+        + 反向:   
+          `(?<=xxxxx)`:所在缝隙的 "左侧”能够匹配xxxxx部分;  
+          `(?<!xxxxx)`:所在缝隙的“左侧”不能匹配xxxx部分。  
+
+
+          ```php
+            $str = 'windows NT windows 2003 windows xp';
+            $pattern = "/windows (?=xp)/";
+            preg_match_all($pattern,$str,$match);
+            print_r($match);
+            //Array ( [0] => Array ( [0] => windows(windows xp中的windows) ) ) 
+            $str = 'windows NT windows 2003 windows xp';
+            $pattern = "/windows (?!xp)/";
+            preg_match_all($pattern,$str,$match);
+            print_r($match);
+            //Array ( [0] => Array ( [0] => windows(windows NT中的windows) [1] => windows(windows 2003中的windows) ) ) 
+            $str = 'windows NT windows 2003 windows xp';
+            $pattern = "/windows (?<=xp)/";
+            preg_match_all($pattern,$str,$match);
+            print_r($match);
+            //Array ( [0] => Array ( ) ) 
+            $str = 'windows NT windows 2003 windows xp';
+            $pattern = "/windows (?<!xp)/";
+            preg_match_all($pattern,$str,$match);
+            print_r($match);
+            //Array ( [0] => Array ( [0] => windows(windows NT中的windows) [1] => windows(windows 2003中的windows) [2] => windows(windows xp中的windows) ) ) 
+            
+            //进行存储
+            $str = 'windows NT windows 2003 windows xp';
+            preg_match_all('/windows ([^xp])/',$str,$res);
+            print_r($res);
+            //Array ( 
+                //[0] => Array ( 
+                    //[0] => windows N 
+                    //[1] => windows 2 
+                //) 
+                //[1] => Array ( 子模式所匹配的字符串组成的数组，通过存储取得。
+                    //[0] => N 
+                    //[1] => 2 
+                //) 
+            //) 
+          ```
+    - `\b` 边界 `\B` 非边界
+    - `\s` 空格 `\S` 非空格
+        + 练习 
+            * 去除两边的空格
+            ```php
+            $str = "         kaddsdkfj  kdsfjalk    ";
+            echo $str;
+            echo "\r\n";
+            $pattern = "/^\s*|\s*$/";
+            // $pattern = "/\s*\b/";  去除所有的空格
+            $line = preg_replace($pattern,"",$str);
+            echo $line;
+            ```
+    - `preg_split`
+        
+    - 量词
+        +  `{n}` 刚好 n 次
+            ```php
+                $string = "abc";
+                $pattern = "/a{0}bc/";
+                preg_match($pattern,$string,$matches);
+                print_r($matches); //bc
+            ```
+        +  `{n,}` 至少 n 次
+        +  `{n,m}` n 到 m 次
+        +  `*` 0 次或者多次
+        +  `+` 1 次或者多次
+        +  `?` 0 次或者 1 次
+    
+    - 练习
+        + 劈开 `php pro,hehe`;
+        + 统计字符出现最多的那个字符的次数和字符
+20. ### 
