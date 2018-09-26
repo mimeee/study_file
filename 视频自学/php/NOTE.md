@@ -1095,17 +1095,20 @@
             $pattern = "/windows (?=xp)/";
             preg_match_all($pattern,$str,$match);
             print_r($match);
-            //Array ( [0] => Array ( [0] => windows(windows xp中的windows) ) ) 
+            //Array ( [0] => Array ( [0] => windows(windows xp中的windows) ) )
+             
             $str = 'windows NT windows 2003 windows xp';
             $pattern = "/windows (?!xp)/";
             preg_match_all($pattern,$str,$match);
             print_r($match);
             //Array ( [0] => Array ( [0] => windows(windows NT中的windows) [1] => windows(windows 2003中的windows) ) ) 
+            
             $str = 'windows NT windows 2003 windows xp';
             $pattern = "/windows (?<=xp)/";
             preg_match_all($pattern,$str,$match);
             print_r($match);
             //Array ( [0] => Array ( ) ) 
+            
             $str = 'windows NT windows 2003 windows xp';
             $pattern = "/windows (?<!xp)/";
             preg_match_all($pattern,$str,$match);
@@ -1140,7 +1143,16 @@
             $line = preg_replace($pattern,"",$str);
             echo $line;
             ```
-    - `preg_split`
+    - `preg_split`  
+        通过一个正则表达式分隔字符串  
+        + 参数 `string $pattern , string $subject [, int $limit = -1 [, int $flags = 0 ]] `
+        + 例子  
+
+        ```php
+            //使用逗号或空格(包含" ", \r, \t, \n, \f)分隔短语
+            $keywords = preg_split("/[\s,]+/", "hypertext language, programming");
+            print_r($keywords);           
+        ```
         
     - 量词
         +  `{n}` 刚好 n 次
@@ -1158,5 +1170,45 @@
     
     - 练习
         + 劈开 `php pro,hehe`;
+            ```php
+                $str = "php pro,hehe,dd";
+                $pattern = "/\s|,+/";
+                $keyword = preg_split($pattern, $str);
+                print_r($keyword); //Array ( [0] => php [1] => pro [2] => hehe [3] => dd ) 
+            ```
         + 统计字符出现最多的那个字符的次数和字符
-20. ### 
+            ```php
+                $str = "fadsewfewfnkenkfenkeeeeeeeeeeeeeeeeeeeeeeese";
+                $strArr =preg_split("//",$str);
+                $counts =array_count_values($strArr);
+                arsort($counts);
+                list($k,$v) = each($counts);
+                echo $k . '---' . $v;
+            ```
+
+20. ### mysql数据库入门
+    - SQL(struct query language)：结构化查询语言
+        + 关系型数据库
+            * mysql: 企业版，集群版，社区版
+            * oracle
+            * sqlServer
+    - NO-SQL( Not Only SQL )
+        + 非关系数据库
+            * redis
+            * mongoDB
+    - CS 类型软件( Client - Server )  
+        应用软件到服务器，版本更新的话，两者都要更新。
+    - BS 类型软件( Broswer - Server)  
+        浏览器到服务器，版本更新的话，只需要更新服务器即可。
+    - 图形化界面工具
+        + [HeidiSQL](https://www.heidisql.com/) 免费
+        + [SQLyou](https://www.webyog.com/)
+    - 数据库引擎
+        + MyISAN: 不支持事务，相对 Innodb 没有那么安全，数据相对 Innodb 小，支持全文索引。
+        + Innodb: 支持事务，更安全，数据大，不支持全文索引，支持外键。
+            * 外键: 如果一条记录有外键，必须先解除外键，才可以删除。
+    - 简单的SQL语句
+        + `SELECT * FROM user WHERE username LIKE '%z%'`  
+            其中的 `%` 是占位符。 
+
+21. ###
