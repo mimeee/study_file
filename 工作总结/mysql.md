@@ -104,6 +104,58 @@
                     id IN ($id)
             )
         ```
+
+        替换某个 field 的值可以使用 REPLACE 
+
+        ```sql
+              INSERT INTO 
+                    mall_level
+                (
+                    level_name,
+                      level_remark
+                ) 
+                (
+                    SELECT 
+                        REPLACE(level_name, 
+                                (SELECT 
+                                    level_name 
+                                FROM 
+                                    mall_level 
+                                WHERE 
+                                    id 
+                                IN 
+                                    (17)
+                                ), 
+                                'HEHE'),
+                        level_remark
+                    FROM 
+                        mall_level
+                    WHERE 
+                        id IN (17)
+                )
+        ```
+
+        也可以直接在 feild 对应的位置上写值
+        
+        ```sql
+            INSERT INTO 
+                good
+            (
+                title,
+                content
+            ) 
+            (
+                SELECT 
+                    title,
+                    "hehe"
+                FROM 
+                    good
+                WHERE 
+                    id IN ($id)
+            )
+        ```
+
+
 - ### 函数
     + `SELECT TIMESTAMPDIFF(DAY, '2018-01-01 00:00:00', '2018-03-01 00:00:00') diff`  
         显示的是两个时间的差异，差异的单位以第一个参数为准。 两个日期相隔59天
@@ -121,4 +173,14 @@
 
     + `group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator ‘分隔符’])` -->  `select GROUP_CONCAT(filenameUUID SEPARATOR '|') as filenameUUID from linked_img group by id `  
         在**有group by的查询语句中**，select指定的字段要么就包含在 group by 语句的后面，作为分组的依据，要么就包含在聚合函数中。
+
+    + `REPLACE()`
+        * 语法：replace(object,search,replace)
+        * 意思：把object中出现search的全部替换为replace
+        * 案例：
+        
+            ```sql
+            -- 清除news表中content字段中的空格  
+            UPDATE `news` SET `content`= REPLACE(`content`, $old , $new);
+            ```
 
