@@ -1210,5 +1210,43 @@
     - 简单的SQL语句
         + `SELECT * FROM user WHERE username LIKE '%z%'`  
             其中的 `%` 是占位符。 
+    - php中操作mysql
+        + 链接
+            * `mysql_connect( "localhost(主机名)","root(用户名)","***(密码)" )`  
+                正确链接返回一个资源句柄 `Resource id #3`, 错误链接可以使用 `mysql_error()` 获取错误信息。 
+        + 选择数据库
+            * `mysql_select_db("db_name")` 
+        + 设置编码
+            * `mysql_query( "set names utf8" )`
+        + 操作 
+            * 查询
+                - 使用 `SELECT` 关键字:  
+                    `SELECT select_column FROM db_name WHERE condition = condition LIMIT 1 ORDER BY ASE`;
+                - 返回一个资源句柄 `Resource id #4`，还需对其进行操作才能获取到数据
+                - 操作查询所返回的资源句柄
+                    + `mysql_fetch_assoc( $resource )` --> key,value
+                    + `mysql_fetch_row( $resource )` --> index,value
+                    + `mysql_fetch_array( $resource )` --> key,index,value
+                    + `mysql_fetch_object( $resource )` --> 返回的数据格式是 std OBJECT
+            * 插入
+                - 使用 `INSERT INTO` 关键字:   
+                    `INSERT INTO db_name ( feild1, feild2 ) VALUES ( value1, value2 )`;
+                - 返回一个布尔值
+            * 删除
+                - 使用 `DELETE` 关键字:  
+                    `DELETE FROM db_name WHERE condition = 1 LIMIT 1`;
+                - 返回一个布尔值
+            * 修改
+                - 使用 `UPDATE` 关键字:  
+                    `UPDATE db_name SET feild1 = value1, feild2 = value2 WHERE condition = 1`;
+                - 返回一个布尔值
+            * 执行( 增删改查 )
+                - `mysql_query( $sql )`;
 
-21. ###
+21. ### 在插入操作中会出现的错误
+    - 插入有特殊字符导致 sql 语句错误 
+        + 引号
+            可能导致 sql 语句错误，如插入 `hehe'haha'` 导致 sql 语句变成
+            `$sql = INSERT INTO db_name (feild) VALUES ('hehe'haha'');`   
+            解决: 转义引号( `\'` ),或者使用 html( `&#039;` 使用函数 `htmlspecialchars()` ) 实体。
+22. ### 
