@@ -1242,6 +1242,8 @@
                 - 返回一个布尔值
             * 执行( 增删改查 )
                 - `mysql_query( $sql )`;
+        + 关闭数据库
+            `mysql_close()`
 
 21. ### 在插入操作中会出现的错误
     - 插入有特殊字符导致 sql 语句错误 
@@ -1249,4 +1251,31 @@
             可能导致 sql 语句错误，如插入 `hehe'haha'` 导致 sql 语句变成
             `$sql = INSERT INTO db_name (feild) VALUES ('hehe'haha'');`   
             解决: 转义引号( `\'` ),或者使用 html( `&#039;` 使用函数 `htmlspecialchars()` ) 实体。
-22. ### 
+22. ### 数据库备份
+    - 在windows下，数据库的内容都是保存在 MySql 文件夹的 data 下面。把其中保存数据的文件夹拷贝一份就是数据库了。
+    - 使用图形工具对数据内容导出进行备份。
+    
+23. ### php中的面向对象
+    - 语法
+        ```php
+            //声明类
+            class Person{
+                public $name = "zhang";
+                public function say(){
+                    return "hi";
+                }
+            }
+
+            //示例化对象
+            $p = new Person();
+            echo $p->name;
+        ```
+    - 构造函数( 实例化对象自动调用 )
+        + `public function __construct`
+        + `public function className`
+    - 析构函数( 实例化对象被系统回收或者程序执行完毕自动调用,对象没有被引用了 )
+        + `public function __destruct`
+    - 属性
+    - 方法
+
+24. ###
