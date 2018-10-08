@@ -1278,4 +1278,75 @@
     - 属性
     - 方法
 
-24. ###
+24. ### mysql 操作类的封装
+    ```php
+        class mySql
+        {
+            private $_host;
+            private $_root;
+            private $_pwd;
+            public function __construct($_host,$_root,$_pwd,$dbname){
+                $this->_host = $_host;
+                $this->_root = $_root;
+                $this->_pwd = $_pwd;
+                if($this->connect()){
+                    $this->select_db($dbname);
+                    mysql_query("set names utf-8");
+                }else{
+                    echo "connect error ".mysql_error();
+                };
+            }
+
+            private function connect(){
+                return mysql_connect($this->_host,$this->_root,$this->_pwd);
+            }
+
+            public function select_db($_dbname){
+                mysql_select_db($_dbname);
+            }
+
+            public function select($_sql){
+                $res = $this->query($_sql);
+                $arr = [];
+                while($one = mysql_fetch_assoc($res)){
+                    $arr[] = $one;
+                }
+                return $arr;
+            }
+
+            public function add($arr,$tablename){
+                $sql = "INSERT INTO $tablename ";
+                $sql .= "(". implode( "," , array_keys( $arr ) );
+                $sql .= ") VALUES ('".implode( "','" ,array_values( $arr ) )."')";
+                return mysql_query($sql);
+            }
+
+            public function getCount($_tablename){
+                $res = $this->query("SELECT COUNT(*) FROM $_tablename");
+                return mysql_fetch_row($res)[0];
+            }
+
+            public function query($sql){
+                return mysql_query($sql);
+            }
+
+        }
+    ```
+
+
+25. ### 面向对象的继承
+    - 关键字 `extends`
+    - 私有属性( `private` )的继承
+        不能被继承，私有属性只能在本类的内部访问。
+    - 保护属性( `protected` )的继承
+        可以被继承,只能在本类或者类的子类的内部访问。
+    - 公有属性( `public` )的继承
+        可以被继承,可以在类的外部访问。
+    - 构造函数( `__construct` )的继承
+        构造函数可以被覆盖。当覆盖后可以使用 `parent::__construct()` 调用父类的构造函数。
+    - 继承的规则
+        + 声明与继承来的属性或者方法一样的标识符，原本标识符的方法或者属性就会被重写(在子类中)。
+        + 继承而来的属性或者方法不可以缩小其权限，即如果父类是使用 `pulic`声明的该方法或者属性，子类不可以使用 `private` 或者 `protected` 来重新声明该方法或者属性。但权限是可以放大的可以放大。
+
+
+26. ### 面向对象的多态
