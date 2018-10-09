@@ -1350,3 +1350,178 @@
 
 
 26. ### 面向对象的多态
+    - 对象传参
+        ```php
+            class Person
+            {
+                public function go($instance){
+                    $instance->run();
+                }
+            }
+
+            class Teacher
+            {
+                public function run(){
+                    echo "Teacher run";
+                }
+            }
+
+            class Student
+            {
+                public function run(){
+                    echo "Student run";
+                }
+            }
+
+            $p = new Person();
+            $t = new Teacher();
+            $s = new Student();
+
+            $p->go($t);//Teacher run
+            $p->go($s);//Student run
+        ```
+    - 对象传参并且限定参数类型
+        ```php
+            class Person
+            {
+                public function go(Student $instance){
+                    $instance->run();
+                }
+            }
+
+            class Teacher
+            {
+                public function run(){
+                    echo "Teacher run";
+                }
+            }
+
+            class Student
+            {
+                public function run(){
+                    echo "Student run";
+                }
+            }
+
+            $p = new Person();
+            $t = new Teacher();
+            $s = new Student();
+
+            $p->go($t);//Catchable fatal error: Argument 1 passed to Person::go() must be an instance of Student,
+            $p->go($s);
+        ```
+    - 多态
+        + 父类定义一个方法不是现实，具体由子类来实现。所以多态是建立在继承的基础上。
+        + 参数传递传递的是父类的实例
+        ```php
+            class Medi
+            {
+                public function go(Person $person){
+                    $person->go();
+                }
+            }
+            class Person
+            {
+                public function run(){};
+            }
+
+            class Teacher extends Person
+            {
+                public function run(){
+                    echo "Teacher run";
+                }
+            }
+
+            class Student extends Person
+            {
+                public function run(){
+                    echo "Student run";
+                }
+            }
+
+            $m = new Medi();
+            $t = new Teacher();
+            $s = new Student();
+
+            $m->go($t);//Teacher run
+            $m->go($s);//Student run
+        ```
+    
+27. ### 面向对象的静态属性  
+    - 类申明完毕之后，静态属性就存在，并且可以通过类直接调用。
+    - 静态属性在内存中只有一块
+    - 类调用静态方法 **可以**
+    - 类调用动态方法 **不可以**( 当方法里面有变量 `$this` )
+    - 对象调用静态方法 **可以**
+    - 对象调用动态方法 **可以**
+    - 对象调用静态属性 **不可以**
+    - 方法和属性的区别在于，方法不管是动态方法还是静态方法，在类中都是一份。而属性则不同，是属于对象自己的。但是静态属性只有一份，静态属性只有靠类本身去调用，实例并不可以调用。
+    ```php
+        class Test
+        {
+            public static t = 1;
+            public tt = 22;
+            public static function ft(){
+                echo "static function <br/>";
+            }
+            public function ftt(){
+                echo $this->tt .  "dynastic function <br/>";
+            }
+        }
+
+        $t = new Test();
+        $t->ft();//static function
+        $t->ftt();//dynastic function
+        echo $t->tt . "<br/>";//22
+        echo $t->t . "<br/>";//Notice: Undefined property: Test::$t,不可以用对象访问静态属性
+
+        Test::ft();//static function
+        Test::ftt();//Fatal error: Using $this when not in object context in
+        echo Test::$tt . "<br/>";// Access to undeclared static property: Test::$tt 
+        echo Test::$t . "<br/>";//1
+
+    ```
+
+
+28. ### 魔术方法
+    - `__get`
+        + 当在类的外部访问类的属性的时候，会判断是否有权限访问该属性，如有则输出，没有则调用 `__get` 方法(如果访问的属性不存在也会调用该方法)。
+        ```php
+            class Test
+            {
+                public $t = 1;
+                protected $tt = 2;
+                private $ttt = 3;
+
+                public function __get($k){
+                    echo "get" . $this->$k;
+                }
+            }
+            $t = new Test();
+            echo $t->t . "<br/>";//1 没有调用__get
+            echo $t->tt . "<br/>";//get2
+            echo $t->ttt . "<br/>";//get3
+        ```
+    - `__set`
+        + 当在类的外部修改类的属性的时候，会判断是否有权限访问该属性，如有则修改，没有则调用 `__get` 方法(如果访问的属性不存在也会调用该方法)。
+        ```php
+            class Test
+            {
+                public $t = 1;
+                protected $tt = 2;
+                private $ttt = 3;
+
+                public function __set($k,$v){
+                    echo $this->$k . $v. "<br/>";
+                }
+            }
+            $t = new Test();
+            $t->t;//没有调用__set
+            $t->tt = 2;//22
+            $t->ttt = 1;//31
+        ```
+
+
+
+29. ###
+    
