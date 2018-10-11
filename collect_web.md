@@ -28,6 +28,7 @@
 - ## Git
     +  [Git和Github简单教程](http://www.cnblogs.com/schaepher/p/5561193.html)
     +  [GitHub 开源之旅](https://github.com/wangding/courses/tree/master/github)
+    +  [Git年报](https://octoverse.github.com/)
     <hr>
     
     +  [Windows下Git多账号配置，同一电脑多个ssh-key的管理](https://www.cnblogs.com/popfisher/p/5731232.html)
