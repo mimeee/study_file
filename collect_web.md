@@ -33,6 +33,12 @@
     
     +  [Windows下Git多账号配置，同一电脑多个ssh-key的管理](https://www.cnblogs.com/popfisher/p/5731232.html)
 
+- ## php
+    + [php手册](php.net)
+    + [插件名称](https://baijiahao.baidu.com/s?id=1611474630560986406&wfr=spider&for=pc)
+    + [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf)
+    + [symfony 插件 Doctrine api](https://www.doctrine-project.org/api/dbal/2.7/Doctrine/DBAL/Driver/Connection.html#method_lastInsertId)
+
 - ## 前端
     + ### 博客
         * [阮一峰的个人网站](http://www.ruanyifeng.com/home.html)
@@ -44,6 +50,14 @@
         * [GitHub上收集的最全的前端资源汇总（包括前端学习、求职、开发资源）](http://www.imooc.com/article/12645)
         * [最全前端资源汇集](https://jeffjade.com/2016/03/30/104-front-end-tutorial/#)
         * [github上最全的资源教程-前端涉及的所有知识体系](https://blog.csdn.net/qq_34348873/article/details/52572008)
+
+        <hr>
+
+        * [excel 导出插件使用](如何使用JavaScript实现纯前端读取和导出excel文件) 
+        * [excel 导出案例](https://wenku.baidu.com/view/ab3742d5680203d8cf2f2428.html) 
+        * [excel 导出插件](https://github.com/SheetJS/js-xlsx) 
+        * [bootstrap-table 插件](http://bootstrap-table.wenzhixin.net.cn/)
+        * [bootstrap-select 插件](https://github.com/snapappointments/bootstrap-select)
 
         <hr>
 
