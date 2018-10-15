@@ -146,8 +146,8 @@
         `yum install zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel libiconv-devel -y`
         `yum install freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel -y`
 
-    + 安装 libiconv 包和 libmcrypt-devel 包
-        * libiconv 包
+    + ## 安装 libiconv 包和 libmcrypt-devel 包
+        * ### libiconv 包
             - 解压 `tar zxf libiconv-1.14.tar.gz`
             - 切换目录 `cd libiconv-1.14`
             - 配置参数 `./configure --prefix=/user/local/libiconv`
@@ -159,31 +159,31 @@
                 + `yum install libmcrypt-devel -y`
                 + `wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo`
             - `yum install libmcrypt-devel -y`
-        * 安装 mhash 包
+        * ### 安装 mhash 包
             `yum install mhash -y`
-        * 安装 mcrypt 包
+        * ### 安装 mcrypt 包
             `yum install mcrypt -y`
-    + 安装编译 php   
+    + ## 安装编译 php   
         [安装php的编译配置](安装php的编译配置.txt)
-        - 解压 php 安装包 
+        - ### 解压 php 安装包 
             `tar xf php-5.3.27.tar.gz`
-        - 切换目录  
+        - ### 切换目录  
             `cd php-5.3.27.tar.gz`    
-        - 使用 php 配置信息配置，安装
-        - 创建软连接  
+        - ### 使用 php 配置信息配置，安装
+        - ### 创建软连接  
             `ln -s /application/mysql/lib/libmysqlclient.so.18 /usr/lib64/`
-        - 创建一个在安装时候需要用到的文件  
+        - ### 创建一个在安装时候需要用到的文件  
             `touch ext/phar/phar.phar`
-        - `make`
-        - `make install`
-        - 安装完成 php 之后，拷贝 php 配置文件
+        - ### `make`
+        - ### `make install`
+        - ### 安装完成 php 之后，拷贝 php 配置文件
             + 创建一个软连接  
                 `ln -s /application/php5.3.27 /application/php`
             + 查看 php 配置文件
                 `ls -l php.ini*`
             + 把生产环境的 php 配置文件拷贝到 lib 文件夹下  
                 `cp php.ini-production /application/php/lib/php.ini`
-        - 配置 php-fpm，启动 php
+        - ### 配置 php-fpm，启动 php
             + 切换到 etc 目录下去  
             `cd /application/php/etc`
             + `ls`
@@ -191,7 +191,35 @@
             + `ls`
             + `/application/php/sbin/php-fpm`
             + `ps -ef | grep php`
-- 
+- # 配置 nginx 识别 php
+    + ## 去 nginx 的配置文件 `/nginx/conf/nginx.conf` 中配置
+        * 编辑该文件  
+            `vim /application/nginx/conf/nginx.conf`
+        * 添加默认文件查找
+            在 server 下的 location 下 的 index 旁 添加 index.php  
+            ![](image/addIndex.php.png)
+        * 添加如果遇到 php 文件使用什么规则(让他交给 php 进程，fastcgi 去处理)  
+        ```
+            location ~ .php{  #当遇到 php 后缀的文件
+                root html; #执行这个文件
+                fastcgi_pass 127.0.0.1:9000; #交给这个进程，php是9000端口
+                fastcgi_index index.php;
+                include fastcgi.conf;  
+            }  
+        ```
+        ![](image/location.png)
+        * 检查配置文件语法问题  
+            `/application/nginx/sbin/nginx -t`
+        * 重启 nginx  
+            `/application/nginx/sbin/nginx -s`
+        * 测试是否可以识别 php 
+            在 `/application/nginx/html/index.php` 中添加 php 代码， 访问首页看是否可以访问的到。
+            比如 
+            ```php
+                $link = mysql_connect('localhost','root','');
+                var_dump($link);
+            ```
+            
                 
 
 
