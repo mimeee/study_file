@@ -129,6 +129,69 @@
                 现在可以直接使用 `mysql -uroot -p` 登陆 mysql 了
             - #### 更改 mysql 密码  
                 `mysqladmin -u root password 'new password'`
+
+- # 安装php
+    + ## 安装依赖包
+        - `zlib-devel` 
+        - `libxml2-devel` 
+        - `libjpeg-devel` 
+        - `libjpeg-turbo-devel` 
+        - `libiconv-devel`
+        - `freetype-devel` 
+        - `libpng-devel` 
+        - `gd-devel` 
+        - `libcurl-devel` 
+        - `libxslt-devel`
+        
+        `yum install zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel libiconv-devel -y`
+        `yum install freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel -y`
+
+    + 安装 libiconv 包和 libmcrypt-devel 包
+        * libiconv 包
+            - 解压 `tar zxf libiconv-1.14.tar.gz`
+            - 切换目录 `cd libiconv-1.14`
+            - 配置参数 `./configure --prefix=/user/local/libiconv`
+            - 编译 `make`
+            - 编译安装 `make install`
+            - 以下是配置阿里云的步骤，由于本身在阿里云，所以不用进行
+                + `rpm -qa libiconv-devel`
+                + `rpm -qa libiconv`
+                + `yum install libmcrypt-devel -y`
+                + `wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo`
+            - `yum install libmcrypt-devel -y`
+        * 安装 mhash 包
+            `yum install mhash -y`
+        * 安装 mcrypt 包
+            `yum install mcrypt -y`
+    + 安装编译 php   
+        [安装php的编译配置](安装php的编译配置.txt)
+        - 解压 php 安装包 
+            `tar xf php-5.3.27.tar.gz`
+        - 切换目录  
+            `cd php-5.3.27.tar.gz`    
+        - 使用 php 配置信息配置，安装
+        - 创建软连接  
+            `ln -s /application/mysql/lib/libmysqlclient.so.18 /usr/lib64/`
+        - 创建一个在安装时候需要用到的文件  
+            `touch ext/phar/phar.phar`
+        - `make`
+        - `make install`
+        - 安装完成 php 之后，拷贝 php 配置文件
+            + 创建一个软连接  
+                `ln -s /application/php5.3.27 /application/php`
+            + 查看 php 配置文件
+                `ls -l php.ini*`
+            + 把生产环境的 php 配置文件拷贝到 lib 文件夹下  
+                `cp php.ini-production /application/php/lib/php.ini`
+        - 配置 php-fpm，启动 php
+            + 切换到 etc 目录下去  
+            `cd /application/php/etc`
+            + `ls`
+            + `cp php-fpm.conf.default php-fpm.conf`
+            + `ls`
+            + `/application/php/sbin/php-fpm`
+            + `ps -ef | grep php`
+- 
                 
 
 
