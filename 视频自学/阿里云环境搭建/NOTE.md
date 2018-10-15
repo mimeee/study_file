@@ -192,6 +192,7 @@
             + `/application/php/sbin/php-fpm`
             + `ps -ef | grep php`
 - # 配置 nginx 识别 php
+    + [nginx_thinkphp伪静态配置](nginx_thinkphp伪静态配置.conf)
     + ## 去 nginx 的配置文件 `/nginx/conf/nginx.conf` 中配置
         * 编辑该文件  
             `vim /application/nginx/conf/nginx.conf`
@@ -211,7 +212,7 @@
         * 检查配置文件语法问题  
             `/application/nginx/sbin/nginx -t`
         * 重启 nginx  
-            `/application/nginx/sbin/nginx -s`
+            `/application/nginx/sbin/nginx -s reload`
         * 测试是否可以识别 php 
             在 `/application/nginx/html/index.php` 中添加 php 代码， 访问首页看是否可以访问的到。
             比如 
