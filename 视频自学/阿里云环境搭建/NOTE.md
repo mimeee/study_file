@@ -99,11 +99,15 @@
                 `--basedir=/application/mysql`  设置根目录  
                 `--datadir=/application/mysql/data` 设置data目录  
                 `--user=mysql`  设置管理用户 
+                报错 `please install the following Perl modules`；    
+                解决: `yum-y install autoconf`
+                报错 `error while loading shared libraries: libaio.so.1: cannot open shared object file:`  
+                解决: `yum install -y libaio`
             - #### 设置 mysql 的启动服务  
                 拷贝 mysql目录下的 support-files/mysql.server 脚本到 /etc/init.d/mydqld 去。
-                `cp /support-files/mysql.server /etc/init.d/mydqld`
+                `cp /support-files/mysql.server /etc/init.d/mysqld`
             - #### 为 /etc/init.d/mydqld 添加可执行的权限
-                `chomd -x /etc/init.d/mydqld`
+                `chmod +x /etc/init.d/mysqld`
             - #### 做一个默认的替换配置  
                 `sed -i 's#/user/local/mysql#/application/mysql#g' /application/mysql/bin/mysqld_safe /etc/init.d/mysqld` 这是一个字符串替换命令，应为我们的 mysql 是安装在 application 下面的， g 是全局替换。这句话的意思是把在 /application/mysql/bin/mysqld_safe， /etc/init.d/mysqld 这两个文件中的 /user/local/mysql 替换成 /application/mysql；
             - #### 启动 mysql 服务   
@@ -115,7 +119,7 @@
             - #### 登陆 mysql   
                 `/application/mysql/bin/mysql -uroot -p` -uroot 表示 user 是 root( mysql 的默认用户名 ) -p 是表示密码( 默认密码为空 )
             - #### 将 mysql 设置为开机启动 
-                添加: `chkconfig -add mysqld`  
+                添加: `chkconfig --add mysqld`  
                 查看: `chkconfig --list mysqld`
             - #### 将全路径添加到环境变量里去
                 添加: `echo 'export PATH=/application/mysql/bin:$PATH' >> /etc/profile`
