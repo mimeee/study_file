@@ -143,7 +143,7 @@
         - `libcurl-devel` 
         - `libxslt-devel`
         
-        `yum install zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel libiconv-devel -y`
+        `yum install zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel libiconv-devel -y`  
         `yum install freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel -y`
 
     + ## 安装 libiconv 包和 libmcrypt-devel 包
@@ -220,8 +220,40 @@
                 $link = mysql_connect('localhost','root','');
                 var_dump($link);
             ```
-            
-                
+- # thinkcmf 安装 & 部署
+    + 上传项目文件 `xxx.zip`
+    + 解压 `unzip xxx.zip`
+    + 给需要写的文件权限 `chmod 777 -R filename`
+    
+- # FTP 安装 & 配置 & phpmyadmin 安装  
+    + ## 安装 phpmyadmin  
+        * 上传 phpmyadmin； phpmyadmin要安装在 nginx 的 html 目录下，可以创建一个目录来保存它
+            `rz -y` 上传 `phpMyAdmin-4.8.3-all-languages.tar.gz`
+        * 解压 `tar xf phpMyAdmin-4.8.3-all-languages.tar.gz`
+        * 解压后，把解压的文件移动到当前目录 `mv -i phpMyAdmin-4.8.3-all-languages/* ./`
+        * 然后就可以访问了
+    + ## 安装 ftp
+        * 安装 ftp 的服务端 `yum install vsftpd -y`
+        * 查看是否安装 `rpm -qa vsftpd`
+        * 启动 ftp 服务 `/etc/init.d/vsftpd start`
+        * 使用 FileZilla 客户端 连接
+            - 创建一个用户来使用 ftp  
+                `useradd -d /application/nginx/html/ -M  [username] `  
+                `useradd -d /application/nginx/html/ -s /sbin/nologin  [username] `
+            - 设置密码  
+                `passwd [password]`
+        * 修改配置，从而可以上传和创建文件
+            - `whereis vsftpd`
+            - `vim /etc/vsftpd/vsftpd.conf`  
+                + 修改
+                    * Allow anonymous FTP? 是否运行匿名登陆
+                    * Uncomment this to allow local users to log in 是否运行本地登陆
+                    * obviously need to create a directory writable by the FTP user; anon_upload_enable=YES 可以上传目录
+                    * new directories; anon_mkdir_write_enable=YES 可以创建目录
+            - `/etc/init.d/vsftpd restart`
+            - 如果还上传不了，则考虑 html 文件夹是否有别的用户写的权限
+                + 方法一 `chmod 777 -R /application/nginx/html`
+                + 方法二 把用户加入有权限的组 `usermod -g root [username]`
 
 
 
