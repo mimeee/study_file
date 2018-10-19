@@ -1532,6 +1532,25 @@
     - `mkdir` 创建目录，给与权限。
    
 
-30. ###
-31. ###
+30. ### 编辑器插件  
+    [kindeditor](http://kindeditor.net/demo.php)  
+    htmlspecialchars_decode() 将 html 实体转化为 html 标签；
+    strip_tags() 去除 HTML 和 PHP 标记
+
+31. ### 内容跨表
+    - `LEFT JOIN` 以左表为基准，按照左表的记录一条一条去所关联的表中找到扩展的数据
+    - `RIGHT JOIN` 以右表为基准，按照左表的记录一条一条去所关联的表中找到扩展的数据
+    - `INNER LEFT JOIN` 在 `LEFT JOIN` 的结果上，去掉扩展查找为空的记录。
+    - 比较正规的 SQL 语句写法
+        ```sql
+            SELECT 
+                * 
+            FROM 
+                table 
+            LEFT JOIN 
+                anothertable 
+            ON  
+                table.`id` = anothertable.`t_id` 
+        ```
+32. ### 
     
