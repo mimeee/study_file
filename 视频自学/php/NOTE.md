@@ -1552,5 +1552,11 @@
             ON  
                 table.`id` = anothertable.`t_id` 
         ```
-32. ### 
+32. ### 时间函数 
+    - `time()`  
+        获取当前时间。返回从1970年到现在的秒数。
+    - `date([date-format])`
+
+    - 
+33. ###
     
