@@ -1556,7 +1556,23 @@
     - `time()`  
         获取当前时间。返回从1970年到现在的秒数。
     - `date([date-format])`
-
-    - 
+    - `strtotime()`
+    - `mktime()`
+    - `date_default_timezone_set()`
+    - `cookie`与`session`
+      `cookie`类似于会员卡，`session`类似于用手机号注册的会员。`cookie`需要随身携带，而session则是存在于服务器中的。 其主要作用就是用于表示用户的。用于记录登录客户在整个网站的行为。
+      + `cookie`
+        在php中 `cookie` 存储在超级全局变量 `$_COOKIE`中。  
+        * 设置: `setcookie("key","value"[,dead_line])`
+        * 设置过期: value设置为空，设置过期时间。
+      + `session`
+          * session是一种服务器端的会话技术
+          * 要是用session必须先开启session `session_start()`。 `session_start`开启时会做几件事：
+              - 生成一条`cookie`记录,`key`为`PHPSESSID`,值为一个随机乱码。
+              - 在服务器的php文件夹的tmp文件夹中，生成一个sess开头的文件。初始化状态下该文件为空。
+          * 设置 `SESSION`: `$_SESSION[key] = value`,该值被记录在了上面的 sess 文件夹中。该文件可以在`php.ini`中配置。 SESSION默认使用记录标识的方式是 COOKIE 方式，如果 COOKIE 被禁用，则使用 GET 方式记录。
+          * `session_name`, `session_id()` 购物车就是使用 session_id 做的。该值是 `session_start()` 后生成的值，是唯一的。 
+          * 删除 SESSION 使用`unset()`
+          * `session_destroy()`
 33. ###
     
