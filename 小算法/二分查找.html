@@ -39,8 +39,68 @@
 			right: 0;
 		}
 		.pic canvas:nth-child(2){
-			left: 40%;
+			left: 40%;			
 		}
+
+		.start-first{
+			animation:start-move-first 1s;
+			animation-delay: 1s;
+			animation-fill-mode:forwards;
+		}
+		.middle-first{
+			animation:middle-move-first 1s;
+			animation-delay: 2s;
+			animation-fill-mode:forwards;
+		}
+
+		.start-second{
+			animation:move-second 1s;
+			animation-delay:3s;
+			animation-fill-mode:both;
+		}
+		.middle-second{
+			animation:middle-move-second 1s;
+			animation-delay:4s;
+			animation-fill-mode:both;
+		}
+
+		.start-thrid{
+			animation:move-thrid 1s;
+			animation-delay:3s;
+			animation-fill-mode:both;
+		}
+		.middle-thrid{
+			animation:move-thrid 1s;
+			animation-delay:4s;
+			animation-fill-mode:both;
+		}
+
+
+
+		@keyframes start-move-first{
+			from { left:0%; }
+			to { left:50%; }
+		}
+		
+		@keyframes middle-move-first{
+			from { left:40%; }
+			to { left:70%; }
+		}
+
+
+		@keyframes move-second{
+			from { left:50%; }
+			to { left:80%; }
+		}
+		@keyframes middle-move-second{
+			from { left:70%; }
+			to { left:80%; }
+		}
+		@keyframes move-thrid{
+			from { left:80%; }
+			to { left:90%; }
+		}
+		
 		
 		
 
@@ -86,9 +146,9 @@
 			<span>9</span>
 		</div>
 		<div class="pic">
-			<canvas></canvas>
+			<canvas class="start-first"></canvas>
 
-			<canvas></canvas>
+			<canvas class="middle-first"></canvas>
 
 			<canvas></canvas>
 		</div>
@@ -115,6 +175,8 @@
 
 
 
+
+
 		//------画图
 		var oCanvas = [...document.querySelectorAll("canvas")];
 		var oSpan = document.querySelector("span")
@@ -126,7 +188,34 @@
 			}
 		})
 		
-
+		 oCanvas[0].addEventListener('webkitAnimationEnd',function(){
+		 	var sClass = oCanvas[1].className;
+		 	console.log(sClass);
+		 	// switch(sClass)
+		 	// {
+		 	// 	case "middle-first":
+		 	// 		oCanvas[1].className = "middle-second";
+		 	// 	break;
+		 	// 	case "middle-second":
+		 	// 		oCanvas[1].className = "middle-thrid";
+		 	// 	break;
+		 	// }
+		 })
+		 oCanvas[1].addEventListener('webkitAnimationEnd',function(){
+		 	var sClass = oCanvas[0].className;
+		 	console.log(sClass);
+		 	switch(sClass)
+		 	{
+		 		case "start-first":
+		 			oCanvas[0].className = "start-second";
+		 			oCanvas[1].className = "middle-second";
+		 		break;
+		 		case "start-second":
+		 			oCanvas[0].className = "start-thrid";
+		 			oCanvas[1].className = "middle-thrid";
+		 		break;
+		 	}
+		 })
 
 		function drawTri(obj,obj2,method){
 			method = method === undefined ? "fill" : "stroke";
