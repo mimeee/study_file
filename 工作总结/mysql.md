@@ -154,6 +154,55 @@
                     id IN ($id)
             )
         ```
+    + 多个表进行同时查询
+        
+        ```sql
+        SELECT
+            *
+        FROM
+            (
+                SELECT
+                    FLAG,
+                    SID,
+                    ID,
+                    NAME,
+                    MOBILEPHONE,
+                    1 AS userType
+                FROM
+                    TAB_1
+                UNION
+                    SELECT
+                        FLAG,
+                        SID,
+                        ID,
+                        NAME,
+                        MOBILEPHONE,
+                        2 AS userType
+                    FROM
+                        TAB_2
+                    UNION
+                        SELECT
+                            FLAG,
+                            SID,
+                            ID,
+                            NAME,
+                            MOBILEPHONE,
+                            3 AS userType
+                        FROM
+                            TAB_3
+            ) d
+        WHERE
+            (
+                d.NAME LIKE '%搜索内容%'
+                OR d.MOBILEPHONE LIKE '%搜索内容%'
+                OR d.ID LIKE '%搜索内容%'
+                OR d.SID LIKE '%搜索内容%'
+            )
+        AND d.FLAG != 3
+        ORDER BY
+            userType ASC
+
+        ```
 
 
 - ### 函数
