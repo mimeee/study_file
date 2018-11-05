@@ -155,7 +155,7 @@
             )
         ```
     + 多个表进行同时查询
-        
+        使用 `union` 的时候，查询每个表的列数以及字段类型都必须相同。
         ```sql
         SELECT
             *
@@ -202,6 +202,21 @@
         ORDER BY
             userType ASC
 
+        ```
+    + 多列同时模糊查找
+    
+        ```sql
+            SELECT 
+                `jde`,
+                `pn`,
+                `sn`,
+                `sr` 
+            FROM 
+                good 
+            WHERE 
+                CONCAT(`jde`,`pn`,`sn`,`sr`) 
+            LIKE 
+                '%0%'
         ```
 
 
