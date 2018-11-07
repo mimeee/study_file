@@ -1574,5 +1574,26 @@
           * `session_name`, `session_id()` 购物车就是使用 session_id 做的。该值是 `session_start()` 后生成的值，是唯一的。 
           * 删除 SESSION 使用`unset()`
           * `session_destroy()`
-33. ###
+
+33. ### ajax基础&原理
+    - 请求状态码
+        + 200 请求成功
+        + 301 永久重定向
+        + 302 临时重定向
+        + 404 找不到页面
+        + 403 服务器接收到请求但拒绝服务
+        + 500 服务器发生错误
+        + 503 服务器发生错误，暂时不可以服务
+    - ajax过程
+        + open 方法  
+        + send 方法
+        + 事件 `onreadystatechange`
+        + 请求状态 readyState
+            * 1: open状态
+            * 2: send状态
+            * 3: 正在接受到资源但还没有完成
+            * 4 / `'complete` 完成
+        + 设置请求头方法 `setRequestHeader`
+            * 使用 `post` 方法的时候添加请求头 `application/x-www-form-urlencoded`
+34. ### 
     
