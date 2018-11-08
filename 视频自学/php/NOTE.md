@@ -1595,5 +1595,32 @@
             * 4 / `'complete` 完成
         + 设置请求头方法 `setRequestHeader`
             * 使用 `post` 方法的时候添加请求头 `application/x-www-form-urlencoded`
-34. ### 
+34. ### GD库函数
+    - 使用之前要开启 php_gd2，也就是在 php.ini 中把 `extension=php_gd2.dll` 前面的注释去掉
+    - GD 库函数是图片处理函数
+    - 画图步骤
+        + 创建画布  
+            * `imagecreatetruecolor( $width, $height)`
+        + 做图
+            * 选择颜色 `imagecolorallocate( $img, red, blue, yellow )`
+            * 填充画布 
+                `imagefilledrectangle( $img, $top, $left, $width, $height, $color )`  
+                `imagefilledpolygon( $img, array $point, int $num_point, $color )`  
+                `imagefilledarc( $img, $cx, $cy, $width, $height, $start, $end, $color, $style )`
+            * 画点 `imagesetpixel( $img, $x, $y, $color )` 
+            * 划线 `imageline( $img, $x_start, $y_start, $x, $y, $color )`
+            * 画矩形 `imagerectangle( $img, $x_start, $y_start, $x, $y, $color)`
+            * 画多边形 `imagepolygon( $img, array $point, int $num_point, $color )`
+            * 画圆 `image( $img, $circle_x, $circle_y, $width, $height, $color )`
+            * 画圆弧 `imagearc( $img, $cx, $cy, $width, $height, $start, $end, $color )` `$start` 和 `$end` 是度数 0 - 360
+            * 输出文字 `imagestring( $img, $fontsize, $show_x, $show_y, $string, $color )` 比较鸡肋，不可以输出中文，而且fonesize最大为5
+            * 输出文字 `imagettftext( $img, $fontsize, $angle, $show_x, $show_y, $color, $fontfile, $string )`
+        + 渲染画布
+            * `header( "Content-type:image/png")`
+        + 输出画布
+            * `imagepng( Img $img )`
+        + 销毁画布
+            * `imagedestroy( Img $img )`
+
+35. ###
     

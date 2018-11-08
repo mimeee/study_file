@@ -91,15 +91,15 @@
 		</ul>
 	</p>
 	<script>
-		var arr = [ 2,3,55,2,211,23,54,124,11 ];
+		var arr = [ 55,2,54,3,2,211,23,124,11,53,222,1,1,0,93,12 ];
 		console.log( insert_sort( arr ) );
 		console.log( binary_insert_sort(arr) );
+		console.log( shell_sort( arr ) );
 
 		//普通插入排序
 		function insert_sort(arr){
 			for(var i = 0; i < arr.length; i++){
-				var flag = true;
-				for( var j = i; j > 1; j--){
+				for( var j = i; j > 0; j--){
 					if( arr[i] <= arr[j - 1] && ( arr[ j - 2 ] === undefined || arr[i] >= arr[j - 2])){
 						arr.splice( j - 1 , 0 , arr[i]);
 						arr.splice( i + 1 , 1);
@@ -134,9 +134,54 @@
 			return arr;
 		}
 
-		//希尔排序
+		//希尔排序-- 也可以在原数组上操作，不必另外声明变量
 		function shell_sort( arr ){
+			var len = arr.length;
+			var step = 2;
+			while(step < len){
+				var group_num = outOdd( len / step );			
+				var all_arr = [];
+				var group_index = 0;
+				var flag = true;
+				for(var i = 0; i < arr.length; i++){
+					if( group_index === group_num ){ 
+						group_index = 0;
+						flag = false;
+					}
+					if( flag ){
+						all_arr[ group_index ] = [];
+					} 
+					all_arr[ group_index ].push( arr[i] );
+					group_index ++;
+				}
+				
 
+				for(var j = 0; j < all_arr.length; j ++ ){
+					all_arr[j] = insert_sort( all_arr[j] );
+				};
+
+				var count = 0;
+				group_index = 0
+				index = 0;
+				while( index < len){				
+					arr[ index ] = all_arr[group_index][count];
+					index ++;
+					group_index ++;
+					if( group_index === group_num ){ 
+						group_index = 0;
+						count ++;
+					}
+				}
+				step *= 2;
+			}
+			return arr;
+		}
+
+
+		//输出奇数
+		function outOdd( float ){
+			if( parseInt( float ) % 2 === 0) return  parseInt( float );
+			return parseInt( float );
 		}
 	</script>
 </body>
