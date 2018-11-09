@@ -1601,6 +1601,8 @@
     - 画图步骤
         + 创建画布  
             * `imagecreatetruecolor( $width, $height)`
+            * `imagecreatefrompng( resource $img)`
+            * `imagecreatefromjpeg( resource $img )`
         + 做图
             * 选择颜色 `imagecolorallocate( $img, red, blue, yellow )`
             * 填充画布 
@@ -1622,5 +1624,28 @@
         + 销毁画布
             * `imagedestroy( Img $img )`
 
-35. ###
+35. ### 图片缩放、裁剪加水印
+    - 重采样，拷贝部分图片并调整大小 
+    ```
+        imagecopyresampled( 
+            resource $dst_image, resource $src_image, 
+            int dst_x, int dst_y, 
+            int src_x, int src_y, 
+            int dst_width, int dst_height, 
+            int src_width, int src_height
+        )
+    ```
+    src表示原图
+    - 获取图片信息 `getimagesize( resouce $image )`, 返回一个具有四个单元的数组:
+        + [0] => width
+        + [1] => height
+        + [2] => image type( 1:git, 2:jpg ... )
+        + [3] => text string ( width = "xxx", height = "xxx")
+        + [4] => 图像的通道颜色( 多少位 )
+        + [5] => 多少个通道
+        + [6] => mime
+    - 保存图像 `imagejpeg( resource $image [, string $filename [, int $quality]])`, `imagepng`
+    - 水印 —— 拷贝图像 `imagecopy( resouce $dst_im, resouce $src_im, int $dst_x, int $dst_y, int $src_x, int $src_y, int $src_w,  int $src_h)` 
+
+36. ###
     

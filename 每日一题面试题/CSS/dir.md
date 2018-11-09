@@ -1,3 +1,3 @@
-- ### [ animation & transition & transform](NOTE.md#animation--transition--transform) 
-- ### [ margin & padding ](NOTE.md#margin--&--padding) 
-- ### [ 盒子模式 ](NOTE.md#盒子模式) 
+- ##### [ animation & transition & transform](NOTE.md#animation--transition--transform) 
+- ##### [ margin & padding ](NOTE.md#margin--&--padding) 
+- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
