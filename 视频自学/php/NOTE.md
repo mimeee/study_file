@@ -1647,5 +1647,29 @@
     - 保存图像 `imagejpeg( resource $image [, string $filename [, int $quality]])`, `imagepng`
     - 水印 —— 拷贝图像 `imagecopy( resouce $dst_im, resouce $src_im, int $dst_x, int $dst_y, int $src_x, int $src_y, int $src_w,  int $src_h)` 
 
-36. ###
+36. ### 模板引擎
+    - 常见的有 smarty, twig 等等
+    - [smarty](https://www.smarty.net/docs/zh_CN/) 使用准备
+        + 建立文件夹
+            * 建立编译文件目录(`cache`,可自定义命名)
+            * 建立缓存文件目录(`compile`,可自定义命名)
+            * 建立模板文件目录(`template`,可自定义命名)
+        + 在smarty中配置
+            * 引入 `./smarty/Smarty.class.php` 文件
+            * 实例化一个smarty对象
+            * 通过 `print_r` 打印这个对象可知在对象有 `cache_dir`,`compile_dir`,`template_dir`等属性，改变该属性的值，就可以配置目录了
+        + 使用 `assign('var',$var )` 方法注册对象
+        + 使用 `display()` 方法渲染页面
+        + 使用 `{ $var }` 来在模板中使用已经注册的变量
+        + 循环 `{foreach $var as $k => $v}{/foreach}`
+        + 流程控制 `{if $var gt 10}{else}{/if}`
+        + 保留变量
+            * get: `{$smart.get.varialname}`
+            * session: `{$smart.session.varialname}`
+        
+
+
+
+
+37. ### 
     
