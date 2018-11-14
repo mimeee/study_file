@@ -758,11 +758,13 @@
             print_r(array_keys( $arr, '晚上' )); //Array ( [0] => night )
         ```
 
-    - `sort()` , `rsort()` 改变索引   
+    - `sort()` , `rsort()` 改变索引, 数字索引数组
         `sort()` 从小到大  
         `sort()` 从大到小
 
-    - `asort()` , `arsort()` 保留索引   
+    - `krsort()`根据key排序
+    
+    - `asort()` , `arsort()` 保留索引,根据value排序   
         `sort()` 从小到大  
         `sort()` 从大到小
 
@@ -982,7 +984,8 @@
                 echo str_pad($string, 7, "a"); //11111aa
                 echo str_pad($string, 7, "a", STR_PAD_LEFT); //aa11111
             ```
-
+    - `str_repeat()`
+       填充字符串
     - `strtolower`
         转化成小写
     - `strtoupper`
@@ -1666,10 +1669,43 @@
         + 保留变量
             * get: `{$smart.get.varialname}`
             * session: `{$smart.session.varialname}`
-        
+
+37. ### 无限极分类
+    - 使用递归的方法来实现
+    - 在使用递归的过程中有三种方法可以保存变量
+        + 使用静态变量
+
+            ```php
+                function num($num){
+                    static $arr = array();
+                    $arr[] = $num;
+                    if( $num < 10 ){
+                        num($num);
+                    }
+                }
+            ```
+
+        + 使用全局变量
+            ```php
+                $arr = array();
+                function num($num){
+                    global $arr;
+                    $arr[] = $num;
+                    if( $num < 10 ){
+                        num($num);
+                    }
+                }
+            ```
+        + 传递引用
+            ```php
+                function num($num, &$arr){
+                    $arr[] = $num;
+                    if( $num < 10 ){
+                        num($num,&$arr);
+                    }
+                }
+            ```
 
 
-
-
-37. ### 
+38. ###
     
