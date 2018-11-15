@@ -14,6 +14,7 @@
 	<p>
 		后继: 5的后继就是7，2的后继就是9
 	</p>
+    <div class="box"></div>
 	<script>
 	
 
@@ -23,8 +24,8 @@
 		//创建线性表 -- 构造函数
 		constructor(sSize){
 			this.size = sSize;
-			this.length = 0;
-			this.arr = new Array(sSize);
+			this.length = 3;
+			this.arr = new Array(3,33,333);
 		}
 		//清空线性表
 		clear(){
@@ -55,27 +56,67 @@
         	}
         	return -1;
         }
+        //获取指定元素的前驱
+        getCurElePier($currentEle){
+            var index = this.getElement($currentEle);
+            if( index === -1 || index === 0 ) return false;
+            return this.arr[index - 1];
+        }
+        //获取指定元素的后继
+        getCurEleNext($currentEle){
+            var index = this.getElement($currentEle);
+            if( index === -1 || index === (this.length - 1) ) return false;
+            return this.arr[index + 1];
+        }
+        //遍历线性表
+        printArr(oBox){
+            for(var i = 0;i < this.length; i++){
+                oBox.innerHTML += this.arr[i] + "<br/>";
+            }
+        }
+        //在第i各个位置插入元素
+        insertEle(i,ele){
+            if( i < 0 || i > this.length ) return false;
+            for(var k = this.length - 1; k >= i; k-- ){
+                this.arr[ k + 1 ] = this.arr[ k ];
+            }
+            this.arr[ i ] = ele;
+            this.length ++;
+            return true;
+        }
+        //删除第i个位置的元素
+        deleteEle(i){
+            if( i < 0 || i > this.length - 1 ) return false;
+            for(var k = i; k < this.length - 1; k++ ){
+                this.arr[ k  ] = this.arr[ k + 1 ];
+            }
+            this.length --;
+            return true;
+        }
 		//销毁线性表 -- 析构函数
 	}
 
     var oList = new List(5);
-	console.log(oList); 
+	// console.log(oList); 
 
-    console.log(oList.getIndexElement(1)); 
-    console.log(oList.getElement(5)); 
+ //    console.log(oList.getIndexElement(1)); 
+ //    console.log(oList.getElement(5)); 
 
-	oList.clear();
-    console.log(oList);    
-
-
+	// oList.clear();
+ //    console.log(oList);    
+    console.log(oList.getCurEleNext(33));
+    console.log(oList.getCurElePier(33));
+    oBox = document.querySelector(".box")
+    
+    oList.insertEle(1,133);
+    oList.deleteEle(1);
+oList.printArr( oBox );
         
        
         
-        //获取指定元素的前驱
-        //获取指定元素的后继
-        //在第i各个位置插入元素
-        //删除第i个位置的元素
-        //遍历线性表
+
+
+        
         
 	</script>
 </body>

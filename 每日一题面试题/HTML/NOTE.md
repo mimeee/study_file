@@ -24,6 +24,6 @@
 - ###  图像格式
 ---
     + 题目: 嵌入HTML文档中的图像格式可以是什么？     
-    + 解答: `git`, `bmp`, `jpg`。 而 `tif( tagged image file format)`使用灵活的位图格式
+    + 解答: `git`, `bmp`, `jpg`。 不支持`tif( tagged image file format)`
     
 
