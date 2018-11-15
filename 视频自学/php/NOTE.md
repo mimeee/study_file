@@ -1707,5 +1707,76 @@
             ```
 
 
-38. ###
+38. ### 命名空间
+    例  
+    ```php
+        //fu.php
+        namespace groupone
+        class Page
+        {
+            pulic function ee(){
+                echo "ee";
+            }
+        } 
+
+        namespace grouptwo
+        class Page
+        {
+            public function ee(){
+                echo "ee33";
+            }
+        }
+        //由于有namespace，所以不会报错 redeclare 
+        
+        //index.php
+        //使用命名空间里的类
+        //包含
+        require("fu.php");
+        //使用命名空间
+        use groupone\Page;
+        $p = new Page();
+        $p->ee();
+    ```
+
+39. ### [thinkPHP](http://www.thinkphp.cn/)
+    - [github](https://github.com/top-think/think)
+    - 目录结构 (3.2.xx)
+        + application 开发网站的目录
+        + Public 存放静态资源文件( 如CSS,JS )
+        + ThinkPHP
+            * Common/functions.php 公共函数库
+            * Conf 包含配置文件
+            * Lang 语言包文件
+            * Library 库，核心的代码都在这里面，里面存放着各种类
+                - Behavior 行为类
+                - Org 第三方的工具类
+                - Think ThinkPHP这个框架的核心类
+            * Mode 应用模式
+
+40. ### Thinkphp控制器访问原理
+    - 在一个新的 Thinkphp 框架的 Application 中有如下文件
+        + index.html
+        + README.md
+    - localhost中访问该文件会在 Application 中自动创建如下文件，同时自动访问 `HOME/Controller/IndexController.class.php` 文件的 `index` 方法，该路径可以在配置文件 `.\ThinkPHP\Conf\convention.php` 中修改。
+        + Common 这个是一个公共的配置文件
+            * Common *一般放置公共函数*
+                - index.html
+            * Conf *一般放置公共配置*
+                - config.php
+                - index.html
+            * index.html
+        + Home *这个目录叫模块*
+            * Common *这个Common跟上面的Common功能一样， 也是放置公共函数的， 但是优先级不同*
+            * Conf *这个Conf跟上面的Conf功能一样， 也是放置公共配置的， 但是优先级不同*
+            * Controller *控制器*
+            * Model *模型*
+            * View *视图*
+            * index.html
+        + Runtime
+        + index.html
+        + README.md
+
+
+
+41. ###
     
