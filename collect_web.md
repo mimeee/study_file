@@ -39,9 +39,10 @@
     + [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf)
     + [symfony 插件 Doctrine api](https://www.doctrine-project.org/api/dbal/2.7/Doctrine/DBAL/Driver/Connection.html#method_lastInsertId)
 
-    <hr>
-
+- ## 面试
     + [php面试](https://www.cnblogs.com/zyf-zhaoyafei/p/4828358.html)
+    + [前端面试](https://www.cnblogs.com/yb880319/p/8472053.html)
+    + [前端面试](https://blog.csdn.net/qq_22944825/article/details/78169321)
 
 - ## 前端
     + ### 博客
