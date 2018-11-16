@@ -1,5 +1,4 @@
 - ###  inline & inline-block & block
----
      ```html
         <div style="width: 400px;height: 200px">
             <span style="float: left;width:auto;height:100%">
@@ -16,14 +15,32 @@
         * 而 `span` 元素是 `i` 元素的父元素，所以它的 `width` 被子元素挤开,也就是等于子元素的宽度，而高度为 `100%`，就是其父元素的高度
     + [示例](inline&inline-block&block.html)
 
-- ###  表示高亮的 html 标签
 ---
+- ###  表示高亮的 html 标签
+
     + 题目: 假设一个搜索结果展示页面，需要吧搜索关键字高亮显示，应该使用哪个标签      
     + 解答: `<mark>`
-
-- ###  图像格式
+    
 ---
+- ###  图像格式
     + 题目: 嵌入HTML文档中的图像格式可以是什么？     
     + 解答: `git`, `bmp`, `jpg`。 不支持`tif( tagged image file format)`
-    
+
+---
+- ### html5标签的意义
+    + 以下说法正确的是
+        * `<kbd>` 来表示用户输入
+        * `<var>` 用来表示变量
+        * `list-inline` 查看源码看到该类只设置了两个属性
+        ```css
+            .list-inline{padding-left:0;list-style:none}
+        ```
+        * `<code>` 表示代码片段
+    + 解答:
+        * ABCD 都对
+        * `<kbd>` 表示键盘键入
+        * `<var>` 用来表示变量的名称，常用 `<code>` 与 `<pre>` 标签一起使用
+        * `list-inline` 是`bootstrap`的排版类
+        * [示例](html5tag.html)
+
 

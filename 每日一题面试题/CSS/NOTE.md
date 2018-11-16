@@ -1,5 +1,4 @@
 - ###  animation & transition & transform
----
 - 题目: 在CSS3中要使元素由一种样式转换成另一种样式，怎么实现
 - 解答: 
     + `animation`
@@ -41,17 +40,16 @@
             - `rotate3d( x,y,z,angle )` 
 - [示例](animation&transition&transform.html) 
 
-    
+---    
 - ###  margin & padding
----
 - 题目: margin-top, padding-top 的值是百分值得时候如何计算
 - 解答: margin 和 padding 使用百分号设置都是基于其最近的父元素的 **width** 来确定的， 如果父元素没有设定 **width**，则使用父元素计算出来的 **width** (不管是 margin-top,margin-bottom,margin-left,margin-right)(padding也是同理)。
 > 来自 《CSS权威指南》 的解释
 > 我们认为，正常流中的大多数元素都会足够高以包含其后代元素(包括外边距)，如果一个元素的上下边距为父元素的height的百分数，就可能导致一个无限循环，父元素的height会增加，以适应后代元素的上下外边距，而相应的，子元素的上下外边距就会因为父元素的height改变而改变，从而形成循环。  
 - [示例](margin&padding.html)
 
-- ### DTD( Document Type Definition )
 ---
+- ### DTD( Document Type Definition )
 - 解释: 文档类型定义，为了进行程序见的数据交换而建立的关于标记符的语法规则。比如 
     ```
         <?xmlversion="1.0"?>
@@ -71,16 +69,30 @@
     ```
 就是以标签的形式表达内容( 如XML和HTML )。其包括元素、属性、实体(如`&ensp;`)、PCDATA( parsed character data，标签开始和标签结束之间的文本)、CDATA(character data，不会被解析的文本)。
 
-- ###  盒子模式
 ---
+- ###  盒子模式
 - 题目: 什么是盒子模式
 - 解答: 盒子模型就是表示 HTML 中一个元素，其有 `margin + padding + border + content-width` 来构成。  
 在 W3C 标准中，盒子的 width = margin + padding + border + content-width, 而对元素的 width 设置指定的值，只是设定了盒子中的 content-width 的宽度，其总宽度还需要在计算。   
 在 IE 之前的怪异模式下，设置元素的 width，就是指定了盒子中的 content-width + padding + border。 
 - ![示例图](image/box_pic.png)
 
+---
+- ### css position
 
+---
+- ### css 优先级
 
+---
+- ### css Sprites
+
+---
+- ### boostrap 分辨率问题/布局问题
+
+---
+- ### IE,FF CSS的区别
+
+---
 
 
 

@@ -1,3 +1,4 @@
 - ### [inline & inline-block & block](NOTE.md#inline--&--inline-block--&--block) 
 - ### [ 表示高亮的 html 标签 ](NOTE.md#表示高亮的--html--标签) 
 - ### [ 图像格式 ](NOTE.md#图像格式) 
+- ### [ html5标签的意义 ](NOTE.md#html5标签的意义) 
