@@ -1757,7 +1757,7 @@
     - 在一个新的 Thinkphp 框架的 Application 中有如下文件
         + index.html
         + README.md
-    - localhost中访问该文件会在 Application 中自动创建如下文件，同时自动访问 `HOME/Controller/IndexController.class.php` 文件的 `index` 方法，该路径可以在配置文件 `.\ThinkPHP\Conf\convention.php` 中修改。
+    - localhost中访问该文件会在 Application 中自动创建如下文件(thinkphp3.2.x)，同时自动访问 `HOME/Controller/IndexController.class.php` 文件的 `index` 方法，该路径可以在配置文件 `.\ThinkPHP\Conf\convention.php` 中修改。
         + Common 这个是一个公共的配置文件
             * Common *一般放置公共函数*
                 - index.html
@@ -1775,8 +1775,17 @@
         + Runtime
         + index.html
         + README.md
+    - 在 index.php(根目录下) 中添加 `define( "BIND_MODULE","module_name")` 可以让thinkphp自动生成一个叫 module_name 的模块(就像 Home 那样)，同时把默认的项目入口设置为在该模块下的 index.html 页面
+    - 部署模式和调试模式其本质的区别在于错误信息不会弹出，调试模式有很详细的错误信息。
+    - [手册3.2.X](http://document.thinkphp.cn/manual_3_2.html), 同时配合3.1的手册使用
+
+41. ### 访问模式
+    - 改变url访问模式需要配置 `JRL_MODEL` 的值
+        + pathInfo模式 `/Home/Index/Index`
+        + 普通模式 `?m=Home&c=Index&a=Index`
+        + 兼容模式 `?s=/Home/Index/Index`, 这里的`s`是查看配置项`VAR_PATHINFO`得到的
 
 
 
-41. ###
+42. ###
     

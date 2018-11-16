@@ -3,5 +3,5 @@
     要把知识通过 WWW 从地球的一个角落运往另外一个角落，就像第三方替别人是把一个货物带到另外一个地方一样。首先要明确几点。
     + 货物在哪 —— URL( Uniform Resource Locator )
     + 怎么带，走空路水陆陆路？遵守哪条路的交通规则 —— HTTP( HyperText Transfer Protocol)
-    + 货物大小不规范，那盒子装起来，运起来比较方便 —— HTML( HyperText Markup Langugue)
+    + 货物用同一的盒子装起来，方便运输和标识 —— HTML( HyperText Markup Langugue)
 - ###
