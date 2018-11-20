@@ -1785,7 +1785,10 @@
         + 普通模式 `?m=Home&c=Index&a=Index`
         + 兼容模式 `?s=/Home/Index/Index`, 这里的`s`是查看配置项`VAR_PATHINFO`得到的
 
+42. ### thinkphp数据库连接&分页
+    - 配置项存放位置 `Home/Conf/config.php` 或者 `Common/Conf/config.php`
+    - 在配置项中添加 `SHOW_PAGE_TRACE => true`，可以打开追踪工具，了解页面运行时发生的详细情况
+    - 声明`Model` `new \Think\Model("tableName")`或者`M()`
 
-
-42. ###
+43. ###
     
