@@ -79,9 +79,36 @@
 
 ---
 - ### css position
+    + css2中 `position` 包括
+        * `absolute` 绝对定位，相对于不是 `static` 定位的第一个父元素 
+        * `static` (默认值)没有定位，元素出现在正常流中
+        * `fixed` 绝对定位，相对于浏览器窗口
+        * `relative` 相对定位，相对于自身本来应该在的位置
+        * `inherit` 规定从父元素继承position属性
 
 ---
+- ### css display
+    + css2中 `display` 主要包括
+        * `none` 此元素不会被显示
+        * `inline` 显示为内联元素，前后没有换行符
+        * `inline-block` 显示为行内块元素
+        * `block` 显示为块元素，前后带换行符
+        * `table` 作为块级表格来显示，表格前后带有换行符
+        * `list-item` 作为列表显示
+        * `flex(css3)` [伸缩性布局](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)[实例](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+---
 - ### css 优先级
+> css继承是从一个元素向其后代元素传递属性值所采用的机制。确定应当向一个元素应用哪些值时，浏览器不仅要考虑继承，还要考虑声明的特殊性，另外需要考虑声明本身的来源。这个过程就称为层叠。——《css权威指南》
+
+    + 首先考虑权重( `!important` ),加了该权重的优先级最高。
+    + 其次看特殊性 ( 0,0,0,0 )
+        * 内联样式 ( 1,0,0,0 )
+        * id选择器 ( 0,1,0,0 )
+        * 类选择器，属性选择器，伪类(`:link`,`:active`,`:hover`,`:visited`) ( 0,0,1,0 )
+        * 元素和伪元素 ( 0,0,0,1 )
+        * 通配符 ( 0,0,0,0 )
+    + 最后看声明的顺序
+    + 补充：如果class选择器超过 255 个，不同的浏览器会表现不同。有的浏览器( FF,IE )认为class选择器的优先级会超过id选择器
 
 ---
 - ### css Sprites

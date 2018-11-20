@@ -10,7 +10,7 @@
      ```
     + 题目: 上面代码中 span 标签的 width 和 height 是多少       
     + 解答: 
-        * `span` 标签和 `i` 标签本身是内联标签，所以没有 `height` 属性，但是有 `width` 属性
+        * `span` 标签和 `i` 标签本身是内联标签，所以没有 `height` `width` 属性，同时内联元素的垂直方向的 `padding`, `margin` 都无效，水平方向的有效
         * 添加 `float` 属性或者属性 `position: absolute` 之后，元素就变成块级元素，块级元素有属性 `width`,`height`
         * 而 `span` 元素是 `i` 元素的父元素，所以它的 `width` 被子元素挤开,也就是等于子元素的宽度，而高度为 `100%`，就是其父元素的高度
     + [示例](inline&inline-block&block.html)
