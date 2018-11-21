@@ -1,1 +1,1 @@
-- ##### [HTML5的特性](NOTE.md#HTML5-可以分为几组)
+- ##### [HTML5的特性](NOTE.md#HTML5的特性)
