@@ -112,9 +112,31 @@
 
 ---
 - ### css Sprites
+    + 原理: 将多个图合并在一张图片上，利用 `backgroud-position` 来定位显示图片。
+    + 要求: 承载背景的图片最好是有大小的，否则容易把不属于该盒子的背景显示出来。
+    + 优点: 减少http请求的次数，提高网站加载的性能
+    + 确定: 可维护性比较低，在使用该技术下，图片的位置中的 `center` 之类的属性用不了了，降低了灵活性，同时由于需要把盒子的大小给定，则不利于平铺以及网页缩放。
+
 
 ---
-- ### boostrap 分辨率问题/布局问题
+- ### boostrap(4) 分辨率问题/布局问题
+    + bootstrap识别宽度的分割点
+        * `min-width` - 576px
+        * `min-width` - 768px
+        * `min-width` - 992px
+        * `min-width` - 1200px
+
+        * `max-width` - 575.98px
+        * `max-width` - 767.98px
+        * `max-width` - 991.98px
+        * `max-width` - 1199.98px
+        * 比如 `@media (min-width: 768px) and (max-width: 1199.98px) { ... }`
+    + 布局等级对应关系
+    
+        |       | extra small | small | medium | large | extra large |
+        | ----- | ----- | ----- | ----- | ----- | ----- |
+        | Max container width | auto| 540px | 720px | 960px | 1140px |
+        | class prefix | .col- | .col-sm- | .col-md- | .col-lg- | .col-xl- | 
 
 ---
 - ### IE,FF CSS的区别

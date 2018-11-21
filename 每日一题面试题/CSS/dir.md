@@ -2,9 +2,10 @@
 - ##### [ margin & padding ](NOTE.md#margin--&--padding)
 - ##### [DTD](-Document-Type-Definition-) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
-- ##### [ css position ](NOTE.md#CSS-Position) 
-- ##### [ css 优先级 ](NOTE.md#CSS-优先级) 
-- ##### [ css Sprites ](NOTE.md#CSS-Sprites) 
+- ##### [ css position ](NOTE.md#css-Position) 
+- ##### [  css display ](NOTE.md#css-display) 
+- ##### [ css 优先级 ](NOTE.md#css-优先级) 
+- ##### [ css Sprites ](NOTE.md#css-Sprites) 
 - ##### [ boostrap 分辨率问题/布局问题 ](NOTE.md#boostrap-分辨率问题/布局问题) 
 - ##### [ IE,FF CSS的区别 ](NOTE.md#IE,FF-CSS的区别) 
 
