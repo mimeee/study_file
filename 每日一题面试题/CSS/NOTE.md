@@ -139,8 +139,7 @@
         | class prefix | .col- | .col-sm- | .col-md- | .col-lg- | .col-xl- | 
 
 ---
-- ### IE,FF CSS的区别
-
+- ### [IE,FF CSS的区别](CSS兼容性.html)
 ---
 
 
