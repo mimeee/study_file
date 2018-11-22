@@ -63,6 +63,7 @@
         * [excel 导出插件](https://github.com/SheetJS/js-xlsx) 
         * [bootstrap-table 插件](http://bootstrap-table.wenzhixin.net.cn/)
         * [bootstrap-select 插件](https://github.com/snapappointments/bootstrap-select)
+        * [tableExport 插件](https://github.com/hhurz/tableExport.jquery.plugin)
 
         <hr>
 

@@ -50,6 +50,12 @@
         clickToSelect:true,
         showExport: true,                     //是否显示导出
         exportDataType: "basic",              //basic', 'all', 'selected'.
+        exportOptions:{
+            ignoreColumn: [0,1,2,3],  //忽略某一列的索引
+            fileName: 'SpirentRepairCenterRecords',  //文件名称设置
+            worksheetName: 'sheet1',  //表格工作区名称
+            tableName: 'SpirentRepairCenterRecords'
+        },
         data:datas,    
         columns:dealDBInfo(['id','name','price'])['th']
 
