@@ -1,6 +1,5 @@
 - ##### [ animation & transition & transform](NOTE.md#animation--transition--transform) 
 - ##### [ margin & padding ](NOTE.md#margin--&--padding)
-- ##### [DTD](-Document-Type-Definition-) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ css position ](NOTE.md#css-Position) 
 - ##### [  css display ](NOTE.md#css-display) 

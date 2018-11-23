@@ -3,4 +3,5 @@
 - ### [ 图像格式 ](NOTE.md#图像格式) 
 - ### [ html5标签的意义 ](NOTE.md#html5标签的意义) 
 - ### [javascript 写在 HTML 代码中的哪一部分，会导致页面在加载的时候自身被执行](NOTE.md#javascript-写在-HTML-代码中的哪一部分，会导致页面在加载的时候自身被执行)
+- ### [DTD](DTD) 
 - ### [关于HTML的Doctype和严格模式与混杂模式](NOTE.md#Doctype)

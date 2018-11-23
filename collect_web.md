@@ -89,7 +89,8 @@
         *  [Node.js 包教不包会](https://github.com/alsotang/node-lessons)
         *  [【nodeJS爬虫】前端爬虫系列 -- 小爬「博客园」](https://www.cnblogs.com/coco1s/p/4954063.html)
 - ## API
-    + (vue-resource)[https://github.com/pagekit/vue-resource]
+    + [HTML各种API，比如DOM加载的时候的API](https://developer.mozilla.org/en-US/docs/Web/Events)
+    + [vue-resource](https://github.com/pagekit/vue-resource)
 - ## 计算机网络
     + [wireshark常用的过滤命令](https://blog.csdn.net/ffggnfgf/article/details/51056018)
 

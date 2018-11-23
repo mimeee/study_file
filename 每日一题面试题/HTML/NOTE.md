@@ -89,7 +89,33 @@
                     * 最后是使用UI后端层遍历绘制每个节点
 
 ---
+- ### DTD
+- 解释: 文档类型定义( Document Type Definition )， 为了进行程序见的数据交换而建立的关于标记符的语法规则。比如 
+    ```
+        <?xmlversion="1.0"?>
+        <!DOCTYPE note [
+        <!ELEMENT note (to,from,heading,body)>
+        <!ELEMENT to (#PCDATA)>
+        <!ELEMENT from (#PCDATA)>
+        <!ELEMENT heading (#PCDATA)>
+        <!ELEMENT body (#PCDATA)>
+        ]>
+        <note>
+        <to>Tove</to>
+        <from>Jani</from>
+        <heading>Reminder</heading>
+        <body>Don't forget me this weekend</body>
+        </note>
+    ```
+就是以标签的形式表达内容( 如XML和HTML )。其包括元素、属性、实体(如`&ensp;`)、PCDATA( parsed character data，标签开始和标签结束之间的文本)、CDATA(character data，不会被解析的文本)。
+
+---
 - ### Doctype
     + 题目: 关于HTML的Doctype和严格模式与混杂模式
-    + 解答:
-
+    + 解答: [参考](https://www.cnblogs.com/wuqiutong/p/5986191.html)  
+            `<!Doctype>`的声明是文件类型定义(DTD)。声明的作用时告诉浏览器该文件是什么类型的，应该使用哪一种规范来解析该文档。其并不是一个HTML标签。
+    + 严格模式和混杂模式(HTML5没有该模式的区别)
+        * 严格模式： 使用W3C标准来解析代码
+        * 混杂模式： 使用浏览器自己的标准来解析代码
+        * 来源： 与浏览器的发展历史相关
+        * 模式不同的区别：解析文档时会有差异，比如(盒模型的定义，padding，line-height，margin，width，height等等属性在解析的过程中会发生不一致的效果)
