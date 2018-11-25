@@ -10,7 +10,6 @@
         + [A*算法入门](http://www.cppblog.com/mythit/archive/2009/04/19/80492.aspx)
 
     - ### 最短路径
-
         + [Dijkstra算法和Floyd算法](http://www.cnblogs.com/biyeymyhjob/archive/2012/07/31/2615833.html)
 
 - ## 公开课
@@ -73,6 +72,9 @@
         * [segmentFault](https://segmentfault.com/)
         * [stackoverflow](https://stackoverflow.com/)
         * [npm](https://www.npmjs.com/)
+
+    + ### 前端库
+        * [mui框架](http://dev.dcloud.net.cn/mui/)
 
     + ### webPack
         * [入门 Webpack，看这篇就够了](https://segmentfault.com/a/1190000006178770)
@@ -160,8 +162,7 @@
     <hr>
 
     + ### 一些小练习
-       + #### [git 在线练习](https://try.github.io/)
-       
+       + #### [git 在线练习](https://try.github.io/)      
        + #### [MarkDown 在线练习](https://www.markdowntutorial.com/lesson/1/)
     
     <hr>       

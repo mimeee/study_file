@@ -236,7 +236,13 @@
         * 安装 ftp 的服务端 `yum install vsftpd -y`
         * 查看是否安装 `rpm -qa vsftpd`
         * 启动 ftp 服务 `/etc/init.d/vsftpd start`
+            如果不存在，则使用 `service vsftpd start` 来启动 ftp 服务
         * 使用 FileZilla 客户端 连接
+            - 基础设置需要设置filezilla客户端的连接参数
+                + 选中某一连接项
+                + 高级——加密——只使用普通ftp
+                + 传输设置——传输模式——主动
+                + 重新连接
             - 创建一个用户来使用 ftp  
                 `useradd -d /application/nginx/html/ -M  [username] `  
                 `useradd -d /application/nginx/html/ -s /sbin/nologin  [username] `
@@ -255,6 +261,11 @@
                 + 方法一 `chmod 777 -R /application/nginx/html`
                 + 方法二 把用户加入有权限的组 `usermod -g root [username]`
 
+
+- 重启后需要开启的服务 
+    + nginx
+    + ftp
+    + php-fpm
 
 
     
