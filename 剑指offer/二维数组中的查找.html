@@ -27,7 +27,6 @@
 		    var left,mid;
 		    left = 0;
 		    while( left <= right){
-		    	alert(left + "--" + right);
 		        mid = parseInt( ( left + right ) / 2 );
 		        if( array[mid] === target ){ 
 		            return true;
@@ -37,7 +36,6 @@
 		            left = mid + 1
 		        }
 		    }
-
 		    return right;
 		}
 	</script>
