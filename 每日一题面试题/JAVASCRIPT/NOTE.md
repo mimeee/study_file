@@ -54,9 +54,36 @@
 
 ---
 - ### HTTP状态码
+    + 1 开头，此类状态码表示请求已经收到，需要继续处理，这类响应式临时的，除非在某些实验条件下，否则服务器一般禁止向此类客户端发送 1XX 响应
+        * 100 Continue
+        * 101 Switching Protocols
+        * 102 Processing
+    + 2 开头，此类状态码表示成功被服务器接受、理解、接受。
+        * 200 ok
+        * 202 Accepted
+    + 3 开头，此类状态码表示重定向
+        * 301 永久重定向
+        * 302 临时重定向( Move temporarily )
+        * 303 临时重定向( See Other )
+    + 4 开头，此类状态表示错误
+        * 400(Bad Request) 语义有误，当前情感求无法被服务器理解
+        * 401(Unauthorized) 请求需要用户验证
+        * 403(Forbidden) 服务器已经理解，但是拒绝执行
+        * 404(Not Found) 请求失败，资源不存在
+        * 405(Method Not Allowed) 
+    + 5 开头，此类状态码表示服务器有误
+        * 500( Internal Server Error ) 一般是源代码发生错误
+        * 502( Bad Gateway ) 从上游服务器接收到无效的响应
 
 ---
 - ### DOMContentLoaded事件
     + DOMContentLoaded 是在DOM Tree 加载完成后触发的，这个时候document(包括图片等资源)并没完全加载好。`document.addEventListenr('DOMContentLoaded',fn)`和jQuery的 `$()`,`$(document).ready()`,`$().ready()`等价。  
     但是该事件是W3C定义的，所以IE8以前不支持，低版本IE浏览器特有的doScroll方法，当dom结构没有加载完成时，调用此方法会报错，于是可以通过定时器函数不断的调用此方法，并结合try catch语句来实现判断功能。[参考](https://www.jb51.net/article/132741.htm)
     + onload 是在document文档完全加载好后触发的
+
+---
+- ### jquery中选择子元素的方法
+    + `children()` 选择直接的子元素，不管子元素的子元素
+    + `html()` 得到是字符串
+    + `contents()` 得到所有的子元素包括text类型的
+    + [示例](jquery_choose.html)

@@ -1,0 +1,1 @@
+- ### [ HTTP Keep-Alive的作用 ](NOTE.md#HTTP-Keep-Alive的作用) 

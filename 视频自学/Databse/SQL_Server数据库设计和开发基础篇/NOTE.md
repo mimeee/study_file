@@ -52,8 +52,8 @@
                 - 每个表只描述一件事情
                 - 每条记录有唯一标识列
                 - 示例 产品的价格只依赖与产品，订单的时间只依赖与订单。应该分成两个表   
-                ![满足](image/design_stan_two_correct.png.png)  
-                ![不满足](image/design_stan_two_incorrect.png.png)  
+                ![满足](image/design_stan_two_correct.png)  
+                ![不满足](image/design_stan_two_incorrect.png)  
             * 第三范式(3NF)
                 - 数据库表中不包含已在其他表中已包含的非主关键字信息
                 - 示例 在产品的表中已经记录产品价格，这里就没必要在记录的  

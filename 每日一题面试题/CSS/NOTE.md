@@ -119,24 +119,39 @@
 
 ---
 - ### [IE,FF CSS的区别](CSS兼容性.html)
+
 ---
+- ### 清除浮动的4中方法
+    + 什么是CSS清除浮动
+        在非IE浏览器中，如果元素的告诉是自适应(auto)的，并且元素内有内容是浮动的；在这种情况下，容器的高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响(甚至破坏)布局；这时就需要清除浮动。[float](float.html)
 
+    + 清除浮动的4中方法
+        * 在浮动元素的后面添加 `<div style="clear:both"></div>`
+        * 通过设置父元素的 `overflow:hidden`
+        * 父元素也设置浮动(不推荐)
+        * 给浮动的父元素添加伪类 `:after`,通过其设置清除浮动
+            ```css
+                .father:after{
+                    content:"";
+                    width: 0;
+                    height: 0;
+                    font-size: 0;
+                    display: block;
+                    clear: both;
+                }
+                .father>.child:{
+                     float: left;   
+                };
+            ```
 
-
-
-
-
-
-
-
-
-
-- ###  animation & transition & transform
 ---
-    + 题目: 在CSS3中要使元素由一种样式转换成另一种样式，怎么实现
-    + 解答:
-
-- ###  animation & transition & transform
----
-    + 题目: 在CSS3中要使元素由一种样式转换成另一种样式，怎么实现
-    + 解答:
+- ### background属性
+    + 其属性有
+        * background-color 设置颜色
+        * background-position 设置背景图像的位置(水平，垂直)
+        * background-size 设置背景图像的大小(宽度，高度)(cover,contain)
+        * background-repeat 规定如何重复背景图像
+        * background-origin 规定背景图片定位区域(padding-box,border-box,content-box)
+        * background-clip 规定背景图片剪裁区域(padding-box,border-box,content-box)
+        * background-attachment 规定图像背景是否固定或者随着页面滚动(scroll，fixed)
+        * background-image

@@ -2,3 +2,4 @@
 - ### [ 事件冒泡与捕获 ](NOTE.MD#事件冒泡与捕获)
 - ### [ HTTP状态码 ](NOTE.MD#HTTP状态码)
 - ### [DOMContentLoaded](NOTE.MD#DOMContentLoaded事件)
+- ### [jquery中选择子元素的方法](NOTE.MD#jquery中选择子元素的方法)

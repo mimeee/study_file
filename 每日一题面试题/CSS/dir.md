@@ -7,13 +7,13 @@
 - ##### [ css Sprites ](NOTE.md#css-Sprites) 
 - ##### [ boostrap 分辨率问题/布局问题 ](NOTE.md#boostrap-分辨率问题/布局问题) 
 - ##### [ IE,FF CSS的区别 ](NOTE.md#IE,FF-CSS的区别) 
+- ##### [ 清除浮动的4中方法 ](NOTE.md#清除浮动的4中方法)
+- ##### [ background ](NOTE.md#background属性) 
 
 
 
-
-
-
-
+- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
+- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
