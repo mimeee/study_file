@@ -9,6 +9,7 @@
 - ##### [ IE,FF CSS的区别 ](NOTE.md#IE,FF-CSS的区别) 
 - ##### [ 清除浮动的4中方法 ](NOTE.md#清除浮动的4中方法)
 - ##### [ background ](NOTE.md#background属性) 
+- ##### [CSS渲染过程篇](NOTE.md#CSS渲染过程篇)
 
 
 

@@ -155,3 +155,11 @@
         * background-clip 规定背景图片剪裁区域(padding-box,border-box,content-box)
         * background-attachment 规定图像背景是否固定或者随着页面滚动(scroll，fixed)
         * background-image
+
+---
+- ### CSS渲染过程篇
+    + 参考
+        * [Accelerated Rendering in Chrome](https://www.html5rocks.com/zh/tutorials/speed/layers/)
+        * [Web前端性能优化详解之CSS与JS加载](https://segmentfault.com/a/1190000015313069)
+        * [前端性能优化（CSS动画篇](https://segmentfault.com/a/1190000000490328)
+    + 

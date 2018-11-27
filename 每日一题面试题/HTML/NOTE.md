@@ -119,3 +119,13 @@
         * 混杂模式： 使用浏览器自己的标准来解析代码
         * 来源： 与浏览器的发展历史相关
         * 模式不同的区别：解析文档时会有差异，比如(盒模型的定义，padding，line-height，margin，width，height等等属性在解析的过程中会发生不一致的效果)
+
+- ### 各种浏览器内核
+    + IE (Trident)
+    + Edge (Edge)
+    + firefox (Gecko)
+    + google (Webkit->Blink)
+    + opera  (Presto->Webkit->Blink)
+    + safari (Webkit)
+
+
