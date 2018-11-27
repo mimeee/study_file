@@ -15,6 +15,18 @@
 	import { eventbus } from '../main.js';
 
 	export default {
+		beforeCreate(){
+			console.log(this.$props);
+			console.log("beforeCreate")
+		},
+		created(){
+			alert(1)
+			console.log(this.$props)
+		},
+		beforeMount(){
+			alert('mounted')
+			console.log(this.$props)
+		},
 		props:{
 			message:{
 				default:"hehe"
