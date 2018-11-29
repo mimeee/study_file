@@ -37,6 +37,7 @@
     + [插件名称](https://baijiahao.baidu.com/s?id=1611474630560986406&wfr=spider&for=pc)
     + [symfony 插件 Swiftmailer api](https://swiftmailer.symfony.com/pdf/Swiftmailer.pdf)
     + [symfony 插件 Doctrine api](https://www.doctrine-project.org/api/dbal/2.7/Doctrine/DBAL/Driver/Connection.html#method_lastInsertId)
+    + [php插件 phpword](https://github.com/PHPOffice/PHPWord)
 
 - ## 面试
     + [php面试](https://www.cnblogs.com/zyf-zhaoyafei/p/4828358.html)

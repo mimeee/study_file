@@ -162,4 +162,11 @@
         * [Accelerated Rendering in Chrome](https://www.html5rocks.com/zh/tutorials/speed/layers/)
         * [Web前端性能优化详解之CSS与JS加载](https://segmentfault.com/a/1190000015313069)
         * [前端性能优化（CSS动画篇](https://segmentfault.com/a/1190000000490328)
-    + 
+    + 相关术语
+        * GPU: 图像处理器( Graphics Processing Unit),他是显卡的心脏,与CPU类似,只不过GPU是专为执行复杂的数学和几何计算而设计的，这些计算是图形渲染所必需的。
+        * 纹理: 从主储存器(eg. RAM)移动到图像存储器(eg. GPU中的VRAM)的位图图像。一旦他被移动到GPU中，你可以将他匹配成一个网络几何体(就像游戏中的皮肤)。Chrome使用纹理来从GPU上获得大块的页面内容。通过将纹理应用到一个非常简单的矩形网络就能很容易匹配不同的位置和变形。
+    + 学习Layer的Chrome工具
+        * 在Render的tag下选中Layer borders，它会高亮屏幕上的层  
+        ![](../image/layer_start_tool_chrome.png)
+        其中蓝色网格表示瓦片，可以当成层的单元。
+    
