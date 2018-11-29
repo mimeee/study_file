@@ -152,8 +152,13 @@
 		}
 
 		var tr = new tree();
-		tr.addNode(0,"r",{index:2,data:2})
 		tr.addNode(0,"l",{index:1,data:1})
+		tr.addNode(0,"r",{index:2,data:3})
+		tr.addNode(1,"l",{index:3,data:4})
+		tr.addNode(1,"r",{index:4,data:2})
+		tr.addNode(2,"l",{index:5,data:5})
+		tr.addNode(2,"r",{index:6,data:6})
+		tr.deleteNode(2)
 		console.log(tr);
 		tr.preTraversal();
 		console.log("------");
