@@ -73,4 +73,137 @@
                 - 删除异常，删除一条记录的时候，可能会把其他相关的记录一并删除
             * 内存空间浪费
             * 数据更新和插入的异常
-2. 
+2. ### 数据库开发基础
+    - #### SQL语句的类型 批 注释 标识符
+        - Ttansact-SQL 语句的类型
+            + 数据定义语言(Date Definition Language,DDL)语句: DDL语句通过生成数据库，表、和用户自定义的数据库
+                * create object_name 创建
+                * alter object_name 修改
+                * drop object_name 删除
+            + 数据控制语言(Date Control Language,DCL)语句: 改变某个用户或角色相关联的权限
+                * grant 授予权限  
+                    `grant select on table_name to public`
+                * deny 拒绝权限  
+                    `deny select on table_name to public`
+                * revoke 取消权限
+            + 数据操作语言(Date Manipulation Language,DML): 操作数据库中的数据。
+                * select
+                * insert
+                * delete
+                * update
+        - Ttansact-SQL 语句的语法要素
+            + 批处理
+                * `go`
+                    一个批处理命令通知 SQLServer 分析并运行一个批处理的所有指令(它实际上并不是一个Ttansact-SQL语句，只是描述一个批处理，用来将语句划分。局部变量作用范围局限在一个批内，`go`必须独占一行)
+                * `Exec`
+                    用于执行用户自定义的函数，系统存储过程，用户自定义的存储过程或扩展存储过程
+            + 注释语句
+                * 行注释 `--`
+                * 块注释 `/**/`
+        - 标识符
+            + 标准标识符 比如表名就是一个标识符
+                * 第一个字符是a-zA-Z
+                * 第一个字符后可以是数字，字母，或各种符号`@`,`$`,`_`
+                * `@` 代表局部变量(@age 就是一个变量)  
+                    ```sql
+                        set @age = 10
+                    ```
+                * `#` 代表临时表和存储过程(临时表表示一个用户创建的，其他用户不可以使用。当数据库关闭的时候就消失了)
+                     ```sql
+                        create table #t
+                        {
+                            Tage int,
+                            Tname nvarchar(10)
+                        }
+                     ```
+                * `##` 代表一个全局临时表(全局临时表表示一个用户创建的，其他用户也可以使用。当数据库关闭的时候就消失了)
+                    ```sql
+                        create table ##t
+                        {
+                            Tage int,
+                            Tname nvarchar(10)
+                        }
+                    ```
+            + 限定标识符 
+                * 当对象名包含空格时，当保留关键字被用作对象的姓名时，必须使用括号和引号把限定标识符括起来
+                ```sql
+                    create table [order detail]
+                    {
+                        ....
+                    }
+
+                    select * from [order detail]
+                    -- 使用双引号界定符要打开
+                    set quoted_identifier on
+                    -- set quoted_identifier off
+                    select * from "order detail"
+                ```
+    - #### 数据库中数据类型
+        - 数字型
+            + 数字:int,tinyint,smallint,bigint
+            + 十进制小数:money,smallmoney,decimal
+            + 浮点数
+            + real
+        - 日期型
+            + datetime
+        - 字符型
+            + 定长字符 
+                * char(20) 1个字符占用1个字节(英语)
+                * nchar(20) 1个字符占用2个字节
+            + 变长字符 varchar(20)
+                * varchar(20) 1个字符占用1个字节(英语)
+                * nvarchar(20) 1个字符占用2个字节
+        - 二进制型
+        - 唯一标识 代表一个全局特殊标识符，是一个16位16进制的值
+        - SQL变量 包括SQL所支持的各种数据类型
+        - 位图和文本 属于大型二进制对象结构
+        - 表 代表一个表结构，将一个表保存在一个字段中
+        - 游标 用于存储过程的编程
+        - 用户自定义数据类型
+    - #### 变量 函数 数据类型转换
+        - 数据库中的变量
+            ```sql
+                -- 声明变量
+                declare @sname varchar(10),@address nvarchar(10)
+                -- 赋值
+                set @address = "mimee"
+                select @address = "mimee"
+                -- 全局变量
+                select @@version
+                select @@servername
+            ```
+        - 函数
+            + 系统函数
+                * 聚集函数，对于一个 *集合*中的值进行运算，返回一个 *单一的，汇总的*值
+                ```sql
+                    select avg(column) as avg_num from tablename
+
+                    -- 0到100的整数
+                    declare @r int
+                    set @r = rand() * 100
+                    select @r
+                ```
+                * 标量函数，只对 *单个值*进行运算并返回 *单一*的值，只要表达式正确，就可以使用这些函数
+                ```sql
+                    select DB_name() as 'database'
+                ```
+                * 系统函数范例
+                    ```sql
+                        -- 时间转化为其它格式，convert()可以转换数据类型
+                        -- convert(varchar,10);
+                        select 'ansi:',convert(varchar(30),getdate(),102) as style
+                        union
+                        select 'janpanese:',convert(varchar(30),getdate(),111) as style
+                        union
+                        select 'European:',convert(varchar(30),getdate(),113) as style
+                    ```
+                * 数学运算符
+                    - `+ - * / %`
+                    - `= < > >= <=`
+                    - 字符串连接使用 `+`，空字符不等于空值
+                    - 逻辑运算符`and or not`
+                * 表达式
+                    - 表达式是各种符号和对单个数据进行操作  
+                    `select column1+column form tablename`
+    - ####
+3. ###
