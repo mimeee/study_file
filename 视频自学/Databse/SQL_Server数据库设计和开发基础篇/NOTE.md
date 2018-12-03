@@ -205,5 +205,21 @@
                 * 表达式
                     - 表达式是各种符号和对单个数据进行操作  
                     `select column1+column form tablename`
-    - ####
+    - #### SQL的日期函数
+        + `getdate()` 获取系统的当前时间
+        + `Year(getdate())` 获取年份
+        + `Month(getdate())` 获取月份
+        + `Day(getdate())` 获取日期
+        + `dateadd(yy,4,(getdate()))` 表示对当前时间加上4年，
+            * yy 表示年
+            * qq 表示季度
+            * mm 表示月
+            * wk 表示周
+            * hh 表示小时
+            * mi 表示分钟
+            * ss 表示秒
+            * dy 表示一年中的第几天
+        + datediff(day,'2005-5-3',getdate()) 返回时间差
+        + datepart(day,getdate())
+
 3. ###
