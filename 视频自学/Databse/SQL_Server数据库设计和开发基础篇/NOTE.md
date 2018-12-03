@@ -221,5 +221,24 @@
             * dy 表示一年中的第几天
         + datediff(day,'2005-5-3',getdate()) 返回时间差
         + datepart(day,getdate())
+    - #### 数据库开发中用到的流程控制语句
+        + 判断语句 
+            * if 条件 .... else ....
+            * case (变量) when (条件) (执行的语句) when (条件) (执行的语句) else (执行的语句) end
+            ```sql
+                case when @score < 60 then ...
+                     when @score > 60 and  @score < 70 then ...
+                     else ....
+                     end
 
+                declare @score decimal
+                set @score = 50 + rand() * 50
+                if (@score < 60) 
+                begin
+                    print '不及格'
+                    print '不及格'
+                end
+                else
+                    print '及格'
+            ```
 3. ###
