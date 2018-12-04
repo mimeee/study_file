@@ -241,4 +241,67 @@
                 else
                     print '及格'
             ```
-3. ###
+        + 循环语句
+            * while (条件)
+            ```sql
+                declare @times int,@a varchar(100)
+                set @times = 0
+                set @a = "*"
+                while (@times < 20)
+                begin 
+                    print @a
+                    @a = @a + "*"
+                    @times = @times + 1
+                end
+            ```
+    - #### 使用SQL帮助和动态构造SQL语句
+        + 选中某个关键字，单击F1即可打开SQL帮助
+        + 动态构建SQL语句
+            * 当SQL语句中有变量的时候，不可以直接使用使用该语句会报错应该配合`execute()`使用
+            ```sql
+                declare @tablename nvarchar(20)
+                set @tableName = "T" + convert(varchar(4),Year(getdate())) + "年" + convert(varchar(2),Month(getdate())) + "月"
+                execute( 'create table ' + @tablename + '(studentid int, studentname nvarchar(10))')
+            ```
+3. ### 数据查询
+    - #### 数据查询
+        + 列筛选和行筛选
+            * 使用`select`可以指定列，使用`where`可以指定行
+            * 过滤数据  
+                - 使用比较运算符 `= > < >= <= <>`
+                - 使用字符比较符 `like` 
+                    + % 0个或多个字符串，类似正则匹配中的 `.*`
+                    `SELECT * FROM tablename where column like '%明'`查找什么什么明(王明，阿斯顿发送到明，阿道夫李明..)
+                    + _ 任何单个的字符，类似正则匹配中的 `.`
+                    `SELECT * FROM tablename where column like '_明'`查找什么明(王明，李明..)
+                    + \[\] 在指定区域或集合内的任何单个字符，使用逗号隔开
+                    `SELECT * FROM tablename where column like '_[明,哈]_'`查找什么明什么或者什么哈什么(王明看，李明其，李哈其，额哈其..)
+                    + \[^\] 不在指定区域或集合内的任何单个字符 
+                - 使用逻辑字符
+                    + `and or not`
+                - 查询一定范围的值
+                    + `between and`/`not between and`  
+                    `select * from tablename where mark between 70 and 80`   等价于  
+                    `select * from tablename where mark >= 70 and mark <= 80`  
+                    **使用`between`的查找效率大于使用`and`和比较运算符**
+                - 使用值得列表作为搜索条件
+                    + 使用 in 或者使用 or 操作符连接起来的一系列比较符，SQLServer 在处理他们的方式相同。不要在搜索条件结尾使用NULL，这将返回意想不到的结果。可以使用 not in，降低数据查询速度
+                - 查询空值
+                    + 使用 is null  
+                    `select * from table where column is null`
+                    + 使用 is not null查询非空值  
+                    `select * from table where column is not null`
+            * 
+        + 格式化查询结果
+        + 多表查询 内连接
+        + 多表查询 外链接
+        + 多表查询 自连接
+        + 在数据查询中使用top参数
+        + 聚集函数
+        + 使用`group by`进行分组汇总
+        + 分组汇总中使用`cube`和`rollup`参数
+        + 子查询
+
+
+
+4. ###
