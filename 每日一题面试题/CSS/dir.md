@@ -10,11 +10,10 @@
 - ##### [ 清除浮动的4中方法 ](NOTE.md#清除浮动的4中方法)
 - ##### [ background ](NOTE.md#background属性) 
 - ##### [CSS渲染过程篇](NOTE.md#CSS渲染过程篇)
+- ##### [ css3中的媒体查询 ](NOTE.md#css3中的媒体查询) 
+- ##### [ 移动端开发中`max-device-width`与`max-width`的区别 ](NOTE.md#移动端开发中`max-device-width`与`max-width`的区别) 
+- ##### [ BFC ](NOTE.md#BFC) 
 
 
-
-- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
-- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
-- ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 
 - ##### [ 盒子模式 ](NOTE.md#盒子模式) 

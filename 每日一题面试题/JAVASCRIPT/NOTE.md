@@ -87,3 +87,23 @@
     + `html()` 得到是字符串
     + `contents()` 得到所有的子元素包括text类型的
     + [示例](jquery_choose.html)
+
+---
+- ### 图片请求产生条件
+    |     | 产生请求 | 不产生请求 |
+    | --- | ------- | --------- |
+    | img标签 | 只要给src属性赋值 | 不添加src属性或者属性为"" |
+    | backgroud-image | 元素可见或者visibility:hidden | display：none |
+
+---
+- ### 在HTML5中的地理定位
+    + 在 HTML5 中Geolocation API用于获得用户的地理位置
+        * `getCurrentPosition(fn)`返回包含设备当前坐标的一个对象`Coords`
+        ```javascript
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+            })
+        ```
+        * `watchPostion()`返回用户当前位置，并持续返回用户移动时的更新位置
+        * `dearWatch()`停止 `watchPosition()` 方法

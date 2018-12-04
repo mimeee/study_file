@@ -6,10 +6,47 @@
 </head>
 <body>
 	输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+
+	<div>
+		也是使用递归，将序列一点一点拆分成小树
+	</div>
 	<script>
+		var pre = [1,2,3,4,5,6,7];
+		var vin = [3,2,4,1,6,5,7];
+		//{1,2,5,3,4,6,7}
+		var a = result(pre, vin);
+
+		function result(pre, vin)
+		{
+			var tree = reConstructBinaryTree(pre, vin);
+			circle(tree);
+			return tree;
+		}
+
+		function circle(obj){
+			if(obj['left'] !== null){
+				circle(obj['left']);
+			}
+			if(obj['right'] !== null){
+				circle(obj['right']);
+			}
+			console.log(obj['val']);
+		}
 		function reConstructBinaryTree(pre, vin)
 		{
-		    // write code here
+			if(pre.length === 0 || vin.length === 0) return null;
+			var roots = 0;
+			var tree = new node(pre[0]);
+			var index = vin.indexOf(pre[0]);
+			tree.left = reConstructBinaryTree(pre.slice(1,index + 1), vin.slice(0,index));
+			tree.right = reConstructBinaryTree(pre.slice(index + 1), vin.slice(index + 1));
+			return tree;
+		}
+
+		function node(x){
+			this.val = x;
+			this.left = null;
+			this.right = null;
 		}
 	</script>
 </body>

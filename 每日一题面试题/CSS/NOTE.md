@@ -187,3 +187,80 @@
         * 复合多个层来生成最终的屏幕图像
     + 注意  
         需要注意的是，如果图层中某个元素需要重绘，那么整个图层都需要重绘。比如一个图层包含很多节点，其中有个gif图，gif图的每一帧，都会重回整个图层的其他节点，然后生成最终的图层位图。所以这需要通过特殊的方式来强制gif图属于自己一个图层（translateZ(0)或者translate3d(0,0,0)），CSS3的动画也是一样（好在绝大部分情况浏览器自己会为CSS3动画的节点创建图层）
+
+---
+- ### css3中的媒体查询
+    + 媒体查询(`@media`)的意义:可以在不改变页面内容的情况下，为特性的一些输出设备定制显示效果
+    + 组成:媒体类型和一个或者多个检测媒体特性的条件表达式组成
+        * 媒体类型  
+            - all 所有媒体
+            - braille 盲文触觉设备
+            - embossed 盲文打印机
+            - print 手持设备
+            - projection 打印预览
+            - screen 彩屏设备
+            - speech ‘听觉’类似的媒体类型
+            - tty 不适用像素的设备
+            - tv 电视
+        * 表达式中国可以使用 not,and,only 来构建复杂的媒体查询。使用 `,` 隔开每个表达式相当于使用or，只要有一个表达式为true即可,not关键字应用于整个表达式，不可以对单一的某个单独使用
+        ```css
+            @media (min-width: 700px) and (orientation: landscape) { ... }
+            @media (min-width: 700px), handheld and (orientation: landscape) { ... }
+
+            /*以下两个等价*/
+            @media not all and (monochrome) { ... }
+            @media not (all and (monochrome)) { ... }
+
+            /*以下两个等价*/
+            @media not screen and (color), print and (color)
+            @media (not (screen and (color))), print and (color)
+        ```
+    + 可检测的媒体特性
+        * width: 视口宽度
+        * height: 视口高度
+        * device-width: 渲染表面的宽度
+        * device-height: 渲染表面的高度
+        * orientation: 检测设备处于横向还是纵向
+        * aspect-ratio: 基于视口宽度和高度的宽高比(比如 16/9)
+        * device-aspect-ratio: 和aspect-ratio类似，基于设备渲染平面宽度和高度的宽高比
+        * color: 每种颜色的位数
+        * color-index: 设备的颜色索引表中的颜色数
+        * monochrome: 检测单色帧缓冲区每像素所使用的位数
+        * resolution: 用来检测屏幕或打印机的分辨率
+        * scan: 电视机的扫描方式
+        * grid: 用来检测输出设备是网格设备还是位图设备
+        * min-device-pixel-ratio: 最小像素比
+
+---
+- ### 移动端开发中`max-device-width`与`max-width`的区别
+    device-width指的是渲染的屏幕大小，也就是分辨率的大小。比如pihone4的分辨率是 640 * 960，也是说它的 device-width 是 640px，但是他的 width 是 340px，原因在于他是使用两个像素来渲染一个css像素的。
+
+---
+- ### BFC
+    + 参考:[CSS之BFC、IFC、GFC和FFC](https://blog.csdn.net/tianxieliuhong/article/details/53375141),[ 
+BFC原理及其应用](https://blog.csdn.net/wky_csdn/article/details/73554720)
+    + 简单解释:
+        * css的最小单位是Box(盒子)，而Box又分为
+            - block-level box
+            - inline-level box
+            - run-in box
+        * 对应于box也有不同Formatting Context(一个决定如何渲染文档的容器),Formatting Context是页面的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。
+            - Block formatting context(BFC,块级格式化上下文)
+            - inline formatting context(IFC)
+            - GFC
+            - FFC
+        * [BFC布局规则](BFC_test.html)
+            - 内部的Box会在垂直方向，一个接一个地放置
+            - Box垂直方向的距离由margin决定，属于同一个BFC的两个相邻Box的margin会发生重叠
+            - 每个元素的margin box的左边，与包含块border box的左边相接触，即使浮动也是如此。
+            - BFC的区域不会与float box重叠
+            - BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也是如此
+            - 计算BFC的高度时，浮动元素也参与计算
+        * 那些元素会生成BFC
+            - 根元素
+            - float属性不为none
+            - position属性为absolute或者是fixed
+            - display为inline-block、table-cell、table-caption、flex、inline-flex，overflow不为visible
+
+
+    

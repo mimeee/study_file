@@ -3,3 +3,5 @@
 - ### [ HTTP状态码 ](NOTE.MD#HTTP状态码)
 - ### [DOMContentLoaded](NOTE.MD#DOMContentLoaded事件)
 - ### [jquery中选择子元素的方法](NOTE.MD#jquery中选择子元素的方法)
+- ### [图片请求产生条件](NOTE.MD#图片请求产生条件)
+- ### [在HTML5中的地理定位](NOTE.MD#在HTML5中的地理定位)
