@@ -290,10 +290,57 @@
                     + 使用 is null  
                     `select * from table where column is null`
                     + 使用 is not null查询非空值  
-                    `select * from table where column is not null`
-            * 
+                    `select * from table where column is not null` 
         + 格式化查询结果
+            * `order by` 使得结果集排序，`ASE` 升序，`DESE` 降序
+            * `distinct` 去除某重复值
+                `select distinct column from tablename `
+            * `AS` 取别名，也可省略不写
+                `select column as 'a' from tablename`
+            * 写sql语句的时候，列与列使用 ** , ** 隔开，可以随意添加多个列
+                `select 'a','b','c',column from tablename`
+        + 查询的工作原理
+            * 非缓存查询，所有查询在执行前都要经过以下步骤：解释、解析、优化、编译
+                - 解释 检查语句的语法是否正确
+                - 解析 校验语句中出现的对象名称是否有效，同时检查对象的所有权的权限
+                - 优化 检查是否能够使用索引并决定联合策略
+                - 编译 把查询翻译为一个可执行的表
+                - 执行 把编译过程的查询要求提交并进行处理
+            * 缓存查询  
+                为了提高性能，SQLServer能够保存编译过的查询计划供以后使用，查询计划是经过优化的指令，他指定了如何处理查询并访问数据。
+            * 查询是如何被自动缓存的  
+                被缓存的查询保存在内存中一个叫做过程缓存的地方，在下列两种情况下，查询将被自动缓存
+                - 特定的批 
+                    ```sql
+                        -- 以下两句将会使用相同的缓存计划
+                        select * from procducts where cost = '$ 12.5'
+                        select * from procducts where cost = '$ 13.5'
+                        -- 下面一句变量不同不会和上面两句使用相同的查询计划
+                        select * from procducts where cost = 13.5
+                    ```
+                - 自动化参数
+            * 影响性能的注意事项
+                - 尽量使用正逻辑而不是非逻辑，非逻辑操作(not between, not in, not null)可能会降低查询速度，因为它要检索数据表中的所有行
+                - 如果能够使用一个更确定的查询，就尽量避免使用关键字LIKE，使用LIKE查询，查询速度可能会降低
+                - 如果可能，尽量在搜索条件中使用精确的比较或值的域
+                - 使用ORDER BY子句可能会降低数据查询速度
+            * 使用系统函数
+                - sp_who 显示服务器上所有正在产生的活动
+                - select @@Spid 想知道那些活动是你的
+                - exec sp_who 56 将显示和你的服务器进程号有关的所有活动
+                - select user_name()
+                - select DB_name()
+                - select @@servername
         + 多表查询 内连接
+            * 内连接，在每个表中找出符合条件的共有记录
+                - 关键字 `join on`/`inner join on`
+            * 外连接
+                - 左外连接 `left join on`
+                - 右外连接 `right join on`
+            * 自连接
+                - 应用：查询表中某个field中相同的内容有哪些
+            * 合并多个结果集 `union`
+                - 要求：结果集的colmun完全相同
         + 多表查询 外链接
         + 多表查询 自连接
         + 在数据查询中使用top参数

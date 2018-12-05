@@ -64,6 +64,7 @@
         * [bootstrap-table 插件](http://bootstrap-table.wenzhixin.net.cn/)
         * [bootstrap-select 插件](https://github.com/snapappointments/bootstrap-select)
         * [tableExport 插件](https://github.com/hhurz/tableExport.jquery.plugin)
+        * [前端处理long数据精度丢失问题](https://blog.csdn.net/fifteen718/article/details/82783246)
 
         <hr>
 
