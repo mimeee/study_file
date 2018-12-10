@@ -6,3 +6,6 @@
 - ### [DTD](DTD) 
 - ### [关于HTML的Doctype和严格模式与混杂模式](NOTE.md#Doctype)
 - ### [各种浏览器内核](NOTE.md#各种浏览器内核)
+- ### [enctype属性](NOTE.md#enctype属性)
+- ### [http协议](NOTE.md#http协议)
+- ### [RESTful](NOTE.md#RESTful)

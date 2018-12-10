@@ -51,6 +51,7 @@
     但是，如果 Dom Tree在执行`head`里js前被构建好，那在js应该是可以获取 dom 节点的，但是却获取不到。
     + 对于浏览器解析页面的过程
         * 参考:
+            - [阮一峰:网页性能管理详解](http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html)
             - [web页面加载、解析、渲染过程](https://www.cnblogs.com/CandyManPing/p/6635008.html)
             - [网页解析的全过程(输入url到展示页面)](https://www.cnblogs.com/wpshan/p/6282061.html)         
             - [HTML页面加载和解析流程](https://blog.csdn.net/qq_39793127/article/details/78900707)
@@ -120,12 +121,34 @@
         * 来源： 与浏览器的发展历史相关
         * 模式不同的区别：解析文档时会有差异，比如(盒模型的定义，padding，line-height，margin，width，height等等属性在解析的过程中会发生不一致的效果)
 
+---
 - ### 各种浏览器内核
-    + IE (Trident)
+    + IE (Trident) -ms
     + Edge (Edge)
-    + firefox (Gecko)
-    + google (Webkit->Blink)
-    + opera  (Presto->Webkit->Blink)
-    + safari (Webkit)
+    + firefox (Gecko) -moz
+    + google (Webkit->Blink) -webkit
+    + opera  (Presto->Webkit->Blink) -o
+    + safari (Webkit) -webkit
+
+---
+- ### enctype属性
+    + 作用： 该属性规定在发送到服务器之前应该如何对表单数据进行编码
+    + `application/x-www-form-urlencoded` 在发送前编码所有字符(默认)
+    + `multipart/form-data` 不对字符编码，在使用包含文件上传空间的表单时候，必须使用该值，上传二进制数据过去
+    + `text/plain` 空格转换为'+'加号，但不对特殊字符编码
+
+---
+- ### http协议
+    + 参考: 
+        * [阮一峰http协议入门](http://www.ruanyifeng.com/blog/2016/08/http.html)
+        * [关于HTTP协议，一篇就够了](http://www.cnblogs.com/ranyonsue/p/5984001.html)
+        * [互联网协议](http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html)
+
+
+---
+- ### RESTful
+    + 参考
+        * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
+        * [REST，以及RESTful的讲解](https://blog.csdn.net/qq_21383435/article/details/80032375)
 
 
