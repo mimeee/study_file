@@ -331,7 +331,7 @@
                 - select user_name()
                 - select DB_name()
                 - select @@servername
-        + 多表查询 内连接
+        + 多表查询
             * 内连接，在每个表中找出符合条件的共有记录
                 - 关键字 `join on`/`inner join on`
             * 外连接
@@ -341,14 +341,99 @@
                 - 应用：查询表中某个field中相同的内容有哪些
             * 合并多个结果集 `union`
                 - 要求：结果集的colmun完全相同
-        + 多表查询 外链接
-        + 多表查询 自连接
         + 在数据查询中使用top参数
+            ```sql
+                -- 选出前5个
+                select top 5 * from tablename order by column ASE;
+            ```
         + 聚集函数
+            可以在`select`语句中单独使用聚集函数，也可以与语句`group by`联合使用。除了`count`函数，如果没有满足`where` 子句的记录，则所有的聚集函数都将返回空值，`count`返回 0。
+            - `count()`
+                当参数是`*`的时候，统计记录；当参数是列的时候统计列中不是空值的数量
+            - `sum()`
+            - `min()`
+            - `max()`
+            - `avg()`
         + 使用`group by`进行分组汇总
-        + 分组汇总中使用`cube`和`rollup`参数
+            如果使用聚集函数，则将对表中的所有记录的某个字段进行汇总。然后生成单个的值。如果想生成多个汇总值，同时使用聚集函数和`group by`语句，联合使用`having`和`group by`子句能够是的结果集只包含满足条件的记录
+            - 联合使用`having`和`group by`子句
+            `select subject,avg(score) as avgs from student group by subject having avgs > 80` `having`后面跟的是筛选条件
+            - 分组汇总
+                + 统计每个班有多少个学生
+                `select Class,count(*) from student group by Class`
+                + 统计男生女生的数量
+                `select sex,count(*) from student group by sex`
+                + 统计每科的平均分
+                `select subject,avg(score) from student group by subject`
+            - 多列分组汇总
+                + 需求：求三个班的三个科目的总成绩
+                + 思路：请对根据科目分组，咱根据分组结果去对应三个班的成绩
+                + sql语句  
+                ```sql
+                    -- 在group by后面接的参数，是先按照subject分组，再按照Class分组
+                    SELECT Class,subject,sum(score) from student group by subject,Class
+                ```
+                + 分组汇总中使用`cube`和`rollup`参数
+                + `rollup`参数，将两列的详细信息和分组汇总
+                ```sql
+                    SELECT Class,subject,sum(score) from student group by subject,Class with rollup
+                ```
+                + `cube`将列出的subject，Class两列进行汇总
+                ```sql
+                    SELECT Class,subject,sum(score) from student group by subject,Class with cube
+                ```
+                + `grouping(column)` 判断该条记录是否是由该个column进行汇总的，是则输出1，不是则输出0
+                ```sql
+                    SELECT Class,grouping(Class),subject,grouping(subject),sum(score) from student group by subject,Class with cube
+                ```
         + 子查询
+            子查询可以吧一个复杂的查询分解成一系列逻辑步骤，这样就可以用一个单个的局域解决复杂的查询问题。  
+            对于选择连接还是子查询，其实执行效率差不多，但是子查询可能要求查询优化器执行额外的操作，比如排序，而这些操作将会影响查询的处理策略
+            - 使用
+                + 查看每个学生成绩与平均分的差距(把子查询用作表达式)
+                    * 思路：首先得到平均分，再做减法运算
+                    ```sql
+                        SELECT 
+                            s_id,
+                            subject,
+                            -- 查询得到平均分
+                            score - (SELECT avg(score) from tablename) 
+                        from 
+                            tablename
 
-
-
-4. ###
+                        -- 扩展
+                        SELECT 
+                            s_id,
+                            subject,
+                            -- 查询得到平均分
+                            case
+                                when
+                                    (score - (SELECT avg(score) from tablename)) > 0
+                                then 
+                                    '高于平均分'
+                                else
+                                    '低于平均分'
+                        from 
+                            tablename
+                    ```
+                + 查找平均分低于60分的学生的学号，姓名(用子查询当做派生的表)
+                    * 思路：先得到每一个学生的平均分，筛选出平均分低于60分的同学，根据筛选的结果集中的s_id去寻找学生的姓名
+                    * sql
+                    ```sql
+                        -- 得到每一个学生的平均分
+                        SELECT s_id,avg(score) from student group by s_id
+                        -- 筛选出平均分低于60分的同学
+                        SELECT s_id,avg(score) as avgs from student group by s_id having avgs < 60
+                        -- 将上述的结果当成一个表，去查询最终结果
+                        SELECT 
+                            * 
+                        from 
+                            student
+                        where 
+                            s_id 
+                        in 
+                            (SELECT s_id from
+                                (SELECT s_id,avg(score) as avgs from student group by s_id having avgs < 60) as t
+                            )
+                    ```
+4. ### 数据增删改
