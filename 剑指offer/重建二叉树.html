@@ -14,24 +14,15 @@
 		var pre = [1,2,3,4,5,6,7];
 		var vin = [3,2,4,1,6,5,7];
 		//{1,2,5,3,4,6,7}
-		var a = result(pre, vin);
+		//得到链式的二叉树
+		var tree = reConstructBinaryTree(pre, vin);
+		var data = [];
+		//广度遍历二叉树
+		breadthFirstTraverse(tree);
+		console.log(tree);
+		console.log(data);
 
-		function result(pre, vin)
-		{
-			var tree = reConstructBinaryTree(pre, vin);
-			circle(tree);
-			return tree;
-		}
-
-		function circle(obj){
-			if(obj['left'] !== null){
-				circle(obj['left']);
-			}
-			if(obj['right'] !== null){
-				circle(obj['right']);
-			}
-			console.log(obj['val']);
-		}
+		
 		function reConstructBinaryTree(pre, vin)
 		{
 			if(pre.length === 0 || vin.length === 0) return null;
@@ -43,11 +34,37 @@
 			return tree;
 		}
 
+
 		function node(x){
 			this.val = x;
 			this.left = null;
 			this.right = null;
 		}
+
+		function breadthFirstTraverse(tree){
+			data.push(tree.val);
+			var curNode = [tree];
+			breadthFirstTraverseImpl(curNode);
+		}
+
+		function breadthFirstTraverseImpl(preNode){
+			var curNode = [];
+			for(var i = 0; i < preNode.length; i++){
+				if(preNode[i]['left'] !== null){
+					curNode.push(preNode[i]['left']);
+					data.push(preNode[i]['left']['val']);
+				}
+				if(preNode[i]['right'] !== null){
+					curNode.push(preNode[i]['right']);
+					data.push(preNode[i]['right']['val']);
+				}
+			}
+			if(curNode.length > 0){
+				breadthFirstTraverseImpl(curNode);
+			}			
+		}
+
+
 	</script>
 </body>
 </html>

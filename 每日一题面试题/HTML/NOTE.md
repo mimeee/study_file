@@ -143,7 +143,80 @@
         * [阮一峰http协议入门](http://www.ruanyifeng.com/blog/2016/08/http.html)
         * [关于HTTP协议，一篇就够了](http://www.cnblogs.com/ranyonsue/p/5984001.html)
         * [互联网协议](http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html)
+    + HTTP发展史
+        * HTTP/0.9
+            - request
+                + 命令：GET
+            ```
+                GET/index.html
+            ```
+            - response 只能回应HTML格式的 **字符串**,发送完毕就关闭TCP连接
+            ```html
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Document</title>
+                </head>
+                <body>
+                  index  
+                </body>
+                </html>
+            ```
+        * HTTP/1.0
+            - request
+                + 命令：GET,POST,HEAD
+                + 内容：任何格式的内容
+                + 头信息：描述一些元数据
+            ```
+                <!-- 请求命令/HTTP/HTTP版本号 --!>
+                GET/HTTP/1.0
 
+                User-Agent:Mozilla/5.0(Macintosh; Intel Mac OS X 10_10_5)
+
+                <!-- 允许接受的数据格式 一级类型/二级类型 --!>
+                Accept:*/*
+                
+                <!-- 允许接受的压缩方法 --!>
+                Accept-Encoding
+            ```
+            - response
+            ```
+                <!-- HTTP/HTTP版本号 状态码 状态描述 --!>
+                HTTP/1.0 200 ok
+               
+                <!-- 数据格式,头信息必须是 ASCII 码,后面的数据可以是任何格式 --!>
+                <!-- 可以在分号后面接编码格式 --!>
+                <!-- 根据客户端请求的时候发送的 Accept 所描述的可以接受的数据格式 --!>
+                Content-Type: text/plain; charset=utf-8
+
+                <!-- 由于发送的数据可以是任何格式，因此可以把数据压缩后再发送。Content-Encoding字段说明数据的压缩方法 --!>
+                Content-Encoding: gzip
+                Content-Encoding: compress 
+                Content-Encoding: deflate
+            ```
+            - 缺点
+                主要的缺点在HTTP1.0只能发送一个请求，发送数据完毕就关闭，如果还有其他资源要请求，就必须重新建立链接，但是建立TCP链接的成本是很高的，所以为了解决这个问题有些浏览器在请求的时候用了一个非标准的 `Connection` 字段。
+                `Connection: keep-alive`  
+                客户端发送这个字段，服务器同样回应这个字段
+        * HTTP/1.1
+            - 对比与HTTP/1.0
+                + 持久链接
+                    客户端在最后一个请求的时候，发送`Connection: close`，明确要求服务器关闭连接。对于同一个域名大多数浏览器运行建立最多6个持久连接
+                + 管道机制 可以同时发送多个请求，服务器安装顺序回应
+                + 增加 `Content-Length` 字段  
+                    区分数据包是属于哪一个回应的
+                + 分块传输编码
+                    请求头或者回应头有 `Transfer-Encoding: chunked`，表明使用分块传输编码，回应将由数量未定的数据块组成
+                + 命令：GET,POST,HEAD,PUT,PATCH,OPTIONS,DELETE
+                + `HOST`字段 将请求发往同一个服务器的不同网站
+                + 缺点 队头堵塞
+                    - 减少HTTP请求
+                        + 合并脚本，样式
+                        + CSS SPITE
+                    - 增加持久连接
+                        + 域名分片
+        * HTTP/2
 
 ---
 - ### RESTful
