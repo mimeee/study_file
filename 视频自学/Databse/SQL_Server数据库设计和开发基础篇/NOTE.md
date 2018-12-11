@@ -437,3 +437,19 @@
                             )
                     ```
 4. ### 数据增删改
+    - #### 插入 
+        + `insert tablename (column) values (value)`   
+        或者
+          `insert tablename values (value)` 
+        + 将查询后的数据插入一张新表(已创建)中
+            `insert newtablename select * from oldtablename`
+        + 将查询后的数据插入一张新表(未创建)中
+            `select * into newtablename from oldtablename`
+    - #### 删除
+        + `delete tablename $condition`
+        + delete后面接一张大表，可以删除整个大表的内容  
+        `delete tablename from tablename a join tablename b on a.id = b.id where a.mark < 60`
+    - #### 修改
+        + `update tablename set $column = $value where $condition`
+        + update后面接一个大表，更新大表的内容  
+        `update tablename set $column = $value FROM tableone a join tabletwo b on a.id = b.id where a.id > 10`
