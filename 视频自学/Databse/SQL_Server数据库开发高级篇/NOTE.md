@@ -93,10 +93,38 @@
         ```
     - #### 使用数据库关系图查看和实体
     - #### 使约束失效
-
-
+        + 唯一约束和主键约束不能失效，Check约束、默认值约束、外键约束可以失效
+        + 失效方式
+            * 添加约束阶段：对现有的数据不约束
+                ```sql
+                    ALTER TABLE 
+                        table_name
+                    WITH NOCHECK 
+                    ADD CONSTRAINT [CK_column_name]
+                    CHECK ( [condition] or [condition] )
+                ```
+            * 添加新的约束时，使约束失败
+                ```sql
+                    ALTER TABLE 
+                        table_name
+                    WITH NOCHECK 
+                    CONSTRAINT [CK_column_name]
+                ```
+            * 恢复约束
+                ```sql
+                    ALTER TABLE 
+                        table_name
+                    WITH CHECK 
+                    CONSTRAINT [CK_column_name]
+                ```
 2. ### 介绍数据库存储和索引
     - #### 数据库如何存储数据
+        + 查看数据库文件编号   
+            在数据库中，sqlServer会对每一个databese赋予一个编号，可以使用 `sp_helpdb database_name`查看
+        + 数据库存储结构
+            在数据库中，存储数据分为表->区->数据页；其中每数据页的容量为8K(8*1024字节)，其中数据页的结构为标头(必须有，包含该页的一些信息，大小为96字节)；其他就是数据行。
+            ![](image/dabepage.png)
+            
     - #### 根据表记录数量估算占用磁盘空间
     - #### 查看数据库的页
     - #### 在堆中存放数据和查找数据
