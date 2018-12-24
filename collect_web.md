@@ -64,6 +64,8 @@
         * [bootstrap-table 插件](http://bootstrap-table.wenzhixin.net.cn/)
         * [bootstrap-select 插件](https://github.com/snapappointments/bootstrap-select)
         * [tableExport 插件](https://github.com/hhurz/tableExport.jquery.plugin)
+        * [表单验证插件bootstrap-validate-api](https://formvalidation.io/guide/api/)
+        * [bootstrap-validate案例](plugin-package/bootstrapvalidator-master.rar)
         * [前端处理long数据精度丢失问题](https://blog.csdn.net/fifteen718/article/details/82783246)
 
         <hr>
