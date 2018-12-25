@@ -240,4 +240,43 @@
         * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
         * [REST，以及RESTful的讲解](https://blog.csdn.net/qq_21383435/article/details/80032375)
 
+---
+- ### 浏览器常见的标签默认的display
+    + 行内元素
+        *span,a,label,em,strong...*
+    + 块级元素
+        *div,p,h1-h6,ul,ol,dl,li,dd,table,hr,blockquote,address,menu,pre,header,section,aside,footer*
+    + 行块元素
+        *img,input,button,textarea,select*
 
+---
+- ### 关于iframe
+    + 参考: [Web前端之iframe详解](http://www.cnblogs.com/lvhw/p/7107436.html)
+    + 实验: [同域下](iframe/1.html)
+    + 使用场景
+        * 资源加载
+        * 左边固定右边自适应的布局
+        * 上传图片，避免当前页刷新
+        * 与第三方域名下的页面共享cookie
+    + 同源
+        * 父窗口获取子窗口
+            - `window.frames['name'].window`/`window.frames['name'].window.document`
+            - `document.querySelector("iframe").contentWindow`/`document.querySelector("iframe").contentDocument`
+        * 子窗口获取父窗口
+            - `window.top`/`window.parent`
+
+
+---
+- ### 浏览器同源
+    + 参考：
+        * [浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
+    + 非同源下，有三种限制
+        * LocalStorage, Cookies, IndexDB无法获取(Cookies 是服务器写入浏览器的一小段信息)
+        * DOM无法获取
+        * Ajax请求不可以发送
+    + 规避同源的方法
+        * 一级域名相同，二级域名不相同,使用document.domain
+        * 完全不同源
+            - 片段识别符(fragment identifier)
+            - window.name
+            - 跨文档通信API(Cross-document messaging)
