@@ -13,7 +13,8 @@
 
 ### 相关扩展
 - [自然语言处理简介](https://blog.csdn.net/wangyaninglm/article/details/81232724)
-
+- [自然语言处理基础（1）--基本分词方法](https://blog.csdn.net/sihailongwang/article/details/73456845)
+- [自然语言处理入门（1）——文本相似度计算](https://blog.csdn.net/FlySky1991/article/details/72786820)
 ### 相关文章
 - [文本关键词提取小结](https://blog.csdn.net/albertyzy/article/details/80534246)
 - [分词算法](https://blog.csdn.net/lcwdzl/article/details/78493637)

@@ -225,6 +225,17 @@
 
 ---
 - ### RESTful
+    + 错误的使用HTTP中的会导致
+        * url混乱
+        * 贪婪(有状态、无状态混乱在一块)
+        * 无序(服务器返回信息)
+    + method的方法
+        * get->read
+        * put->update
+        * post->create
+        * delete->delete
+    + REST是面向资源的，要站在资源的角度去思考。一个资源只对应一个api，而请求的内容是HTTP请求的method确定的。因此， *REST 很好的利用了 HTTP本身就有的一些特征*。
+        
     + 参考
         * [RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
         * [REST，以及RESTful的讲解](https://blog.csdn.net/qq_21383435/article/details/80032375)

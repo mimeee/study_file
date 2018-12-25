@@ -125,11 +125,49 @@
             在数据库中，存储数据分为表->区->数据页；其中每数据页的容量为8K(8*1024字节)，其中数据页的结构为标头(必须有，包含该页的一些信息，大小为96字节)；其他就是数据行。
             ![](image/dabepage.png)
             
-    - #### 根据表记录数量估算占用磁盘空间
+    - #### 根据表记录数量估算占用磁盘空间  
+        学生表一行118字节(id char(10),name char(10),sex char(2),cardid char(20),birthday datetime,Email char(40),class char(20),enterTime datetime)；一页能存86条数据( 8096/118 = 86 )，2W条记录占用 295 页；。2W条记录一共占 295 * 8k = 2360k 大小。
+
     - #### 查看数据库的页
-    - #### 在堆中存放数据和查找数据
-    - #### 聚集索引和非聚集索引
-    - #### 使用非聚集索引在堆中查找数据
-    - #### 使用聚集索引数据查找和页分裂
+        ```sql
+            SELECT 
+                OBJECT_NAME(i.object_id) AS [tablename],
+                data_pages AS [dataPage] 
+            FROM 
+                sys.indexes as i
+            JOIN
+                sys.partitions as p
+                ON 
+                p.object_id = i.object_id and p.index_id = i.index_id
+            JOIN
+                sys.allocation_units as a
+                ON
+                a.container_id = p.partition_id
+            WHERE 
+                i.object_id = OBJECT_ID('TStudent')
+
+            --- 查看页的头信息
+
+            dbcc traceaon
+            dbcc Page([tablename],1[第几页],51,1)
+        ```
+    - #### 数据库如何为标分配磁盘空间
+        + #### 在堆中存放数据和查找数据
+            * 表中记录没有顺序要求，数据就会存放在堆中(表中哪里有空位就往哪里放)
+            * IAM索引分别映像页记录的是每个页中各个分区的使用情况，如果已被使用则用1标识，反之则用0标识，该IAM页可以支持4G的空间，如果IAM表满了，则会指向另外一个IAM表
+            * 在堆中查找数据只能进行全表搜索
+            ```sql
+                SELECT
+                    *
+                FROM
+                    sys.indexes 
+                WHERE 
+                (
+                    SELECT object_id from sys.all_object where name = "TStudent"
+                )
+            ```
+        + #### 聚集索引和非聚集索引
+        + #### 使用非聚集索引在堆中查找数据
+        + #### 使用聚集索引数据查找和页分裂
 
 3. ### 创建和维护索引
