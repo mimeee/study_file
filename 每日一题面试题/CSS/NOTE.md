@@ -263,7 +263,15 @@ BFC原理及其应用](https://blog.csdn.net/wky_csdn/article/details/73554720)
             - display为inline-block、table-cell、table-caption、flex、inline-flex，overflow不为visible
 
 ---
-- ### 
+- ### `<head>`中css的加载顺序
+    浏览器会并行加载css，加载完毕并且DOM Tree构建完毕后开始解析css文件，并构建CSSOM Tree。由于css是并行加载的，所以哪个css文件先加载完，就先解析哪个文件。如果先解析后面的css文件，则再解析前面css文件的时候，会把后面css文件没有的规则而前面css规则有的合并过来。
+
+---
+- ### 不换行必须要设置哪些项
+    + word-break 规定自动换行的处理方法(换行方式)
+    + letter-spacing 增加或者减少字符间的换行(字符间距)
+    + white-space 设置如何处理元素内的空白(空白符号的处理)
+    + word-spacing 增加或者减少单词之间的空白(词间距,对中文不管用,原因在于英语词与词之间是空白，而中文是紧挨着的)
 
 
     

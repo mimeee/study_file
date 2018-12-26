@@ -107,3 +107,30 @@
         ```
         * `watchPostion()`返回用户当前位置，并持续返回用户移动时的更新位置
         * `dearWatch()`停止 `watchPosition()` 方法
+
+---
+- ### 运算符优先级
+    + 参考:[运算符优先级](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+    + 注意在三元运算符的时候，'+' 与 '?' 的优先级
+ 
+---
+- ### 各个类型转换成布尔值的结果
+    + js中的数据类型
+        * String
+        * Numebr(包括整数，浮点数，Infinity，-Infinity，NaN)(64位)
+        * Boolean
+        * Undefined
+        * Null
+        * Object
+        * Symbol( es6 新增 )
+    + 原始值
+        值本身无法改变。可能在给一个变量重新赋值的过程中，是将一个变量顶替了另一个变量而不是去改变他。
+    + 转换规则
+        * 转化成 Number(使用Number()函数)
+            - *布尔值* true->1, false->0
+            - *null* null->0
+            - *undefined* undefined->NaN
+            - *字符串* '070'->70, '0x80'->NaN
+            - *对象* 调用 valueOf()方法
+        * 转化成 Boolean
+            - 可以转成fasle的有 *false*,*0*,*null*,*undefined*,*NaN*,*''*
