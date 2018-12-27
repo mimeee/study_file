@@ -177,3 +177,47 @@
             如上图，聚集索引在存放的时候可能会产生分页的情况。也就是说如果后面插入的多条数据在插入的时候页放不下了，就会放到所有页的最后面，但是会在该插入的地方指明这页的下一页是最后面的一页。
 
 3. ### 创建和维护索引
+    - #### 创建聚集索引和唯一性索引
+        + 使用主键，就等价于创建聚集索引；创建聚集索引不代表创建主键
+            ```sql
+                -- 创建聚集索引
+                create clustered index CL_studentID
+                on ts_table(studentID)
+            ```
+        + 创建唯一性的非聚集索引；创建唯一性约束的时候，同时也就创建了唯一性索引
+            ```sql
+                create unique nonclustered index U_cardID
+                on ts_table(cardID)
+            ```
+    - #### 创建非聚集索引和查看创建的索引
+        ```sql
+            create nonclustered index non_studentName
+            on ts_table(studentName)
+        ```
+        + 查看索引
+            ```sql
+                select * from sys.sysindexes where id= (
+                        select
+                            object_id
+                        from 
+                            sys.all_objects
+                        where
+                            name = 'Tstudent'
+                    )
+
+                -- 或者
+                sp_help TStudent;
+            ```
+            查看indid这一列，根据其值可以判断其索引类型
+    - #### 索引的页分裂和填充因子
+        + 页分裂: Page的index在逻辑上是连续的，但是在物理地址上不连续
+        + 页分裂会导致数据库的性能降低
+        + 填充因子(Fillfactor)就是为了降低页分裂；在创建索引的时候，将一个比如能存放十条记录的页使得其值存放5行记录；填充因子的取值就是占页面容量的百分比，比如Fillfactor = 50 就是指占页面容量的百分之五十。
+    - #### 索引的页分裂情况以及索引碎片整理
+    - #### 重建索引指定填充因子
+    - #### 优化数据查询
+    - #### 查看和更新索引统计
+    - #### 使用全文索引查找记录
+
+
+4. ### 创建视图
