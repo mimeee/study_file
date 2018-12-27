@@ -43,7 +43,23 @@
 			return res;
 		}
 
-		console.log(jumpFloor(2));
+
+		//递归跳台阶
+		function jumpFloorRecursion(number)
+		{
+		
+			if(number === 1 ) return 1;
+		    if(number === 2 ) return 2;
+		    return jumpFloorRecursion(number - 1) + jumpFloorRecursion(number - 2);
+			    
+		}
+		console.time('jump');
+		console.log(jumpFloor(10));
+		console.timeEnd('jump');
+		console.time('jump1');
+		console.log(jumpFloorRecursion(10))
+		console.timeEnd('jump1');
+
 	</script>	
 </body>
 </html>
