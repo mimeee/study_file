@@ -134,3 +134,31 @@
             - *对象* 调用 valueOf()方法
         * 转化成 Boolean
             - 可以转成fasle的有 *false*,*0*,*null*,*undefined*,*NaN*,*''*
+        * null 与 undefined 
+            - null == undefined -> true
+            - null和undefined不会隐式的转化为其它类型 
+
+---
+- ### typeof 的返回值
+    + string
+    + number
+    + object
+    + boolean
+    + undefined
+
+---
+- ### flash通过什么和js交互
+    + flash提供一个扩展类 ExternalInterface ，当页面上存在flash控件的时候，通过调用控件上暴露的接口，就可以进行交互了。
+    + ExternalInterface 提供两个方法
+        * ExternalInterface.addCallback("在js里可调用的flash方法名",flash内方法)
+        * ExternalInterface.call("js方法",传给js的参数)   
+
+--- 
+- ### 如何判断一个js对象是否是Array, arr为要判断的对象，其中最准确的方法是?
+    1. typeof(arr)
+    2. arr instanceof Array
+    3. arr.toString === '[object Array]'
+    4. Object.prototype.toString.call(arr) === '[object Array]'
+    + 参考:
+        * [js如何判断一个对象是不是Array](http://www.nowamagic.net/librarys/veda/detail/1250)
+        * [JavaScript类型检查与内部属性[[Class]]](https://blog.csdn.net/q1056843325/article/details/53080086)
